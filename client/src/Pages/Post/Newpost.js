@@ -12,6 +12,18 @@ function Newpost() {
             imageUrl: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80",
             name: "Random",
         },
+        {
+            imageUrl: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80",
+            name: "Dickboi",
+        },
+        {
+            imageUrl: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80",
+            name: "smallboi",
+        },
+        {
+            imageUrl: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80",
+            name: "large boi",
+        },
     ];
 
     const [communityList, setCommunityList] = useState([]);
@@ -31,12 +43,11 @@ function Newpost() {
 
             {/* Heading */}
             <div className="">
-                <h1 className="font-medium text-center text-gray-300">Create a post</h1>
-                <br />
+                <h1 className="font-bold text-center text-2xl text-gray-300">Create a post</h1>
             </div>
 
             {/* Input Form */}
-            <div className="p-4 rounded-lg bg-divcol ">
+            <div className="p-4 rounded-lg bg-divcol pb-2 mt-1">
                 <form>
                     {/* Title Input */}
                     <div>

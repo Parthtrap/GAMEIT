@@ -11,13 +11,13 @@ function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 z-50 w-full bg-white">
+    <nav className="fixed top-0 z-50 w-full bg-divcol shadow-sm shadow-purple-500/50">
       <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex ">
         <div>
           <div className="flex items-center justify-between py-4 md:block">
             <div className="md:hidden">
               <button
-                className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
+                className="p-2 text-purple-700 rounded-md outline-none focus:border-gray-400 focus:border"
                 onClick={() => {
                   setNavbar(!navbar);
                   setSidebar(false);
@@ -55,11 +55,11 @@ function Navbar() {
               </button>
             </div>
             <a href="/">
-              <h2 className="text-2xl font-bold">GAMEIT</h2>
+              <h2 className="text-2xl font-bold text-purple-100">GAMEIT</h2>
             </a>
             <div className="md:hidden">
               <button
-                className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
+                className="p-2 text-purple-700 rounded-md outline-none focus:border-gray-400 focus:border"
                 onClick={() => {
                   setSidebar(!sidebar);
                   setNavbar(false);
@@ -107,16 +107,16 @@ function Navbar() {
             <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
               {auth.isLoggedIn ? (
                 <>
-                  <li className="text-gray-600 hover:text-blue-600">
+                  <li className="text-gray-500 hover:text-purple-600">
                     <a href="/profile">Profile</a>
                   </li>
-                  <li className="text-gray-600 hover:text-blue-600">
+                  <li className="text-gray-500 hover:text-purple-600">
                     <a href="/post/new">New Post</a>
                   </li>
-                  <li className="text-gray-600 hover:text-blue-600">
+                  <li className="text-gray-500 hover:text-purple-600">
                     <a href="/help">Help</a>
                   </li>
-                  <li className="text-gray-600 hover:text-blue-600">
+                  <li className="text-gray-600 hover:text-purple-600">
                     <a href="/" onClick={auth.logout}>
                       Logout
                     </a>
@@ -124,10 +124,10 @@ function Navbar() {
                 </>
               ) : (
                 <>
-                  <li className="text-gray-600 hover:text-blue-600">
+                  <li className="text-gray-500 hover:text-purple-600">
                     <a href="/login">Login</a>
                   </li>
-                  <li className="text-gray-600 hover:text-blue-600">
+                  <li className="text-gray-500 hover:text-purple-600">
                     <a href="/help">Help</a>
                   </li>
                 </>
@@ -135,7 +135,7 @@ function Navbar() {
             </ul>
           </div>
           <div
-            className={`flex-1 justify-self-center pb-3 mt-8 md:hidden ${
+            className={`flex-1 justify-self-center text-gray-500 pb-3 mt-8 md:hidden ${
               sidebar ? "block" : "hidden"
             }`}
           >
