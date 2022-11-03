@@ -6,6 +6,7 @@ import Navbar from "./Pages/Components/Navbar";
 import Sidebar from "./Pages/Components/Sidebar";
 import Homepage from "./Pages/Homepage";
 import NotFound from "./Pages/NotFound";
+import Newpost from "./Pages/Post/Newpost";
 
 function App() {
   return (
@@ -24,6 +25,15 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
+        <Route
+          path="/post/new"
+          element={
+            <div className="flex">
+              <Newpost />
+              <Sidebar />
+            </div>
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
