@@ -1,10 +1,14 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import AuthContext from "./AuthContext";
 
 function LoginPage() {
   const emailRef = useRef(document.createElement("input"));
   const passwordRef = useRef(document.createElement("input"));
+  const auth = useContext(AuthContext)
+  const navigate = useNavigate();
 
-  function onLogin(e) {
+  const onLogin = async (e) => {
     e.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
@@ -12,7 +16,35 @@ function LoginPage() {
       console.error("Please Fill all fields");
       return;
     }
+    try {
+      const userdata = JSON.stringify({
+        email: email,
+        password: password,
+      });
+
+      const response = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: userdata,
+      });
+
+      const responseData = await response.json();
+
+      // Email Password Matches => Login
+      if (response.status === 201) {
+        auth.login(responseData.user);
+        console.log({ "user": responseData.user });
+      } else {
+        console.log(responseData.error);
+      }
+    } catch (err) {
+      console.log(err);
+      return;
+    }
     console.log({ email: email, password: password });
+    navigate("/");
   }
 
   return (
