@@ -28,7 +28,7 @@ function App() {
         <Route
           path="/post/new"
           element={
-            <div className="flex">
+            <div className="flex ">
               <Newpost />
               <Sidebar />
             </div>
