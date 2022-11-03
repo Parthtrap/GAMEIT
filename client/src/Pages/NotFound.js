@@ -7,7 +7,7 @@ function NotFound() {
             <h2 className="text-2xl font-bold md:text-5xl lg:text-8xl animate">404</h2>
             <p className="">
                 go back to{" "}
-                <Link to="/login" className="underline capitalize">
+                <Link to="/" className="underline capitalize">
                     home
                 </Link>
             </p>
