@@ -7,7 +7,11 @@ import Sidebar from "./Pages/Components/Sidebar";
 import Homepage from "./Pages/Homepage";
 import NotFound from "./Pages/NotFound";
 import Newpost from "./Pages/Post/Newpost";
-import Communitypage from"./Pages/Communitypage"
+import Postpage from "./Pages/Post/Postpage"
+import Communitypage from "./Pages/Communitypage";
+import Stickeynotespage from "./Pages/Stickeynotespage";
+import Stickeynotemodel from "./Pages/Components/Stickeynotemodel";
+
 
 function App() {
   return (
@@ -36,10 +40,38 @@ function App() {
           }
         />
         <Route
+          path="/post/:id"
+          element={
+            <div className="flex ">
+              <Postpage />
+              <Sidebar />
+            </div>
+          }
+        />
+        <Route
           path="/post/new"
           element={
             <div className="flex ">
               <Newpost />
+              <Sidebar />
+            </div>
+          }
+        />
+        <Route
+          path="/notes"
+          element={
+            <div className="flex ">
+              <Stickeynotespage />
+              <Sidebar />
+            </div>
+          }
+        />
+        <Route
+          path="/notes/:id"
+          element={
+            <div className="flex ">
+              <Stickeynotespage />
+              <Stickeynotemodel />
               <Sidebar />
             </div>
           }
