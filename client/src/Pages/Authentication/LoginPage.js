@@ -1,5 +1,5 @@
 import React, { useContext, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "./AuthContext";
 
 function LoginPage() {
@@ -75,12 +75,12 @@ function LoginPage() {
                 className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
             </div>
-            <a
+            <Link
               href="/forgotpassword"
               className="text-xs text-purple-600 hover:underline"
             >
               Forget Password?
-            </a>
+            </Link>
             <div className="mt-6">
               <button
                 onClick={onLogin}
@@ -92,12 +92,12 @@ function LoginPage() {
           </form>
           <p className="mt-8 text-xs font-light text-center text-gray-700">
             Don't have an account?{" "}
-            <a
+            <Link
               href="/signup"
               className="font-medium text-purple-600 hover:underline"
             >
               Sign up
-            </a>
+            </Link>
           </p>
         </div>
       </div>

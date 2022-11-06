@@ -7,11 +7,10 @@ import Sidebar from "./Pages/Components/Sidebar";
 import Homepage from "./Pages/Homepage";
 import NotFound from "./Pages/NotFound";
 import Newpost from "./Pages/Post/Newpost";
-import Postpage from "./Pages/Post/Postpage"
+import Postpage from "./Pages/Post/Postpage";
 import Communitypage from "./Pages/Communitypage";
 import Stickeynotespage from "./Pages/Stickeynotespage";
 import Stickeynotemodel from "./Pages/Components/Stickeynotemodel";
-
 
 function App() {
   return (

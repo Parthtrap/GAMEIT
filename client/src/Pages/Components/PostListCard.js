@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function PostListCard(props) {
   console.log(props);
   return (
-    <a href={"/post/" + props.post.id}>
+    <Link to={"/post/" + props.post.id}>
       <div className="flex p-3 my-4 border rounded-xl">
         <div className="pr-5">
           <span>
@@ -48,7 +49,7 @@ function PostListCard(props) {
           <div className="">{props.post.content}</div>
         </div>
       </div>
-    </a>
+    </Link>
   );
 }
 
