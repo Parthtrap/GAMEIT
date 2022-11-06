@@ -30,7 +30,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route
-          path="/community"
+          path="/community/:id"
           element={
             <div className="flex ">
               <Communitypage />
@@ -61,16 +61,6 @@ function App() {
           element={
             <div className="flex ">
               <Stickeynotespage />
-              <Sidebar />
-            </div>
-          }
-        />
-        <Route
-          path="/notes/:id"
-          element={
-            <div className="flex ">
-              <Stickeynotespage />
-              <Stickeynotemodel />
               <Sidebar />
             </div>
           }

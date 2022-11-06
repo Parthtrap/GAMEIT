@@ -9,7 +9,7 @@ function Stickynotespage() {
       id: "1",
       title: "Post 1",
       content: "Title is this thingy.... Don't Question it",
-      color: "bg-yellow-300"
+      color: "bg-yellow-300",
     },
     {
       id: "2",

@@ -14,7 +14,7 @@ function Stickynote(props) {
 
     return (
         <>
-            <div className={`m-5 h-40 w-40 p-2 justify-center ${showModal ? "transition-none" : " "} hover:z-10 hover:scale-125 hover:rotate-0 transition ease-in-out delay-110 ` + result + " " + props.note.color} onClick={choosing}>
+            <div className={`m-5 h-40 w-40 p-2 justify-center hover:scale-125 active:transition-none hover:rotate-0 transition ease-in-out delay-110 ` + result + " " + props.note.color} onClick={choosing}>
                 <Link>
                     <h2 className="my-1 text-2xl font-bold text-center">{props.note.title}</h2>
                     <p className="text-center font-reenie drop-shadow-2xl truncate ...">
