@@ -55,7 +55,7 @@ function Navbar() {
                 )}
               </button>
             </div>
-            <Link href="/">
+            <Link to="/">
               <h2 className="text-2xl font-bold text-purple-100">GAMEIT</h2>
             </Link>
             <div className="md:hidden">
@@ -108,16 +108,16 @@ function Navbar() {
               {auth.isLoggedIn ? (
                 <>
                   <li className="text-gray-500 hover:text-purple-600">
-                    <Link href="/profile">Profile</Link>
+                    <Link to="/profile">Profile</Link>
                   </li>
                   <li className="text-gray-500 hover:text-purple-600">
-                    <Link href="/post/new">New Post</Link>
+                    <Link to="/post/new">New Post</Link>
                   </li>
                   <li className="text-gray-500 hover:text-purple-600">
-                    <Link href="/help">Help</Link>
+                    <Link to="/help">Help</Link>
                   </li>
                   <li className="text-gray-600 hover:text-purple-600">
-                    <Link href="/" onClick={auth.logout}>
+                    <Link to="/" onClick={auth.logout}>
                       Logout
                     </Link>
                   </li>
@@ -125,10 +125,10 @@ function Navbar() {
               ) : (
                 <>
                   <li className="text-gray-500 hover:text-purple-600">
-                    <Link href="/login">Login</Link>
+                    <Link to="/login">Login</Link>
                   </li>
                   <li className="text-gray-500 hover:text-purple-600">
-                    <Link href="/help">Help</Link>
+                    <Link to="/help">Help</Link>
                   </li>
                 </>
               )}

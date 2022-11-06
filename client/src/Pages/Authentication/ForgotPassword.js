@@ -33,7 +33,7 @@ function ForgotPassword() {
               />
             </div>
             <Link
-              href="/login"
+              to="/login"
               className="text-xs text-purple-600 hover:underline"
             >
               Log In
