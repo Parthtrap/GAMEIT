@@ -9,26 +9,31 @@ function Stickynotespage() {
       id: "1",
       title: "Post 1",
       content: "Title is this thingy.... Don't Question it",
+      color: "bg-yellow-300"
     },
     {
       id: "2",
       title: "Post 2",
       content: "Title is this thingy.... Don't Question it",
+      color: "bg-yellow-300"
     },
     {
       id: "3",
       title: "Post 3",
       content: "Title is this thingy.... Don't Question it",
+      color: "bg-green-300"
     },
     {
       id: "4",
       title: "Post 4",
       content: "Title is this thingy.... Don't Question it",
+      color: "bg-yellow-300"
     },
     {
       id: "5",
       title: "Post 5",
       content: "Title is this thingy.... Don't Question it",
+      color: "bg-red-600"
     },
   ];
   const [selectedNote, setSelectedNote] = useState(null);
@@ -38,8 +43,8 @@ function Stickynotespage() {
     setSelectedNote(null);
   }
 
-  function onChoose(id) {
-    setSelectedNote(id);
+  function onChoose(note) {
+    setSelectedNote(note);
   }
 
   return (

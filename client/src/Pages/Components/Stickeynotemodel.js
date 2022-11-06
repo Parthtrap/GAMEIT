@@ -1,8 +1,17 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 export default function MyModal(prop) {
 
-    const [selectedColor, setSelectedColor] = useState("bg-yellow-300");
+    const [selectedColor, setSelectedColor] = useState(prop.note.color);
+
+    const titleRef = useRef(document.createElement('div'));
+    const contentRef = useRef();
+
+    function onSaveChanges() {
+        const title = titleRef.current.innerHTML;
+        const content = contentRef.current.innerHTML;
+        console.log({ id: prop.note.id, title, content, selectedColor });
+    }
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-25 z-100 backdrop-blur-sm">
@@ -36,16 +45,16 @@ export default function MyModal(prop) {
 
                 <div className={"p-2 mx-5 my-5 overflow-scroll rounded-lg shadow-lg scrollbar-hide md:mx-16 h-96 " + selectedColor}>
 
-                    <div contenteditable="true" className="my-1 text-2xl font-bold text-center">Title here {prop.note}</div>
-                    <p contenteditable="true" className="overflow-y-auto text-left font-reenie drop-shadow-2xl">
-                        efsefde
+                    <div ref={titleRef} contenteditable="true" className="my-1 text-2xl font-bold text-center">{prop.note.title}</div>
+                    <p ref={contentRef} contenteditable="true" className="overflow-y-auto text-left font-reenie drop-shadow-2xl">
+                        {prop.note.content}
                     </p>
 
                 </div>
 
                 {/*Save Changes button*/}
                 <button type="button"
-                    className="px-5 py-2 mx-5 text-sm font-medium text-center text-white rounded-full bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 md:mx-16">
+                    className="px-5 py-2 mx-5 text-sm font-medium text-center text-white rounded-full bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 md:mx-16" onClick={onSaveChanges}>
                     Save Changes
                 </button>
 

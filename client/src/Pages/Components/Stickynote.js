@@ -6,7 +6,7 @@ function Stickynote(props) {
     const [showModal, setShowModal] = useState(false);
     function choosing(e) {
         e.preventDefault();
-        props.onChoose(props.note.id);
+        props.onChoose(props.note);
     }
 
     const rotateOptions = ["-rotate-[5deg]", "-rotate-[4deg]", "-rotate-[3deg]", "-rotate-[2deg]", "-rotate-[1deg]", "rotate-[1deg]", "rotate-[2deg]", 'rotate-[3deg]', "rotate-[4deg]", "rotate-[5deg]"];
@@ -14,7 +14,7 @@ function Stickynote(props) {
 
     return (
         <>
-            <div className={`m-5 h-40 w-40 p-2 justify-center ${showModal ? "transition-none" : " "} hover:z-10 hover:scale-125 hover:rotate-0 transition ease-in-out delay-110 bg-yellow-300 ` + result} onClick={choosing}>
+            <div className={`m-5 h-40 w-40 p-2 justify-center ${showModal ? "transition-none" : " "} hover:z-10 hover:scale-125 hover:rotate-0 transition ease-in-out delay-110 ` + result + " " + props.note.color} onClick={choosing}>
                 <Link>
                     <h2 className="my-1 text-2xl font-bold text-center">{props.note.title}</h2>
                     <p className="text-center font-reenie drop-shadow-2xl truncate ...">
