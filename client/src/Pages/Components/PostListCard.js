@@ -5,7 +5,7 @@ function PostListCard(props) {
   console.log(props);
   return (
     <Link to={"/post/" + props.post.id}>
-      <div className="flex p-3 my-4 border rounded-xl hover:bg-purple-800 active:bg-purple-900">
+      <div className="flex p-3 my-4 rounded-xl bg-divcol hover:outline hover:outline-1 hover:outline-white">
         <div className="pr-5">
           <span className="text-gray-200">
             <svg

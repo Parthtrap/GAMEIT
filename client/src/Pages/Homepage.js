@@ -61,7 +61,7 @@ function Homepage() {
     },
   ];
   return (
-    <div className="w-full bg-divcol p-5 mt-16 md:w-3/4">
+    <div className="w-full bg-black p-5 mt-16 md:w-3/4">
       <div><Search/></div>
       <div>
         {postList.map((post) => {
