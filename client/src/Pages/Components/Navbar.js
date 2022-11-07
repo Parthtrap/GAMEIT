@@ -14,16 +14,18 @@ function Navbar() {
   return (
     <nav className="fixed top-0 z-50 w-full shadow-sm bg-divcol shadow-purple-500/50">
       <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex ">
-        <div>
+        
+        <div className="">
           <div className="flex items-center justify-between py-4 md:block">
+            
             <div className="md:hidden">
-              <button
-                className="p-2 text-purple-700 rounded-md outline-none focus:border-gray-400 focus:border"
+              <button className="p-2 text-purple-700 rounded-md outline-none focus:border-gray-400 focus:border"
                 onClick={() => {
                   setNavbar(!navbar);
                   setSidebar(false);
-                }}
-              >
+                }}>
+
+                {/* left side */}  
                 {navbar ? (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -55,9 +57,12 @@ function Navbar() {
                 )}
               </button>
             </div>
+
             <Link to="/">
               <h2 className="text-2xl font-bold text-purple-100">GAMEIT</h2>
             </Link>
+            
+            {/* right side */}
             <div className="md:hidden">
               <button
                 className="p-2 text-purple-700 rounded-md outline-none focus:border-gray-400 focus:border"
@@ -97,13 +102,14 @@ function Navbar() {
                 )}
               </button>
             </div>
+
           </div>
         </div>
+        
         <div>
-          <div
-            className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${navbar ? "block" : "hidden"
-              }`}
-          >
+          
+          {/* left side wala */}
+          <div className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${navbar ? "block" : "hidden"}`}>
             <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
               {auth.isLoggedIn ? (
                 <>
@@ -134,13 +140,15 @@ function Navbar() {
               )}
             </ul>
           </div>
-          <div
-            className={`flex-1 justify-self-center text-gray-500 pb-3 mt-8 md:hidden ${sidebar ? "block" : "hidden"
-              }`}
-          >
+
+          
+          {/* right side wala */}
+          <div className={`flex-1 justify-self-center text-gray-500 pb-3 mt-8 md:hidden ${sidebar ? "block" : "hidden"}`}>
             Hello
           </div>
+
         </div>
+
       </div>
     </nav>
   );

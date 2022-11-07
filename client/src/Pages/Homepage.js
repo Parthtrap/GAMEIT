@@ -1,8 +1,6 @@
 import React from "react";
-import Navbar from "./Components/Navbar";
-import Postpage from "./Post/Postpage";
-import Commentitem from "./Post/Commentitem";
 import PostListCard from "./Components/PostListCard";
+import Search from "./Components/Search";
 
 function Homepage() {
   const postList = [
@@ -63,8 +61,8 @@ function Homepage() {
     },
   ];
   return (
-    <div className="w-full p-5 mt-16 md:w-3/4">
-      <div>Search Bar and Filters</div>
+    <div className="w-full bg-divcol p-5 mt-16 md:w-3/4">
+      <div><Search/></div>
       <div>
         {postList.map((post) => {
           return <PostListCard post={post} />;

@@ -5,16 +5,16 @@ function PostListCard(props) {
   console.log(props);
   return (
     <Link to={"/post/" + props.post.id}>
-      <div className="flex p-3 my-4 border rounded-xl">
+      <div className="flex p-3 my-4 border rounded-xl hover:bg-purple-800 active:bg-purple-900">
         <div className="pr-5">
-          <span>
+          <span className="text-gray-200">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-5 h-5"
+              stroke="white"
+              className="w-5 h-5 "
             >
               <path
                 strokeLinecap="round"
@@ -24,13 +24,13 @@ function PostListCard(props) {
             </svg>
             {props.post.likes}
           </span>
-          <span>
+          <span className="text-gray-200">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
-              stroke="currentColor"
+              stroke="white"
               className="w-5 h-5"
             >
               <path
@@ -43,10 +43,10 @@ function PostListCard(props) {
           </span>
         </div>
         <div className="grow">
-          <div className="text-sm">g/{props.post.community}</div>
-          <div className="text-xs">u/{props.post.ownerID}</div>
-          <div className="text-xl font-bold">{props.post.title}</div>
-          <div className="">{props.post.content}</div>
+          <div className="text-sm text-gray-200">g/{props.post.community}</div>
+          <div className="text-xs text-gray-400">u/{props.post.ownerID}</div>
+          <div className="text-xl font-bold text-purple-50">{props.post.title}</div>
+          <div className="text-gray-200">{props.post.content}</div>
         </div>
       </div>
     </Link>

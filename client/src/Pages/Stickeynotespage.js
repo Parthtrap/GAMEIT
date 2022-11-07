@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MyModal from "./Components/Stickeynotemodel";
 import Stickynote from "./Components/Stickynote";
 
@@ -47,9 +47,29 @@ function Stickynotespage() {
     setSelectedNote(note);
   }
 
+  const [windowSize, setWindowSize] = useState(getWindowSize());
+
+  useEffect(() => {
+    function handleWindowResize() {
+      setWindowSize(getWindowSize());
+    }
+  
+    window.addEventListener('resize', handleWindowResize);
+  
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
+  }, []);
+
+  function getWindowSize() {
+    const {innerWidth, innerHeight} = window;
+    return {innerWidth, innerHeight};
+  }
+  
+
   return (
 
-    <div className="flex flex-wrap bg-divcol w-full min-h-[89.9vh] mt-16 place-content-center">
+    <div className="flex flex-wrap bg-divcol w-full min-h-[91vh] mt-16 place-content-center">
       {noteList.map((note) => {
         return <>
           <Stickynote note={note} onChoose={onChoose} />

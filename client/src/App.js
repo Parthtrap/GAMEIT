@@ -10,12 +10,11 @@ import Newpost from "./Pages/Post/Newpost";
 import Postpage from "./Pages/Post/Postpage";
 import Communitypage from "./Pages/Communitypage";
 import Stickeynotespage from "./Pages/Stickeynotespage";
-import Stickeynotemodel from "./Pages/Components/Stickeynotemodel";
 
 function App() {
   return (
     <>
-      <Navbar />
+      <Navbar/>
       <Routes>
         <Route
           path="/"
@@ -59,7 +58,7 @@ function App() {
         <Route
           path="/notes"
           element={
-            <div className="flex ">
+            <div className="flex">
               <Stickeynotespage />
               <Sidebar />
             </div>

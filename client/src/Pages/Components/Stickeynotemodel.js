@@ -15,16 +15,16 @@ export default function MyModal(prop) {
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-25 z-100 backdrop-blur-sm">
-            <div className="p-2 rounded-lg border shadow-md bg-gr border-gray-700 flex-col mx-5 mt-16 min-h-[75%] min-w-[75%]">
+            <div className="p-2 rounded-lg border shadow-md bg-gr border-gray-700  mt-16 md:max-w-3xl container mx-auto">
                 <div className="flex justify-between mx-5 my-5 md:mx-16">
 
-                    <div className="flex -space-x-4 ">
-                        <div className="w-10 h-10 ease-in-out bg-purple-900 rounded-full outline outline-1 outline-white hover:z-150 hover:scale-125" onClick={() => { setSelectedColor("bg-purple-900") }}></div>
+                    <div className="flex  shadow-2xl shadow-purple-500/40 -space-x-4 ">
                         <div className="w-10 h-10 ease-in-out bg-yellow-300 rounded-full outline outline-1 outline-white hover:z-150 hover:scale-125" onClick={() => { setSelectedColor("bg-yellow-300") }}></div>
+                        <div className="w-10 h-10 ease-in-out bg-purple-900 rounded-full outline outline-1 outline-white hover:z-150 hover:scale-125" onClick={() => { setSelectedColor("bg-purple-900") }}></div>
                         <div className="w-10 h-10 ease-in-out bg-red-300 rounded-full outline outline-1 outline-white hover:z-150 hover:scale-125" onClick={() => { setSelectedColor("bg-red-300") }}></div>
                         <div className="w-10 h-10 ease-in-out bg-green-300 rounded-full outline outline-1 outline-white hover:z-150 hover:scale-125" onClick={() => { setSelectedColor("bg-green-300") }}></div>
                         <div className="w-10 h-10 ease-in-out bg-red-900 rounded-full outline outline-1 outline-white hover:z-150 hover:scale-125" onClick={() => { setSelectedColor("bg-red-900") }}></div>
-                        <div className="w-10 h-10 ease-in-out rounded-full outline outline-1 outline-white bg-cyan-700 hover:z-150 hover:scale-125" onClick={() => { setSelectedColor("bg-cyan-700") }}></div>
+                        <div className="w-10 h-10 ease-in-out bg-cyan-700 rounded-full outline outline-1 outline-white hover:z-150 hover:scale-125" onClick={() => { setSelectedColor("bg-cyan-700") }}></div>
                         <div className="w-10 h-10 ease-in-out bg-red-600 rounded-full outline outline-1 outline-white hover:z-150 hover:scale-125" onClick={() => { setSelectedColor("bg-red-600") }}></div>
                         <div className="w-10 h-10 ease-in-out bg-green-900 rounded-full outline outline-1 outline-white hover:z-150 hover:scale-125" onClick={() => { setSelectedColor("bg-green-900") }}></div>
                     </div>
