@@ -1,4 +1,5 @@
 import React from "react";
+import CommunityListCard from "./Components/CommunityListCard";
 import PostListCard from "./Components/PostListCard";
 import Search from "./Components/Search";
 
@@ -61,11 +62,11 @@ function Homepage() {
     },
   ];
   return (
-    <div className="w-full bg-black p-5 mt-16 md:w-3/4">
+    <div className="flex flex-col w-full h-auto bg-black p-5 mt-16 md:w-3/4">
       <div><Search/></div>
-      <div>
+      <div className="">
         {postList.map((post) => {
-          return <PostListCard post={post} />;
+          return <CommunityListCard post={post} />;
         })}
       </div>
     </div>

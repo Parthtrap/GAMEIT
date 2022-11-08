@@ -46,7 +46,7 @@ export default function MyModal(prop) {
                 <div className={"p-2 mx-5 my-5 overflow-scroll rounded-lg shadow-lg scrollbar-hide md:mx-16 h-96 " + selectedColor}>
 
                     <div ref={titleRef} contenteditable="true" className="my-1 text-2xl font-bold text-center">{prop.note.title}</div>
-                    <p ref={contentRef} contenteditable="true" className="overflow-y-auto text-left font-reenie drop-shadow-2xl">
+                    <p ref={contentRef} contenteditable="true" className="overflow-y-auto text-left   drop-shadow-2xl">
                         {prop.note.content}
                     </p>
 

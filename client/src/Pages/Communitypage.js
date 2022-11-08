@@ -59,15 +59,29 @@ function Communitypage() {
       },
     ];
     return (
-      <div className="w-full p-5 mt-16 md:w-3/4 bg-white">
+      <div className="w-full p-5 mt-16 md:w-3/4 bg-black">
         
-        <div className="flex items-center space-x-4 bg-divcol ">
-            <img className="w-20 h-20 ml-4 rounded-full" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80" alt=""/>
-            <div className="">
+        <div className="flex items-center rounded-xl space-x-4 bg-divcol pr-3 justify-between ">
+            
+          <div className="flex items-center">
+            <img className="w-20 h-20 ml-4 rounded-full" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80"/>
+            <div className="ml-3">
                 <div className="font-bold text-2xl text-purple-400">Jeague of Land</div>
                 <div className="text-sm text-gray-500 dark:text-gray-400">Tag line can be placed here </div>
             </div>
-            <button type="button" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-9 py-2 text-center mr-2 mb-2">Join</button>
+          </div>
+
+          <button type="button" className="text-white
+          bg-gradient-to-br from-purple-600 to-blue-500
+          hover:bg-gradient-to-bl
+          active:scale-95
+          font-medium
+          rounded-full
+          text-sm text-center
+          px-9 py-2">
+            Join
+          </button>
+
         </div>
 
         <div>Search Bar and Filters</div>

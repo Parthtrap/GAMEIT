@@ -42,12 +42,14 @@ function PostListCard(props) {
             {props.post.comments.length}
           </span>
         </div>
+
         <div className="grow">
           <div className="text-sm text-gray-200">g/{props.post.community}</div>
           <div className="text-xs text-gray-400">u/{props.post.ownerID}</div>
           <div className="text-xl font-bold text-purple-50">{props.post.title}</div>
-          <div className="text-gray-200">{props.post.content}</div>
+          <div className="text-gray-200 truncate">{props.post.content}</div>
         </div>
+
       </div>
     </Link>
   );

@@ -58,7 +58,7 @@ function App() {
         <Route
           path="/notes"
           element={
-            <div className="flex">
+            <div className="flex ">
               <Stickeynotespage />
               <Sidebar />
             </div>

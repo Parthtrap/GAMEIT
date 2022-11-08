@@ -82,13 +82,14 @@ function Stickynotespage() {
        m-10
        bg-divcol
        rounded-full 
-       w-20 h-20 
+       w-20 h-20 z-10
        cursor-pointer
        shadow-md shadow-purple-900
        transition-all duration-600 ease-in-out
        hover:scale-125
        active:scale-75 active:bg-purple-700
        justify-center items-center flex
+       peer
        ${selectedNote != null ? "hidden" : "block"}
        `}>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-6 h-6">
@@ -96,6 +97,15 @@ function Stickynotespage() {
         </svg>
         
       </button>
+
+      {/*
+      <span className="absolute bottom-[6rem] right-[4.2rem] md:right-[25.5%] text-white invisible 
+      peer-hover:visible
+      peer-hover:-translate-y-[2rem] transition duration-[1300ms]">
+        ADD
+      </span>
+      */}
+
     </div>
 
   );
