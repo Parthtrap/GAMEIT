@@ -66,7 +66,7 @@ function Homepage() {
       <div><Search/></div>
       <div className="">
         {postList.map((post) => {
-          return <CommunityListCard post={post} />;
+          return <PostListCard post={post} />;
         })}
       </div>
     </div>

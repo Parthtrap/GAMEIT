@@ -25,7 +25,7 @@ function Navbar() {
                   setSidebar(false);
                 }}>
 
-                {/* left side */}  
+                {/* left side dropdown button*/}  
                 {navbar ? (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -62,7 +62,7 @@ function Navbar() {
               <h2 className="text-2xl font-bold text-purple-100">GAMEIT</h2>
             </Link>
             
-            {/* right side */}
+            {/* right side dropdown button*/}
             <div className="md:hidden">
               <button
                 className="p-2 text-purple-700 rounded-md outline-none focus:border-gray-400 focus:border"
@@ -109,7 +109,7 @@ function Navbar() {
         <div>
           
           {/* left side wala */}
-          <div className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${navbar ? "block" : "hidden"}`}>
+          <div className={`flex-1 justify-self-center pb-3 mt-1 md:block md:pb-0 md:mt-0 ${navbar ? "block" : "hidden"}`}>
             <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
               {auth.isLoggedIn ? (
                 <>
@@ -142,8 +142,8 @@ function Navbar() {
           </div>
 
           
-          {/* right side wala */}
-          <div className={`flex-1 justify-self-center text-gray-500 pb-3 mt-8 md:hidden ${sidebar ? "block" : "hidden"}`}>
+          {/* right side wala menu */}
+          <div className={`flex-1 justify-self-center text-gray-500 pb-3 mt-1 md:hidden ${sidebar ? "block" : "hidden"}`}>
             Hello
           </div>
 
