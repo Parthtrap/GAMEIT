@@ -111,6 +111,4 @@ function Stickynotespage() {
   );
 }
 
-
-
 export default Stickynotespage;

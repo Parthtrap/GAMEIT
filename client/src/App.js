@@ -10,10 +10,14 @@ import Newpost from "./Pages/Post/Newpost";
 import Postpage from "./Pages/Post/Postpage";
 import Communitypage from "./Pages/Communitypage";
 import Stickeynotespage from "./Pages/Stickeynotespage";
+import Todolistpage from "./Pages/Todolistpage";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
     <>
+      <ToastContainer />
       <Navbar/>
       <Routes>
         <Route
@@ -60,6 +64,15 @@ function App() {
           element={
             <div className="flex ">
               <Stickeynotespage />
+              <Sidebar />
+            </div>
+          }
+        />
+        <Route
+          path="/todo"
+          element={
+            <div className="flex min-h-screen">
+              <Todolistpage />
               <Sidebar />
             </div>
           }
