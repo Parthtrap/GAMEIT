@@ -59,8 +59,8 @@ function LoginPage() {
 
   return (
     <>
-      <div className="relative flex flex-col justify-center bg-black min-h-screen overflow-hidden">
-        <div className="w-full p-6 m-auto bg-divcol rounded-md shadow-md lg:max-w-xl">
+      <div className="relative flex flex-col justify-center min-h-screen overflow-hidden bg-black">
+        <div className="w-full p-6 m-auto rounded-md shadow-md bg-divcol md:max-w-xl">
           <h1 className="text-3xl font-semibold text-center text-purple-700 underline">
             Sign in
           </h1>
@@ -72,7 +72,7 @@ function LoginPage() {
               <input
                 type="email"
                 ref={emailRef}
-                className="block w-full px-4 py-2 mt-2 text-purple-300 bg-gr border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                className="block w-full px-4 py-2 mt-2 text-purple-300 border rounded-md bg-gr focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
             </div>
             <div className="mb-2">
@@ -83,7 +83,7 @@ function LoginPage() {
                 type="password"
                 ref={passwordRef}
                 autoComplete="password"
-                className="block w-full px-4 py-2 mt-2 text-purple-300 bg-gr border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                className="block w-full px-4 py-2 mt-2 text-purple-300 border rounded-md bg-gr focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
             </div>
             <Link
@@ -110,7 +110,7 @@ function LoginPage() {
               Sign up
             </Link>
           </p>
-        </div>       
+        </div>
       </div>
     </>
   );

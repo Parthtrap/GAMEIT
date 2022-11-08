@@ -1,5 +1,7 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
+import AuthContext from "./AuthContext";
 
 function Signup() {
   const usernameRef = useRef(document.createElement("input"));
@@ -8,8 +10,10 @@ function Signup() {
   const confirmpasswordRef = useRef(document.createElement("input"));
   const genderRef = useRef(document.createElement("input"));
   const dateOfBirthRef = useRef(document.createElement("input"));
+  const auth = useContext(AuthContext)
+  const navigate = useNavigate();
 
-  function onSignup(e) {
+  async function onSignup(e) {
     e.preventDefault();
     const username = usernameRef.current.value;
     const email = emailRef.current.value;
@@ -36,17 +40,51 @@ function Signup() {
       })
       return;
     }
+    else {
+      try {
+        const userdata = JSON.stringify({
+          name: username,
+          email: email,
+          password: password,
+          gender: gender,
+          dob: dateOfBirth
+        });
+
+        const response = await fetch("http://localhost:5000/api/auth/signup", {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: userdata,
+        });
+
+        const responseData = await response.json();
+        console.log(response.status);
+        // Email Password Uploaded as New account => Login
+        if (response.status === 201) {
+          auth.login(responseData.user);
+          console.log({ responseData });
+        } else {
+          console.log(responseData.error);
+        }
+      } catch (err) {
+        console.log(err);
+        return;
+      }
+    }
+
     console.log({ username, email, password, gender, dateOfBirth });
     toast.success("New User Registered", {
       theme: "dark"
     })
-    
+    navigate("/");
+
   }
 
   return (
     <>
-      <div className="relative flex flex-col justify-center bg-black min-h-screen overflow-hidden">
-        <div className="w-full p-6 m-auto mt-20 bg-divcol rounded-md shadow-md md:max-w-xl">
+      <div className="relative flex flex-col justify-center min-h-screen overflow-hidden bg-black">
+        <div className="w-full p-6 m-auto mt-20 rounded-md shadow-md bg-divcol md:max-w-xl">
           <h1 className="text-3xl font-semibold text-center text-purple-300 underline">
             Sign Up
           </h1>
@@ -58,7 +96,7 @@ function Signup() {
               <input
                 type="text"
                 ref={usernameRef}
-                className="block w-full px-4 py-2 mt-2 text-purple-300 bg-gr border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                className="block w-full px-4 py-2 mt-2 text-purple-300 border rounded-md bg-gr focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
             </div>
             <div className="mb-2">
@@ -68,7 +106,7 @@ function Signup() {
               <input
                 type="email"
                 ref={emailRef}
-                className="block w-full px-4 py-2 mt-2 text-purple-300 bg-gr border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                className="block w-full px-4 py-2 mt-2 text-purple-300 border rounded-md bg-gr focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
             </div>
             <div className="mb-2">
@@ -79,7 +117,7 @@ function Signup() {
                 type="password"
                 ref={passwordRef}
                 autoComplete="password"
-                className="block w-full px-4 py-2 mt-2 text-purple-300 bg-gr border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                className="block w-full px-4 py-2 mt-2 text-purple-300 border rounded-md bg-gr focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
             </div>
             <div className="mb-2">
@@ -90,7 +128,7 @@ function Signup() {
                 type="password"
                 ref={confirmpasswordRef}
                 autoComplete="password"
-                className="block w-full px-4 py-2 mt-2 text-purple-300 bg-gr border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                className="block w-full px-4 py-2 mt-2 text-purple-300 border rounded-md bg-gr focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
             </div>
             <div className="mb-2">
@@ -100,7 +138,7 @@ function Signup() {
                 </label>
                 <select
                   ref={genderRef}
-                  className="block w-full px-4 py-2 mt-2 text-purple-300 bg-gr border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                  className="block w-full px-4 py-2 mt-2 text-purple-300 border rounded-md bg-gr focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                 >
                   <option>Male</option>
                   <option>Female</option>
@@ -117,7 +155,7 @@ function Signup() {
                 <input
                   type="date"
                   ref={dateOfBirthRef}
-                  className="block w-full px-4 py-2 mt-2 text-purple-300 bg-gr border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                  className="block w-full px-4 py-2 mt-2 text-purple-300 border rounded-md bg-gr focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                   placeholder="Select date"
                 />
               </div>

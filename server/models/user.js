@@ -1,5 +1,6 @@
 //extracting mongoose module
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 //Schema for notes
 const notesSchema = new mongoose.Schema({
@@ -57,7 +58,7 @@ const userSchema = new mongoose.Schema({
         minlength: 8,
     },
     gender: {
-        type: Boolean,
+        type: String,
         require: [true, "Please enter Gender"],
     },
     dateofbirth: {
@@ -77,4 +78,4 @@ const userSchema = new mongoose.Schema({
 });
 
 //exporting User modal
-module.exports = mongoose.model("User", userSchema);
+export default mongoose.model("User", userSchema);
