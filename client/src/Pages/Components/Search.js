@@ -85,7 +85,7 @@ export default function Search(){
                     id="search-dropdown"
                     className="block p-2.5 w-full z-20 text-sm bg-gr
                      rounded-r-lg 
-                     border-l-2 border border-l-purple-700 border-gr placeholder-gray-400 text-white "
+                     border-l-2 border border-l-purple-900 border-gr placeholder-gray-400 text-white "
                     placeholder="Search Mockups, Logos, Design Templates..."
                     required=""
                 />
@@ -112,11 +112,6 @@ export default function Search(){
                     
                 </button>
             </div>
-
-            
-            
-
-
 
         </div>
         </form>

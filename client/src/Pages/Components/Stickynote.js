@@ -14,10 +14,13 @@ function Stickynote(props) {
 
     return (
         <>
-            <div className={`m-5 h-40 w-40 p-2 justify-center hover:scale-125 active:transition-none hover:rotate-0 transition ease-in-out delay-110 ` + result + " " + props.note.color} onClick={choosing}>
+            <div className={`m-5 h-40 w-40 p-2 justify-center 
+            hover:scale-125 hover:rotate-0 
+            transition ease-in-out delay-110 
+            active:transition-none` + " " + result + " " + props.note.color} onClick={choosing}>
                 <Link>
-                    <h2 className="my-1 text-2xl font-bold text-center">{props.note.title}</h2>
-                    <p className="text-center font-reenie drop-shadow-2xl truncate ...">
+                    <div className="my-1 h-[2rem] text-2xl font-bold text-center">{props.note.title}</div>
+                    <p className="h-[6.5rem] block text-center text-2xl font-reenie drop-shadow-2xl truncate ">
                         {props.note.content}
                     </p>
                 </Link>

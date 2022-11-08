@@ -10,6 +10,22 @@ module.exports = {
       fontFamily: {
         reenie: ["Reenie Beanie", "sans-serif"],
       },
+      animation: {
+        add: "add 1s ease-in-out 1"
+      },
+      keyframes:{
+        add: {
+          "0%" : {
+            transform: "scale(0.5)"
+          },
+          "50%" : {
+            transform: "scale(1)"
+          },
+          "100%" : {
+            transform: "scale(0.5)"
+          },
+        }
+      },
     },
   },
   plugins: [],
