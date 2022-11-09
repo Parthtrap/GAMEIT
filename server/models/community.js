@@ -1,8 +1,8 @@
 //extracting mongoose module
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 //Schema for communities
-const postSchema = new mongoose.Schema({
+const communitySchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -15,7 +15,11 @@ const postSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    imgsrc: {
+        type: String,
+        required: true
+    }
 });
 
 //exporting Post modal
-module.exports = mongoose.model("Community", communitySchema);
+export default mongoose.model("Community", communitySchema);

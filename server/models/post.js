@@ -1,5 +1,5 @@
 //extracting mongoose module
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 //Schema for comments
 const commentSchema = new mongoose.Schema({
@@ -43,4 +43,4 @@ const postSchema = new mongoose.Schema({
 });
 
 //exporting Post modal
-module.exports = mongoose.model("Post", postSchema);
+export default mongoose.model("Post", postSchema);

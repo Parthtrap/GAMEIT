@@ -71,6 +71,11 @@ const userSchema = new mongoose.Schema({
             type: String,
         },
     ],
+    likedposts: [
+        {
+            type: String,
+        },
+    ],
     isadmin: {
         type: Boolean,
         require: true,
