@@ -114,19 +114,19 @@ function Navbar() {
               {auth.isLoggedIn ? (
                 <>
                   <li className="text-gray-500 hover:text-purple-600">
-                    <Link to="/profile">Profile</Link>
+                    <Link to="/profile" onClick={()=>{setNavbar(false)}}>Profile</Link>
                   </li>
                   <li className="text-gray-500 hover:text-purple-600">
-                    <Link to="/post/new">New Post</Link>
+                    <Link to="/post/new" onClick={()=>{setNavbar(false)}}>New Post</Link>
                   </li>
                   <li className="text-gray-500 hover:text-purple-600">
-                    <Link to="/help">Help</Link>
+                    <Link to="/help" onClick={()=>{setNavbar(false)}}>Help</Link>
                   </li>
                   <li className="text-gray-500 hover:text-purple-600">
-                    <Link to="/notes">Notes</Link>
+                    <Link to="/notes" onClick={()=>{setNavbar(false)}}>Notes</Link>
                   </li>
                   <li className="text-gray-500 hover:text-purple-600">
-                    <Link to="/todo">To-Do List</Link>
+                    <Link to="/todo" onClick={()=>{setNavbar(false)}}>To-Do List</Link>
                   </li>
                   <li className="text-gray-500 hover:text-purple-600">
                     <Link to="/" onClick={auth.logout}>
