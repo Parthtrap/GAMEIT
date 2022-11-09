@@ -69,43 +69,47 @@ function Stickynotespage() {
 
   return (
 
-    <div className="flex flex-wrap bg-black w-full min-h-[91vh] mt-16 place-content-center">
-      {noteList.map((note) => {
-        return <>
-          <Stickynote note={note} onChoose={onChoose} />
-        </>
-      })}
-      {selectedNote != null ? <MyModal note={selectedNote} onClose={onClose} /> : <></>}
-
-      {/*add button*/}
-      <button className={`fixed bottom-0 right-1 md:right-[20%] 
-       m-10
-       bg-divcol
-       rounded-full 
-       w-20 h-20 z-10
-       cursor-pointer
-       shadow-md shadow-purple-900
-       transition-all duration-600 ease-in-out
-       hover:scale-125
-       active:scale-75 active:bg-purple-700
-       justify-center items-center flex
-       peer
-       ${selectedNote != null ? "hidden" : "block"}
-       `}>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-6 h-6">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-        </svg>
+    <div className="bg-black w-full min-h-[91vh] mt-16 place-content-center">
+      
+      <div className="bg-divcol rounded-lg p-12 m-12 flex flex-wrap relative">
         
-      </button>
+        {noteList.map((note) => {
+          return <>
+            <Stickynote note={note} onChoose={onChoose} />
+          </>
+        })}
+        {selectedNote != null ? <MyModal note={selectedNote} onClose={onClose} /> : <></>}
 
-      {/*
-      <span className="absolute bottom-[6rem] right-[4.2rem] md:right-[25.5%] text-white invisible 
-      peer-hover:visible
-      peer-hover:-translate-y-[2rem] transition duration-[1300ms]">
-        ADD
-      </span>
-      */}
+        {/*add button*/}
+        <button className={`absolute bottom-0 right-0 
+        m-10
+        bg-gr
+        rounded-full 
+        w-20 h-20 z-10
+        cursor-pointer
+        shadow-md shadow-purple-900
+        transition-all duration-600 ease-in-out
+        hover:scale-125
+        active:scale-75 active:bg-purple-700
+        justify-center items-center flex
+        peer
+        ${selectedNote != null ? "hidden" : "block"}
+        `}>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+          </svg>
+          
+        </button>
 
+        {/*
+        <span className="absolute bottom-[6rem] right-[4.2rem] md:right-[25.5%] text-white invisible 
+        peer-hover:visible
+        peer-hover:-translate-y-[2rem] transition duration-[1300ms]">
+          ADD
+        </span>
+        */}
+
+      </div>
     </div>
 
   );
