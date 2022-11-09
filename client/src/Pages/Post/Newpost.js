@@ -47,7 +47,7 @@ function Newpost() {
         if (title === "" || content === "") {
             toast.error("Please Fill all the Fields")
         }
-        else if (selectedCommunity == []) {
+        else if (selectedCommunity.name == null) {
             toast.error("Please Select a Community")
         }
         else {
