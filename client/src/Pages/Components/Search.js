@@ -1,10 +1,17 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 
 export default function Search(){
 
     const [dropdown, setDropdown] = useState(false);
     const [type, setType] = useState("Post");
+    const searchRef = useRef(document.createElement("input"));
+
+    const onSearch = (e) => { 
+        e.preventDefault();
+        const searchedstring = searchRef.current.value
+        console.log({searchedstring, type})
+    }
 
     return (
         
@@ -82,6 +89,7 @@ export default function Search(){
             <div className="relative w-full">
                 <input
                     type="search"
+                    ref={searchRef}
                     id="search-dropdown"
                     className="block p-2.5 w-full z-20 text-sm bg-gr
                      rounded-r-lg 
@@ -89,7 +97,8 @@ export default function Search(){
                     placeholder="Search Mockups, Logos, Design Templates..."
                     required=""
                 />
-                <button className="absolute top-0 right-0 
+                <button onClick={onSearch}
+                className="absolute top-0 right-0 
                 p-2.5 
                 text-sm font-medium text-white 
                 rounded-r-lg border border-purple-700 focus:outline-none bg-purple-600 hover:bg-purple-700 ">
