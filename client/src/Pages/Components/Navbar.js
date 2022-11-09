@@ -114,7 +114,7 @@ function Navbar() {
               {auth.isLoggedIn ? (
                 <>
                   <li className="text-gray-500 hover:text-purple-600">
-                    <Link to="/profile" onClick={()=>{setNavbar(false)}}>Profile</Link>
+                    <Link to="/profile:1" onClick={()=>{setNavbar(false)}}>Profile</Link>
                   </li>
                   <li className="text-gray-500 hover:text-purple-600">
                     <Link to="/post/new" onClick={()=>{setNavbar(false)}}>New Post</Link>

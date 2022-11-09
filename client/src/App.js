@@ -11,6 +11,7 @@ import Postpage from "./Pages/Post/Postpage";
 import Communitypage from "./Pages/Communitypage";
 import Stickeynotespage from "./Pages/Stickeynotespage";
 import Todolistpage from "./Pages/Todolistpage";
+import Profilepage from "./Pages/Profilepage";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -73,6 +74,15 @@ function App() {
           element={
             <div className="flex min-h-screen">
               <Todolistpage />
+              <Sidebar />
+            </div>
+          }
+        />
+        <Route
+          path="/profile:id"
+          element={
+            <div className="flex min-h-screen">
+              <Profilepage />
               <Sidebar />
             </div>
           }
