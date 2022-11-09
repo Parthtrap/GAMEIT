@@ -29,10 +29,9 @@ function Newpost() {
     const [communityList, setCommunityList] = useState([]);
     const [selectedCommunity, setSelectedCommunity] = useState({});
     const [inputValue, setInputValue] = useState("");
-    // const [selected, setSelected] = useState("");
-    // const [selectedUrl, setSelectedUrl] = useState("");
     const [open, setOpen] = useState(false);
 
+    
     console.log({ countries: communityList, inputValue, selectedCommunity, open });
 
     useEffect(() => { setCommunityList(CommList); }, []);
@@ -41,15 +40,15 @@ function Newpost() {
     return (
         <div className="h-screen p-6 pt-16 bg-black grow ">
 
-            <div className="md:max-w-3xl container mx-auto">
+            <div className="container mx-auto md:max-w-3xl">
 
                 {/* Heading */}
                 <div className="">
-                    <h1 className="font-bold text-center text-2xl text-gray-300">Create a post</h1>
+                    <h1 className="text-2xl font-bold text-center text-gray-300">Create a post</h1>
                 </div>
 
                 {/* Input Form */}
-                <div className="p-4 rounded-lg bg-divcol pb-2 mt-1">
+                <div className="p-4 pb-2 mt-1 rounded-lg bg-divcol">
                     <form>
                         {/* Title Input */}
                         <div>
@@ -67,7 +66,7 @@ function Newpost() {
                                 rows="4"
                             />
                             {/* add the dreop down here */}
-                            <div className="mt-4  font-medium w-72 h-80 ">
+                            <div className="mt-4 font-medium w-72 h-80 ">
                                 <div
                                     onClick={() => setOpen(!open)}
                                     className={`bg-gr w-full p-2 flex items-center justify-between text-purple-100 rounded ${!selectedCommunity && "text-purple-100 "
@@ -85,12 +84,12 @@ function Newpost() {
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
                                     </svg>
                                 </div>
-                                
+
                                 <ul
                                     className={`bg-gr mt-2 outline-white overflow-y-auto ${open ? "max-h-60 outline outline-1" : "max-h-0"
                                         } `}
                                 >
-                                    <div className="sticky top-0 shadow flex items-center px-2 bg-gr">
+                                    <div className="sticky top-0 flex items-center px-2 shadow bg-gr">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="gray" className="w-6 h-6">
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                                         </svg>

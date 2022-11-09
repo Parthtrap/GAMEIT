@@ -1,5 +1,6 @@
 import express from "express";
 const router = express.Router();
+import { addPost } from "./../controllers/post.js"
 
 // POST postlist(communityid, sort)
 
@@ -8,7 +9,7 @@ const router = express.Router();
 
 
 // POST makepost(userid, communityid)
-
+router.post("/new", addPost);
 
 // PATCH likepost(postid)
 
