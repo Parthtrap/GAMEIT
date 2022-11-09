@@ -23,7 +23,7 @@ const postSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    description: {
+    content: {
         type: String,
         required: true
     },
@@ -35,6 +35,10 @@ const postSchema = new mongoose.Schema({
     postingtime: {
         type: Date,
         required: true,
+    },
+    community: {
+        type: String,
+        required: true
     },
     ownerId: {
         type: String,

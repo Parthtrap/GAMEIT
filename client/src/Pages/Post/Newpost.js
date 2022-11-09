@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import AuthContext from "../Authentication/AuthContext";
 
 
 function Newpost() {
@@ -30,9 +33,61 @@ function Newpost() {
     const [selectedCommunity, setSelectedCommunity] = useState({});
     const [inputValue, setInputValue] = useState("");
     const [open, setOpen] = useState(false);
+    const titleRef = useRef(document.createElement('imput'));
+    const contentRef = useRef(document.createElement('imput'));
+    const auth = useContext(AuthContext);
+    const navigate = useNavigate();
 
-    
-    console.log({ countries: communityList, inputValue, selectedCommunity, open });
+    async function onPostSubmit(e) {
+        e.preventDefault();
+        const title = titleRef.current.value;
+        const content = contentRef.current.value;
+        console.log({ selectedCommunity });
+
+        if (title === "" || content === "") {
+            toast.error("Please Fill all the Fields")
+        }
+        else if (selectedCommunity == []) {
+            toast.error("Please Select a Community")
+        }
+        else {
+            try {
+                const postData = JSON.stringify({
+                    title: title,
+                    content: content,
+                    community: selectedCommunity.name,
+                    ownerId: auth.user.email,
+                });
+
+                const response = await fetch("http://localhost:5000/api/post/new", {
+                    method: "POST",
+                    headers: {
+                        "Content-type": "application/json",
+                    },
+                    body: postData,
+                });
+
+                const responseData = await response.json();
+
+                // Email Password Matches => Login
+                if (response.status === 201) {
+                    console.log({ "post": responseData.user });
+                    toast.success("Post Made Successfully", { theme: "dark" })
+                    navigate("/");
+                } else {
+                    console.log(responseData.error);
+                }
+            } catch (err) {
+                console.log(err);
+                toast.error("Post making Failed", {
+                    theme: "dark"
+                })
+                return;
+            }
+        }
+    }
+
+
 
     useEffect(() => { setCommunityList(CommList); }, []);
 
@@ -54,6 +109,7 @@ function Newpost() {
                         <div>
                             <input
                                 required=""
+                                ref={titleRef}
                                 className="w-full px-4 py-3 mb-2 text-purple-100 rounded focus:outline focus:outline-white bg-gr "
                                 placeholder="Title"
                             />
@@ -61,6 +117,7 @@ function Newpost() {
                         <div className="w-full mb-4 rounded-lg bg-divcol ">
                             <textarea
                                 required=""
+                                ref={contentRef}
                                 className="w-full px-4 py-3 mb-2 text-sm text-purple-100 rounded resize-y focus:outline focus:outline-white bg-gr "
                                 placeholder="Write  comment..."
                                 rows="4"
@@ -132,7 +189,7 @@ function Newpost() {
 
                             <div className="flex items-center justify-between px-3 py-2 border-t border-gray-600 bg-divcol">
 
-                                <button type="submit" className="inline-flex items-center 
+                                <button type="submit" onClick={onPostSubmit} className="inline-flex items-center 
                                 py-2.5 px-4 
                                 text-xs font-medium text-center text-white
                                 rounded-lg 
@@ -154,10 +211,6 @@ function Newpost() {
                                 </div>
                             </div>
                         </div>
-
-
-
-
                     </form>
                 </div>
             </div>

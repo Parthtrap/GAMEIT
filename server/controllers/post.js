@@ -5,25 +5,27 @@ export const addPost = async (req, res) => {
     const {
         title,
         content,
-        color,
         ownerId,
+        community
     } = req.body;
 
     //creating new post
     const newPost = new Post({
         title: title,
-        description: content,
+        content: content,
         likes: 0,
         comments: [],
         postingtime: Date.now(),
         ownerId: ownerId,
+        community: community
     });
 
     //add newPost to database
     try {
         await newPost.save();
-        console.log("Market added");
+        console.log("Post added");
         console.log(newPost);
+        res.status(201).json({ message: "Post Added Successfully" })
     } catch (err) {
         console.log(err);
         res.status(500).json({ error: err.message });

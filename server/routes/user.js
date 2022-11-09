@@ -1,4 +1,5 @@
 import express from "express";
+import { addPost } from "../controllers/post.js";
 const router = express.Router();
 
 // GET userinfo()
@@ -14,7 +15,7 @@ router.get("/:id", (req, res) => {
 
 
 // PATCH makepost(email, postid)
-
+router.post("/new", addPost);
 
 // PATCH makecomment(email, commentid)
 
