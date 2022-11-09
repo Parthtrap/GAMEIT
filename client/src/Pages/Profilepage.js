@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import CommunityListCard from "./Components/CommunityListCard";
 import PostListCard from "./Components/PostListCard";
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function Profilepage(){
 
@@ -63,15 +64,26 @@ export default function Profilepage(){
       ];
 
     const [editname, setEditname] = useState(false);
-
-    const edit = (e) => { 
+    const usernameRef = useRef(document.createElement("div"));
+    
+    const edit = (e) => {
         e.preventDefault();
+        const usernamestring = usernameRef.current.value
+        console.log({usernamestring})
         setEditname(!editname);
+        
+        if(editname){
+            toast.success("Username changed", {
+                theme: "dark"
+            })
+        }
+        
     }
 
     return (
         <div className="bg-black w-full mt-16">
             <div className="bg-divcol p-12 rounded-lg m-12 flex flex-col gap-6">
+
 
                 {/*username and email*/}
                 <div className="bg-gr p-4 rounded-lg">
@@ -81,7 +93,7 @@ export default function Profilepage(){
                         <div className="text-purple-300 font-semibold">Username:</div>
                         <div className="text-purple-100 flex ">
                             
-                            <div contenteditable={`${editname}`} className={`px-1 rounded-sm ${editname? "outline outline-1  ":""} `}>
+                            <div ref={usernameRef} contenteditable={`${editname}`} className={`px-1 rounded-sm ${editname? "outline outline-1  ":""} `}>
                             BigBoiEnergy
                             </div>
 
@@ -103,6 +115,7 @@ export default function Profilepage(){
                     </div>
 
                 </div>
+
 
                 {/*number of liked posts and posted posts */}
                 <div className="bg-gr p-4 rounded-lg flex justify-around">
