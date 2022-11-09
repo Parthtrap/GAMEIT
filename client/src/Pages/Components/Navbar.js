@@ -110,7 +110,7 @@ function Navbar() {
           
           {/* left side wala */}
           <div className={`flex-1 justify-self-center pb-3 mt-1 md:block md:pb-0 md:mt-0 ${navbar ? "block" : "hidden"}`}>
-            <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
+            <ul className="items-center justify-center space-y-4 md:flex md:space-x-6 md:space-y-0">
               {auth.isLoggedIn ? (
                 <>
                   <li className="text-gray-500 hover:text-purple-600">
@@ -122,7 +122,13 @@ function Navbar() {
                   <li className="text-gray-500 hover:text-purple-600">
                     <Link to="/help">Help</Link>
                   </li>
-                  <li className="text-gray-600 hover:text-purple-600">
+                  <li className="text-gray-500 hover:text-purple-600">
+                    <Link to="/notes">Notes</Link>
+                  </li>
+                  <li className="text-gray-500 hover:text-purple-600">
+                    <Link to="/todo">To-Do List</Link>
+                  </li>
+                  <li className="text-gray-500 hover:text-purple-600">
                     <Link to="/" onClick={auth.logout}>
                       Logout
                     </Link>
