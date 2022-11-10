@@ -1,12 +1,12 @@
 import express from "express";
 const router = express.Router();
-import { addPost } from "./../controllers/post.js"
+import { addPost, getPostByID } from "./../controllers/post.js"
 
 // POST postlist(communityid, sort)
 
 
 // POST post(postid)
-
+router.post("/get", getPostByID);
 
 // POST makepost(userid, communityid)
 router.post("/new", addPost);

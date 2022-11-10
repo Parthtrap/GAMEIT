@@ -54,3 +54,22 @@ export const getUserPosts = async (req, res) => {
     console.log(userPosts);
     res.status(201).json({ UserPosts: userPosts });
 };
+
+//funstion to find a Post
+export const getPostByID = async (req, res) => {
+    const id = req.body.id;
+
+    let postDetails;
+    try {
+        postDetails = await postDetails.findOne({ _id: id });
+        console.log(postDetails);
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).json({ error: err.message });
+        return;
+    }
+
+    console.log("All Posts of the user found");
+    console.log(postDetails);
+    res.status(201).json(postDetails);
+};
