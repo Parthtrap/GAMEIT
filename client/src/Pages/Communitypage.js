@@ -124,7 +124,8 @@ function Communitypage() {
         console.log(err.message);
       }
     }
-    UpdateUser();
+    if (auth.isLoggedIn)
+      UpdateUser();
   }, [followed])
 
 
