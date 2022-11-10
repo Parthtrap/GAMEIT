@@ -12,14 +12,14 @@ import Communitypage from "./Pages/Communitypage";
 import Stickeynotespage from "./Pages/Stickeynotespage";
 import Todolistpage from "./Pages/Todolistpage";
 import Profilepage from "./Pages/Profilepage";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
     <>
       <ToastContainer />
-      <Navbar/>
+      <Navbar />
       <Routes>
         <Route
           path="/"
@@ -79,7 +79,7 @@ function App() {
           }
         />
         <Route
-          path="/profile:id"
+          path="/profile/:id"
           element={
             <div className="flex min-h-screen">
               <Profilepage />

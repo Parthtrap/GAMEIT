@@ -1,43 +1,5 @@
-// export const verifyUser = async (req, res, next) => {
-//     const { email, password } = req.body;
-
-//     console.log(req.body.email);
-//     let existingUser = req.body.email;
-
-//     if (!existingUser) {
-//         console.log("No user exists with this email, please sign up");
-//         res
-//             .status(401)
-//             .json({ error: "No user exists with this email, please sign up" });
-//         return;
-//     }c
-
-//     const isPassMatching = true;
-//     console.log(isPassMatching);
-
-//     if (!isPassMatching) {
-//         console.log("Invalid credentials, could not log you in.");
-//         res
-//             .status(401)
-//             .json({ error: "Invalid credentials, could not log you in" });
-//         return;
-//     }
-
-//     console.log("User found");
-//     console.log(existingUser);
-//     res.status(201).json({
-//         message: "Logged in!",
-//         user: existingUser,
-//     });
-// }
-
-
-//extracting the user modal
 import bcrypt from "bcrypt";
 import User from "./../models/user.js"
-// const bcrypt = require("bcryptjs");
-// const User = require("../models/user");
-
 
 //post signin request function
 export const addUser = async (req, res, next) => {
@@ -60,8 +22,6 @@ export const addUser = async (req, res, next) => {
         res.status(422).json({ error: "A user with this email already exists" });
         return;
     }
-
-
 
     //finding existing user with same username;
     let existingUserName;
@@ -94,7 +54,6 @@ export const addUser = async (req, res, next) => {
     }
 
     const hashedPassword = await hashPassword();
-    console.log("SignUp API Hit", existingUserEmail, existingUserName);
 
     //creating newUser object
     const newUser = new User({
@@ -177,86 +136,3 @@ export const verifyUser = async (req, res, next) => {
         user: existingUser,
     });
 };
-
-// const toggleAddFavMarket = async (req, res) => {
-//     const { userId, marketId } = req.body;
-
-//     let user;
-
-//     try {
-//         user = await User.findOne({ _id: userId });
-//     } catch (err) {
-//         console.log(err);
-//         res.status(500).json({ error: err.message });
-//     }
-
-//     if (!user) {
-//         const err = "No user with this id exist";
-//         console.log(err);
-//         res.status(401).json({ error: err });
-//     }
-
-//     const existingMarket = user.favourites.find((mid) => {
-//         console.log(mid, marketId, mid === marketId);
-//         return mid === marketId;
-//     });
-//     console.log("Existing market id : ", existingMarket);
-
-//     if (existingMarket) {
-//         console.log("Market already in favourites");
-
-//         //removing market to user collections favuorites array
-//         try {
-//             const userFav = await User.updateOne(
-//                 { _id: userId },
-//                 {
-//                     $pull: {
-//                         favourites: marketId,
-//                     },
-//                 }
-//             );
-//             console.log("Market id removed from fav");
-//             console.log(userFav);
-//             try {
-//                 user = await User.findOne({ _id: userId });
-//             } catch (err) {
-//                 console.log(err);
-//                 res.status(500).json({ error: err.message });
-//             }
-//             res.status(201).json({ message: "Removed from fav", user: user });
-//             return;
-//         } catch (err) {
-//             console.log(err.message);
-//             res.status(500).json({ error: err.message });
-//         }
-//     } else {
-//         //adding market to user collections favuorites array
-//         try {
-//             const userFav = await User.updateOne(
-//                 { _id: userId },
-//                 {
-//                     $push: {
-//                         favourites: marketId,
-//                     },
-//                 }
-//             );
-//             console.log("Market id added to fav");
-//             console.log(userFav);
-//             try {
-//                 user = await User.findOne({ _id: userId });
-//             } catch (err) {
-//                 console.log(err);
-//                 res.status(500).json({ error: err.message });
-//             }
-//             //resending data with 'OK' status code
-//             res.status(201).json({ message: "Added to fav", user: user });
-//         } catch (err) {
-//             console.log(err.message);
-//             res.status(500).json({ error: err.message });
-//         }
-//     }
-// };
-
-// exports.toggleAddFavMarket = toggleAddFavMarket;
-// exports.signup = addUser;
-// exports.login = verifyUser;

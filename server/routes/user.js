@@ -1,12 +1,9 @@
 import express from "express";
-import { addPost } from "../controllers/post.js";
+import { getUser } from "../controllers/user.js";
 const router = express.Router();
 
 // GET userinfo()
-router.get("/:id", (req, res) => {
-    console.log(req.params.id);
-    res.json({ id: req.params.id })
-})
+router.post("/get", getUser)
 
 // PATCH edituserinfo(email, username)
 
@@ -15,7 +12,7 @@ router.get("/:id", (req, res) => {
 
 
 // PATCH makepost(email, postid)
-router.post("/new", addPost);
+
 
 // PATCH makecomment(email, commentid)
 

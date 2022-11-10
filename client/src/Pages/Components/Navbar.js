@@ -14,10 +14,10 @@ function Navbar() {
   return (
     <nav className="fixed top-0 z-50 w-full shadow-sm bg-divcol shadow-purple-500/50">
       <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex ">
-        
+
         <div className="">
           <div className="flex items-center justify-between py-4 md:block">
-            
+
             <div className="md:hidden">
               <button className="p-2 text-purple-700 rounded-md outline-none focus:border-gray-400 focus:border"
                 onClick={() => {
@@ -25,7 +25,7 @@ function Navbar() {
                   setSidebar(false);
                 }}>
 
-                {/* left side dropdown button*/}  
+                {/* left side dropdown button*/}
                 {navbar ? (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -61,7 +61,7 @@ function Navbar() {
             <Link to="/">
               <h2 className="text-2xl font-bold text-purple-100">GAMEIT</h2>
             </Link>
-            
+
             {/* right side dropdown button*/}
             <div className="md:hidden">
               <button
@@ -105,28 +105,28 @@ function Navbar() {
 
           </div>
         </div>
-        
+
         <div>
-          
+
           {/* left side wala */}
           <div className={`flex-1 justify-self-center pb-3 mt-1 md:block md:pb-0 md:mt-0 ${navbar ? "block" : "hidden"}`}>
             <ul className="items-center justify-center space-y-4 md:flex md:space-x-6 md:space-y-0">
               {auth.isLoggedIn ? (
                 <>
                   <li className="text-gray-500 hover:text-purple-600">
-                    <Link to="/profile:1" onClick={()=>{setNavbar(false)}}>Profile</Link>
+                    <Link to={"/profile/" + auth.user.email} onClick={() => { setNavbar(false) }}>Profile</Link>
                   </li>
                   <li className="text-gray-500 hover:text-purple-600">
-                    <Link to="/post/new" onClick={()=>{setNavbar(false)}}>New Post</Link>
+                    <Link to="/post/new" onClick={() => { setNavbar(false) }}>New Post</Link>
                   </li>
                   <li className="text-gray-500 hover:text-purple-600">
-                    <Link to="/help" onClick={()=>{setNavbar(false)}}>Help</Link>
+                    <Link to="/help" onClick={() => { setNavbar(false) }}>Help</Link>
                   </li>
                   <li className="text-gray-500 hover:text-purple-600">
-                    <Link to="/notes" onClick={()=>{setNavbar(false)}}>Notes</Link>
+                    <Link to="/notes" onClick={() => { setNavbar(false) }}>Notes</Link>
                   </li>
                   <li className="text-gray-500 hover:text-purple-600">
-                    <Link to="/todo" onClick={()=>{setNavbar(false)}}>To-Do List</Link>
+                    <Link to="/todo" onClick={() => { setNavbar(false) }}>To-Do List</Link>
                   </li>
                   <li className="text-gray-500 hover:text-purple-600">
                     <Link to="/" onClick={auth.logout}>
@@ -147,7 +147,7 @@ function Navbar() {
             </ul>
           </div>
 
-          
+
           {/* right side wala menu */}
           <div className={`flex-1 justify-self-center text-gray-500 pb-3 mt-1 md:hidden ${sidebar ? "block" : "hidden"}`}>
             Hello

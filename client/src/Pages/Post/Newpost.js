@@ -87,10 +87,7 @@ function Newpost() {
         }
     }
 
-
-
     useEffect(() => { setCommunityList(CommList); }, []);
-
 
     return (
         <div className="h-screen p-6 pt-16 bg-black grow ">
