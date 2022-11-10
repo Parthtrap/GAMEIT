@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function Commentitem(prop) {
     return (
         <div className="px-2 my-6 rounded-lg bg-divcol outline outline-1 outline-purple-200">

@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import { addPost, getAllPosts, getPostByCommunity, getPostByID } from "./../controllers/post.js"
+import { addPost, comment, getAllPosts, getPostByCommunity, getPostByID } from "./../controllers/post.js"
 
 // GET postlist()
 router.get("/get", getAllPosts);
@@ -20,7 +20,8 @@ router.post("/new", addPost);
 // PATCH unlikepost(postid)
 
 
-// PATCH commentpost(postid, commentid)
+// PATCH commentpost( commenter, comment, postid )
+router.post("/comment", comment);
 
 
 // DELETE post(postid)

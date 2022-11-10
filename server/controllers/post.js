@@ -107,3 +107,28 @@ export const getPostByCommunity = async (req, res) => {
     console.log(PostList);
     res.status(201).json(PostList);
 };
+
+
+// function to comment
+export const comment = async (req, res) => {
+    const { commenter, comment, postid } = req.body;
+    console.log({ commenter, comment, postid });
+    try {
+        const temp = await post.findOne({ _id: postid })
+        temp.comments.push({ "commenter": commenter, "comment": comment });
+        temp.save();
+        // const temp = await post.updateOne({ _id: postid }, {
+        //     $push: {
+        //         comments: { "commenter": commenter, "comment": comment }
+        //     }
+        // })
+
+        console.log("Done : ", temp);
+        res.status(201).json({ message: "done " })
+    }
+    catch (err) {
+        console.log(err.message);
+        res.status(500).json({ error: err.message });
+        return;
+    }
+}

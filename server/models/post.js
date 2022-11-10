@@ -2,16 +2,7 @@
 import mongoose from "mongoose";
 
 //Schema for comments
-const commentSchema = new mongoose.Schema({
-    commenter: {
-        type: String,
-        required: true
-    },
-    comment: {
-        type: Number,
-        required: true,
-    }
-});
+const commentSchema = new mongoose.Schema();
 
 //Schema for posts
 const postSchema = new mongoose.Schema({
@@ -27,7 +18,16 @@ const postSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    comments: [commentSchema],
+    comments: [{
+        commenter: {
+            type: String,
+            required: true
+        },
+        comment: {
+            type: String,
+            required: true,
+        }
+    }],
     postingtime: {
         type: Date,
         required: true,

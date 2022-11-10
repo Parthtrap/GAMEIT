@@ -21,6 +21,7 @@ export default function Postpage() {
     ownerUserName: 'Loading...'
   })
   const commentRef = useRef(document.createElement("input"));
+  const [a, setA] = useState();
 
   const [likestates, setLikestates] = useState(false);
 
@@ -38,10 +39,47 @@ export default function Postpage() {
     }
   }
 
-  const onComment = (e) => {
+  async function Commenting(commentstring) {
+    const searchQuery = JSON.stringify({
+      commenter: auth.user.email,
+      comment: commentstring,
+      postid: postDetails._id
+    });
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/post/comment",
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: searchQuery,
+        }
+      );
+      const responseData = await response.json();
+      if (response.status === 500) {
+
+      }
+      else if (response.status === 404) {
+
+      }
+      if (response.status === 201) {
+        // Gaurav Toast
+        console.log("Success");
+      } else {
+        console.log(responseData.error);
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
+
+  const onComment = async (e) => {
     e.preventDefault();
     const commentstring = commentRef.current.value
+    await Commenting(commentstring);
     console.log({ commentstring })
+    setA(a + 1);
   }
 
   useEffect(() => {
@@ -89,7 +127,7 @@ export default function Postpage() {
       }
     }
     fetchPost();
-  }, [params])
+  }, [params, a])
 
   console.log(postID);
   return (
@@ -131,11 +169,8 @@ export default function Postpage() {
               <span className="text-sm text-white text-opacity-50 text-fGrey">
                 {postDetails.postingtime}
               </span>
-
             </div>
-
           </div>
-
         </div>
 
         <div className="w-full mt-4 text-white aspect-auto">
@@ -181,8 +216,9 @@ export default function Postpage() {
           :
           <div className="w-full h-[1px] mt-4 bg-purple-500"></div>
         }
-        {postDetails.comments.map((c) => {
-          <Commentitem commenter={c.commenter} comment={c.comment} />
+        {postDetails.comments.map((c, i) => {
+          console.log(c);
+          return < Commentitem key={i} commenter={c.commenter} comment={c.comment} />
         })}
       </div>
     </div>);
