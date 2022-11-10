@@ -12,6 +12,7 @@ import Communitypage from "./Pages/Communitypage";
 import Stickeynotespage from "./Pages/Stickeynotespage";
 import Todolistpage from "./Pages/Todolistpage";
 import Profilepage from "./Pages/Profilepage";
+import Helppage from './Pages/Helppage';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -87,6 +88,7 @@ function App() {
             </div>
           }
         />
+        <Route path="/help" element={<Helppage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

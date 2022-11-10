@@ -153,7 +153,11 @@ export default function Profilepage() {
                         <div className="font-semibold text-purple-300">Username:</div>
                         <div className="flex text-purple-100 ">
 
-                            <div ref={usernameRef} contentEditable={`${editname}`} className={`px-1 rounded-sm ${editname ? "outline outline-1  " : ""} `}>
+                            <div 
+                            ref={usernameRef} 
+                            contentEditable={`${editname}`} 
+                            suppressContentEditableWarning={true}
+                            className={`px-1 rounded-sm ${editname ? "outline outline-1  " : ""} `}>
                                 {userData.username}
                             </div>
 
@@ -216,7 +220,7 @@ export default function Profilepage() {
                     <div className="text-5xl font-bold text-center text-purple-300">Posts</div>
                     <div className="">
                         {postList.map((post) => {
-                            return <PostListCard post={post} />;
+                            return <PostListCard key={post.id} post={post} />;
                         })}
                     </div>
                 </div>
