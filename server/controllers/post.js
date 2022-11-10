@@ -73,3 +73,21 @@ export const getPostByID = async (req, res) => {
     console.log(postDetails);
     res.status(201).json(postDetails);
 };
+
+//funstion to find a Post
+export const getAllPosts = async (req, res) => {
+
+    let PostList;
+    try {
+        PostList = await post.find().sort({ postingtime: -1 });
+        console.log(PostList);
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).json({ error: err.message });
+        return;
+    }
+
+    console.log("All Posts found");
+    console.log(PostList);
+    res.status(201).json(PostList);
+};
