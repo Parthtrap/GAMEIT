@@ -38,9 +38,9 @@ export const followCommunity = async (req, res) => {
     }
     let communityToChange;
     try {
-        communityToChange = await Community.updateOne({ name: community },{
-            $inc:{
-                followers:1,
+        communityToChange = await Community.updateOne({ name: community }, {
+            $inc: {
+                followers: 1,
             },
         });
     } catch (err) {
@@ -58,14 +58,14 @@ export const followCommunity = async (req, res) => {
     }
 }
 
-export const unfollowCommunity = async (req, res) =>{
-    const {email, community} = req.body;
+export const unfollowCommunity = async (req, res) => {
+    const { email, community } = req.body;
     let user;
     let communityToChange;
     try {
-        communityToChange = await Community.updateOne({ name: community },{
-            $inc:{
-                followers:-1,
+        communityToChange = await Community.updateOne({ name: community }, {
+            $inc: {
+                followers: -1,
             },
         });
     } catch (err) {

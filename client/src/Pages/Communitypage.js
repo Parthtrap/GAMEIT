@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import AuthContext from "./Authentication/AuthContext";
 import PostListCard from "./Components/PostListCard";
 
 function Communitypage() {
   const param = useParams();
-  console.log(param.id);
+  console.log({ id: param.id });
+  const auth = useContext(AuthContext);
+  console.log(auth);
 
   const [communityDetails, setCommunityDetails] = useState({
     followers: 0,
@@ -12,6 +15,115 @@ function Communitypage() {
     name: "Loading...",
     tagline: "Loading...",
   })
+  const [followed, setFollowed] = useState(false);
+
+  async function following() {
+    const followQuery = JSON.stringify({
+      email: auth.user.email,
+      community: param.id
+    })
+    try {
+      const followResponse = await fetch(
+        "http://localhost:5000/api/user/follow",
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: followQuery,
+        }
+      )
+
+      const followResponseData = await followResponse.json();
+      if (followResponse.status === 201) {
+        console.log("Followed");
+      }
+    }
+    catch (err) {
+      console.log(err.message);
+    }
+  }
+
+  async function unfollowing() {
+    const followQuery = JSON.stringify({
+      email: auth.user.email,
+      community: param.id
+    })
+    try {
+      const followResponse = await fetch(
+        "http://localhost:5000/api/user/unfollow",
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: followQuery,
+        }
+      )
+
+      const followResponseData = await followResponse.json();
+      if (followResponse.status === 201) {
+        console.log("Followed");
+      }
+    }
+    catch (err) {
+      console.log(err.message);
+    }
+  }
+  function onFollowPress() {
+    if (!auth.isLoggedIn) {
+      // Gaurav Add Toast
+    }
+    else {
+      console.log(auth.user.likedcommunities.find((e) => { return e === param.id }));
+      if (auth.user.likedcommunities.find((e) => { return e === param.id }) === undefined) {
+        console.log("Have to Follow");
+        following();
+        setFollowed(true)
+      }
+      else {
+        console.log("Have to Unfollow");
+        unfollowing();
+        setFollowed(false)
+      }
+    }
+  }
+  useEffect(() => {
+    const UpdateUser = async () => {
+      const searchQuery = JSON.stringify({ "email": auth.user.email })
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/user/get",
+          {
+            method: "POST",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: searchQuery,
+          }
+        );
+
+        const responseData = await response.json();
+        if (response.status === 201) {
+          auth.login(responseData);
+          if (responseData.likedcommunities.find((e) => { return e === param.id }) === undefined) {
+            console.log("Have to Follow");
+            setFollowed(false)
+          }
+          else {
+            console.log("Have to Unfollow");
+            setFollowed(true);
+          }
+        } else {
+          console.log(responseData.error);
+        }
+      } catch (err) {
+        console.log(err.message);
+      }
+    }
+    UpdateUser();
+  }, [followed])
+
 
   useEffect(() => {
     const getCommunityDetails = async () => {
@@ -126,9 +238,10 @@ function Communitypage() {
           </div>
         </div>
 
-        <button type="button" className="py-2 text-sm font-medium text-center text-white rounded-full bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl active:scale-95 px-9">
-          Join
+        <button onClick={onFollowPress} type="button" className="py-2 text-sm font-medium text-center text-white rounded-full bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl active:scale-95 px-9">
+          {followed ? "Unfollow" : "Follow"}
         </button>
+
 
       </div>
 
@@ -141,4 +254,5 @@ function Communitypage() {
     </div>
   );
 }
+
 export default Communitypage;

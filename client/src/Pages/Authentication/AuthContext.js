@@ -89,6 +89,7 @@ export const AuthContextProvider = (props) => {
     }
   }
 
+
   const context = {
     isLoggedIn: isLoggedIn,
     userId: userId,

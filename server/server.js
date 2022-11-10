@@ -11,13 +11,19 @@ const app = express();
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-app.use(cors());
+const corsOptions = {
+    origin: '*',
+    credentials: true,            //access-control-allow-credentials:true
+    optionSuccessStatus: 200,
+}
 
+app.use(cors(corsOptions))
 
 app.use('/api/user', userRoutes)
 app.use('/api/post', postRoutes)
 app.use('/api/auth', authRoutes)
 app.use('/api/community', communityRoute)
+
 
 const CONNECTION_URL = 'mongodb+srv://Parthtrap:Md+90=100@cluster1.iktpdhw.mongodb.net/gameit?retryWrites=true&w=majority'
 const PORT = process.env.PORT || 5000;

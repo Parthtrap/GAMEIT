@@ -1,4 +1,3 @@
-import psSupported from "jsonwebtoken/lib/psSupported.js";
 import post from "./../models/post.js";
 import Post from "./../models/post.js"
 export const addPost = async (req, res) => {
@@ -93,15 +92,15 @@ export const getAllPosts = async (req, res) => {
 };
 
 //function to find post belongin to a community
-export const getPostByCommunity = async (req, res) =>{
-    
-    const{community}=req.body;
-    let PostList ;
+export const getPostByCommunity = async (req, res) => {
+
+    const { community } = req.body;
+    let PostList;
     try {
-        PostList = await post.find({community:community});
-    } catch(err){
+        PostList = await post.find({ community: community });
+    } catch (err) {
         console.log(err.message);
-        res.status(500).json({error:err.message});
+        res.status(500).json({ error: err.message });
         return;
     }
     console.log("Post of community " + community);
