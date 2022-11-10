@@ -194,7 +194,7 @@ export default function Profilepage() {
                 <div className="p-4 rounded-lg bg-gr ">
                     <div className="text-5xl font-bold text-center text-purple-300">Posts</div>
                     <div className="">
-                        {postList.map((post) => {
+                        {UserPostList.map((post) => {
                             return <PostListCard key={post.id} post={post} />;
                         })}
                     </div>

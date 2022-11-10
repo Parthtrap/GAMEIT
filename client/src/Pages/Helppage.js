@@ -2,6 +2,14 @@ import { useParams} from "react-router-dom";
 import React, { useContext, useEffect, useState, useRef } from "react";
 
 export default function Helppage() {
+
+    const [isopen1, setIsopen1] = useState(false);
+
+    const onClick1 = (e) => {
+        e.preventDefault();
+        setIsopen1(!isopen1);
+    }
+
     return(
 
         <section className="relative pt-24 pb-28 bg-blueGray-50 overflow-hidden">
@@ -23,25 +31,36 @@ export default function Helppage() {
                     <h2 className="mb-16 text-6xl md:text-8xl xl:text-10xl text-center font-bold font-heading tracking-px-n leading-none">
                         Frequently Asked Questions
                     </h2>
+                    
 
+
+
+
+
+
+                    {/*faq cards*/}
                     <div className="mb-11 flex flex-wrap -m-1">
 
                         <div className="w-full p-1">
                         <a href="#">
-                            <div className="py-7 px-8 bg-white bg-opacity-60 border-2 border-indigo-600 rounded-2xl shadow-10xl">
+                            <div className="pt-7 pb-3 px-8 bg-white bg-opacity-60 border-2 border-indigo-600 rounded-2xl shadow-10xl">
                                 <div className="flex flex-wrap justify-between -m-2">
                                     
+                                    {/*question and answer text*/}
                                     <div className="flex-1 p-2">
                                         <h3 className="mb-4 text-lg font-semibold leading-normal">
                                             Do you provide any free plan?
                                         </h3>
-                                        <p className="text-gray-600 font-medium">
+                                        <p className={`text-gray-600 font-medium ${isopen1 ? 'block' : 'hidden'}`}>
                                             Lorem ipsum dolor sit amet, to the consectr adipiscing elit.
                                             Volutpat tempor to the condi mentum vitae vel purus.
                                         </p>
                                     </div>
 
-                                    <div className="w-auto p-2">
+                                    {/*drop down arrow image*/}
+                                    <div 
+                                    onClick={onClick1}
+                                    className="w-auto p-2">
                                         <svg
                                             className="relative top-1"
                                             width={20}
@@ -65,13 +84,12 @@ export default function Helppage() {
                         </a>
                         </div>
 
-
-
                         <div className="w-full p-1">
                         <a href="#">
                             <div className="py-7 px-8 bg-white bg-opacity-60 border border-gray-200 hover:border-gray-300 rounded-2xl shadow-10xl">
                                 <div className="flex flex-wrap justify-between -m-2">
                                     
+                                    {/*question and answer text*/}
                                     <div className="flex-1 p-2">
                                         <h3 className="text-lg font-semibold leading-normal">
                                             How to claim your 25% discount offer?
@@ -101,7 +119,6 @@ export default function Helppage() {
                             </div>
                         </a>
                         </div>
-
 
                         <div className="w-full p-1">
                         <a href="#">
@@ -137,8 +154,7 @@ export default function Helppage() {
                             </div>
                         </a>
                         </div>
-
-                        
+        
                         <div className="w-full p-1">
                             <a href="#">
                                 <div className="py-7 px-8 bg-white bg-opacity-60 border border-gray-200 hover:border-gray-300 rounded-2xl shadow-10xl">
@@ -176,6 +192,15 @@ export default function Helppage() {
                 
                     </div>
 
+
+
+
+
+
+
+
+
+                    {/*still have questions contact us*/}
                     <p className="text-gray-600 text-center font-medium">
                         <span>Still have any questions?</span>
                         <a
