@@ -7,40 +7,49 @@ export default function PostDisplay() {
   const postID = params.id;
   console.log(postID);
   return (
-    <div className="flex w-full mt-16">
-      <div className="w-full p-4 shadow-fb bg-divcol">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <img
-              src={profilePic }
-              alt="img"
-              className="w-10 h-10 rounded-full"
-            />
-            <div className="ml-4 text-white">
-              <span className="font-bold text-white cursor-pointer">Ronald Oliver</span>{' '}
-              was with{' '}
-              <span className="font-bold text-white cursor-pointer">Steve Cunningham</span>{' '}
-              <br />
-              <span className="text-sm text-white text-opacity-50 text-fGrey">
-                {' '}
-                November 16, 2021{' '}
-              </span>
-            </div>
+
+    <div className="bg-black w-full mt-16">
+      <div className="p-12 rounded-lg m-12 shadow-fb bg-green-200">
+        
+        <div className="flex items-center justify-between bg-red-200">
+        
+          <img
+            src={profilePic}
+            alt="img"
+            className="w-10 h-10 rounded-full"
+          />
+
+          <div className="ml-4 text-white">
+            <span className="font-bold text-white cursor-pointer">r/DankMeme</span>{' '}
+            Posted by {' '}
+            <span className="font-bold text-white cursor-pointer">Steve Cunningham</span>{' '}
+            <br />
+            <span className="text-sm text-white text-opacity-50 text-fGrey">
+              {' '}
+              November 16, 2021{' '}
+            </span>
           </div>
+
         </div>
+
         <div className="w-full mt-4 text-white">
           hello
         </div>
+
         <img
           src="https://picsum.photos/id/1014/2000"
           alt="img"
           className="object-cover w-full mt-4 rounded h-72"
         />
+
         <div className="flex items-center justify-between mt-4 text-white text-opacity-50 text-fGrey">
           <div>26 Likes</div>
           <div>1 Comment</div>
         </div>
+
         <div className="mt-4 border border-fGray border-opacity-10" />
+
+
         <div className="flex items-center justify-between mt-4 colour-white">
           <button className="flex items-center justify-center w-1/2 focus:outline-none">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-6 h-6">
@@ -55,7 +64,11 @@ export default function PostDisplay() {
             <span className="ml-1 text-white">Comment</span>
           </button>
         </div>
+
+
         <div className="mt-4 border border-fGray border-opacity-10" />
+
+
         <div className="flex mt-4 space-x-2">
           <img
             src="https://picsum.photos/id/1015/500"
@@ -63,11 +76,15 @@ export default function PostDisplay() {
             className="w-10 h-10 rounded-full"
           />
           <input
-            className="w-full px-4 py-3 bg-gray-700 rounded-full bg-fFill focus:outline-none"
+            className="w-full px-4 py-3 bg-green-500 rounded-full bg-fFill focus:outline-none"
             placeholder="Write something to Roland…"
           />
         </div>
+
+
         <Commentitem />
+
+
       </div>
     </div>)
 }

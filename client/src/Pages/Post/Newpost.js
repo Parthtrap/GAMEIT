@@ -92,7 +92,7 @@ function Newpost() {
     return (
         <div className="h-screen p-6 pt-16 bg-black grow ">
 
-            <div className="container mx-auto md:max-w-3xl">
+            <div className="container mx-auto md:max-w-2xl">
 
                 {/* Heading */}
                 <div className="">

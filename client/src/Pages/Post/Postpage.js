@@ -1,46 +1,72 @@
-import { useParams } from "react-router-dom";
+import { useParams} from "react-router-dom";
+import React, { useContext, useEffect, useState, useRef } from "react";
 //import profilePic from "./../../Assets/default_pfp.png"
 import Commentitem from "../Post/Commentitem";
+import { Link } from "react-router-dom";
 
 export default function Postpage() {
+
+
+  const commentRef = useRef(document.createElement("input"));
+
+  const onComment = (e) => { 
+    e.preventDefault();
+    const commentstring = commentRef.current.value
+    console.log({commentstring})
+  }
+
   const params = useParams();
   const postID = params.id;
   console.log(postID);
   return (
-    <div className="flex w-full mt-16">
-      <div className="w-full p-4 shadow-fb bg-divcol">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <img
-              src={"https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80"            }
-              alt="img"
-              className="w-10 h-10 rounded-full"
-            />
-            <div className="ml-4 text-white">
-              <span className="font-bold text-white cursor-pointer">Ronald Oliver</span>{' '}
-              was with{' '}
-              <span className="font-bold text-white cursor-pointer">Steve Cunningham</span>{' '}
-              <br />
-              <span className="text-sm text-white text-opacity-50 text-fGrey">
-                {' '}
-                November 16, 2021{' '}
-              </span>
-            </div>
+    <div className="bg-black flex justify-center w-full mt-16">
+      <div className=" p-8  md:max-w-2xl rounded-lg m-12 w-full shadow-fb bg-divcol">
+        
+        <div className="flex outline outline-1 outline-offset-4 outline-purple-500/50 rounded-lg items-center">
+          
+          <img
+            src={"https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80"}
+            alt="img"
+            className="w-10 h-10 rounded-full"
+          />
+
+          <div className="ml-4 text-white">
+
+          <Link to={"/community/" + postID}>
+            <span className="font-bold text-white cursor-pointer">r/DankMeme</span>{' '}</Link>
+            Posted by {' '}
+          
+            <span className=" text-white ">u/RandomName</span>{' '}
+
+            <br />
+
+            <span className="text-sm text-white text-opacity-50 text-fGrey">
+              {' '}
+              November 16, 2021{' '}
+            </span>
+
           </div>
+          
+          
         </div>
-        <div className="w-full mt-4 text-white">
-          hello
+
+        <div className="w-full aspect-auto mt-4 text-white">
+          Post discription here 
         </div>
+
         <img
           src="https://picsum.photos/id/1014/2000"
           alt="img"
           className="object-cover w-full mt-4 rounded h-72"
         />
+
         <div className="flex items-center justify-between mt-4 text-white text-opacity-50 text-fGrey">
           <div>26 Likes</div>
           <div>1 Comment</div>
         </div>
+
         <div className="mt-4 border border-fGray border-opacity-10" />
+
         <div className="flex items-center justify-between mt-4 colour-white">
           <button className="flex items-center justify-center w-1/2 focus:outline-none">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-6 h-6">
@@ -55,19 +81,55 @@ export default function Postpage() {
             <span className="ml-1 text-white">Comment</span>
           </button>
         </div>
+
         <div className="mt-4 border border-fGray border-opacity-10" />
-        <div className="flex mt-4 space-x-2">
-          <img
-            src="https://picsum.photos/id/1015/500"
-            alt="img"
-            className="w-10 h-10 rounded-full"
-          />
+
+        <div className="flex mt-4 relative">
+          
           <input
-            className="w-full px-4 py-3 bg-gray-700 rounded-full bg-fFill focus:outline-none"
+            ref={commentRef}
+            className="
+            w-full 
+            px-4 py-3
+            text-white placeholder-gray-400
+            bg-gr
+            rounded-lg focus:outline-none"
             placeholder="Write something to Roland…"
           />
+
+          <button onClick={onComment}
+          className="absolute top-0 right-0 
+          p-2.5 
+          text-sm font-medium text-white 
+          rounded-r-lg border border-purple-700 focus:outline-none bg-purple-600 hover:bg-purple-700 ">
+              
+            <svg
+            aria-hidden="true"
+            className="w-[1.6rem] h-[1.6rem]"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            >
+            <path strokeLinecap="round" 
+            strokeLinejoin="round" 
+            d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 011.037-.443 48.282 48.282 0 005.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
+            </svg>
+
+          </button>
+
         </div>
+
         <Commentitem />
       </div>
     </div>);
 }
+
+{/* 
+
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+  
+</svg>
+
+
+*/}

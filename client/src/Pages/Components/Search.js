@@ -85,8 +85,9 @@ export default function Search(){
 
             </div>
             
-
+            {/*search box input and button*/}
             <div className="relative w-full">
+                
                 <input
                     type="search"
                     ref={searchRef}
@@ -97,6 +98,8 @@ export default function Search(){
                     placeholder="Search Mockups, Logos, Design Templates..."
                     required=""
                 />
+
+
                 <button onClick={onSearch}
                 className="absolute top-0 right-0 
                 p-2.5 
@@ -118,8 +121,9 @@ export default function Search(){
                         d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     />
                     </svg>
-                    
                 </button>
+
+
             </div>
 
         </div>
