@@ -25,7 +25,9 @@ export default function Profilepage() {
     console.log(param);
     useEffect(() => {
         const fetchUser = async () => {
-            if (param.id === auth.user.email)
+            if (!auth.isLoggedIn)
+                setIsEditable(false);
+            else if (param.id === auth.user.email)
                 setIsEditable(true);
             else
                 setIsEditable(false);

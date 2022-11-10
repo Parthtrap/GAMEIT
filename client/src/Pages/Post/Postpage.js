@@ -95,7 +95,7 @@ export default function Postpage() {
       <div className="w-full p-8 m-12 rounded-lg md:max-w-2xl shadow-fb bg-divcol">
 
         {/* reddit name and posted by and like button */}
-        <div className="flex items-center pl-1 gap-3 rounded-lg outline outline-1 outline-offset-4 outline-purple-500/50">
+        <div className="flex items-center gap-3 pl-1 rounded-lg outline outline-1 outline-offset-4 outline-purple-500/50">
 
           {/* like button */}
           <button 
@@ -157,13 +157,11 @@ export default function Postpage() {
             className="w-full px-4 py-3 text-white placeholder-gray-400 rounded-lg bg-gr focus:outline-none"
             placeholder="Write something to Roland…"
           />
-
           <button onClick={onComment}
             className="absolute top-0 right-0 
           p-2.5 
           text-sm font-medium text-white 
           rounded-r-lg border border-purple-700 focus:outline-none bg-purple-600 hover:bg-purple-700 ">
-
             <svg
               aria-hidden="true"
               className="w-[1.6rem] h-[1.6rem]"
@@ -176,9 +174,7 @@ export default function Postpage() {
                 strokeLinejoin="round"
                 d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 011.037-.443 48.282 48.282 0 005.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
             </svg>
-
           </button>
-
         </div>
 
         <Commentitem />
