@@ -1,3 +1,4 @@
+
 import Community from "./../models/community.js"
 
 export const addCommunity = async (req, res) => {
@@ -39,4 +40,23 @@ export const addCommunity = async (req, res) => {
         console.log(err);
         res.status(500).json({ error: err.message });
     }
+};
+
+
+//funstion to get All Communities
+export const getCommunities = async (req, res) => {
+
+    let communities;
+    try {
+        communities = await Community.find();
+        console.log(communities);
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).json({ error: err.message });
+        return;
+    }
+
+    console.log("Allcommunities found");
+    console.log(communities);
+    res.status(201).json({ communities });
 };

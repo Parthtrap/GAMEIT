@@ -6,29 +6,6 @@ import AuthContext from "../Authentication/AuthContext";
 
 function Newpost() {
 
-    const CommList = [
-        {
-            imageUrl: "https://i.imgur.com/Q2KCxMK.png",
-            name: "BadAssAF",
-        },
-        {
-            imageUrl: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80",
-            name: "Random",
-        },
-        {
-            imageUrl: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80",
-            name: "Dickboi",
-        },
-        {
-            imageUrl: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80",
-            name: "smallboi",
-        },
-        {
-            imageUrl: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80",
-            name: "large boi",
-        },
-    ];
-
     const [communityList, setCommunityList] = useState([]);
     const [selectedCommunity, setSelectedCommunity] = useState({});
     const [inputValue, setInputValue] = useState("");
@@ -88,7 +65,37 @@ function Newpost() {
         }
     }
 
-    useEffect(() => { setCommunityList(CommList); }, []);
+    useEffect(() => {
+        const fetchCommunites = async () => {
+            try {
+                const response = await fetch(
+                    "http://localhost:5000/api/community/get",
+                    {
+                        method: "GET",
+                        headers: {
+                            "Content-type": "application/json",
+                        },
+                    }
+                );
+                const responseData = await response.json();
+                if (response.status === 500) {
+                }
+                else if (response.status === 404) {
+                    setCommunityList([])
+                }
+                if (response.status === 201) {
+                    console.log(responseData);
+                    setCommunityList(responseData.communities);
+                } else {
+                    console.log(responseData.error);
+                }
+            } catch (err) {
+                console.log(err.message);
+            }
+        }
+        fetchCommunites();
+        // setCommunityList(CommList);
+    }, []);
 
     return (
         <div className="h-screen p-6 pt-16 bg-black grow ">
@@ -128,7 +135,7 @@ function Newpost() {
                                         }`}
                                 >
                                     <div className="flex items-center text-gray-400">
-                                        <img className="w-10 h-10 mr-2 rounded-full" src={selectedCommunity.imageUrl} />
+                                        <img className="w-10 h-10 mr-2 rounded-full" src={selectedCommunity.imgsrc} />
                                         {selectedCommunity.name
                                             ? selectedCommunity.name.length > 25
                                                 ? selectedCommunity.name.substring(0, 25) + "..."
@@ -176,7 +183,7 @@ function Newpost() {
                                             }}
                                         >
                                             <div className="flex items-center">
-                                                <img className="w-10 h-10 mr-2 rounded-full" src={country?.imageUrl} ></img>
+                                                <img className="w-10 h-10 mr-2 rounded-full" src={country?.imgsrc} ></img>
                                                 {country?.name}
                                             </div>
                                         </li>
