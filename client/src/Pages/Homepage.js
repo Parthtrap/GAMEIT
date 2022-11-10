@@ -39,7 +39,7 @@ function Homepage() {
   }, [])
 
   return (
-    <div className="flex flex-col w-full h-auto p-5 mt-16 bg-black md:w-3/4">
+    <div className="flex flex-col w-full h-auto min-h-[91vh] p-5 mt-16 bg-black md:w-3/4">
       <div><Search /></div>
       <div className="">
         {PostList.map((post) => {
