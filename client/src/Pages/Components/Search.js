@@ -7,6 +7,14 @@ export default function Search(){
     const [type, setType] = useState("Post");
     const searchRef = useRef(document.createElement("input"));
 
+    const _handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const searchedstring = searchRef.current.value
+            console.log({searchedstring, type})
+        }
+    }
+
     const onSearch = (e) => { 
         e.preventDefault();
         const searchedstring = searchRef.current.value
@@ -89,6 +97,7 @@ export default function Search(){
             <div className="relative w-full">
                 
                 <input
+                    onKeyDown={_handleKeyDown}
                     type="search"
                     ref={searchRef}
                     id="search-dropdown"

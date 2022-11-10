@@ -9,6 +9,14 @@ export default function Postpage() {
 
   const commentRef = useRef(document.createElement("input"));
 
+  const _handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        const commentstring = commentRef.current.value
+        console.log({commentstring})
+    }
+}
+
   const onComment = (e) => { 
     e.preventDefault();
     const commentstring = commentRef.current.value
@@ -87,6 +95,7 @@ export default function Postpage() {
         <div className="flex mt-4 relative">
           
           <input
+            onKeyDown={_handleKeyDown}
             ref={commentRef}
             className="
             w-full 
