@@ -119,6 +119,8 @@ function Newpost() {
                                 placeholder="Title"
                             />
                         </div>
+
+
                         <div className="w-full mb-4 rounded-lg bg-divcol ">
                             <textarea
                                 required=""
@@ -134,8 +136,8 @@ function Newpost() {
                                     className={`bg-gr w-full p-2 flex items-center justify-between text-purple-100 rounded ${!selectedCommunity && "text-purple-100 "
                                         }`}
                                 >
-                                    <div className="flex items-center text-gray-400">
-                                        <img className="w-10 h-10 mr-2 rounded-full" src={selectedCommunity.imgsrc} />
+                                    <div className="flex items-center text-gray-400 ">
+                                        <img className="w-10 h-10 mr-2 rounded-full bg-cover" src={selectedCommunity.imgsrc} />
                                         {selectedCommunity.name
                                             ? selectedCommunity.name.length > 25
                                                 ? selectedCommunity.name.substring(0, 25) + "..."

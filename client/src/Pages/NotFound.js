@@ -1,7 +1,14 @@
-import React from "react";
+import React ,{useEffect} from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function NotFound() {
+
+    
+    useEffect(() => {
+        toast.error("Not a valid url")
+    },[])
+
     return (<div className="flex items-center justify-center w-full h-screen text-center text-white bg-gray-900">
         <div>
             <h2 className="text-2xl font-bold md:text-5xl lg:text-8xl animate">404</h2>
