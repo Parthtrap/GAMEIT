@@ -19,7 +19,7 @@ import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
     <>
-      <ToastContainer />
+      <ToastContainer autoClose={1000} position={toast.POSITION.BOTTOM_RIGHT}/>
       <Navbar />
       <Routes>
         <Route
