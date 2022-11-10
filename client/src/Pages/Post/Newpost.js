@@ -137,7 +137,7 @@ function Newpost() {
                                         }`}
                                 >
                                     <div className="flex items-center text-gray-400 ">
-                                        <img className="w-10 h-10 mr-2 rounded-full bg-cover" src={selectedCommunity.imgsrc} />
+                                        <img className="w-10 h-10 mr-2 rounded-full object-cover" src={selectedCommunity.imgsrc} />
                                         {selectedCommunity.name
                                             ? selectedCommunity.name.length > 25
                                                 ? selectedCommunity.name.substring(0, 25) + "..."
@@ -185,7 +185,7 @@ function Newpost() {
                                             }}
                                         >
                                             <div className="flex items-center">
-                                                <img className="w-10 h-10 mr-2 rounded-full" src={country?.imgsrc} ></img>
+                                                <img className="w-10 h-10 mr-2 rounded-full object-cover" src={country?.imgsrc} ></img>
                                                 {country?.name}
                                             </div>
                                         </li>
