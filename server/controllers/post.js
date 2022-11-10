@@ -61,7 +61,7 @@ export const getPostByID = async (req, res) => {
 
     let postDetails;
     try {
-        postDetails = await postDetails.findOne({ _id: id });
+        postDetails = await post.findOne({ _id: id });
         console.log(postDetails);
     } catch (err) {
         console.log(err.message);
