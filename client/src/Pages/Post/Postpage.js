@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import React, { useContext, useEffect, useState, useRef } from "react";
-//import profilePic from "./../../Assets/default_pfp.png"
+import defalt_pfp from "./../../Assets/default_pfp.png"
 import Commentitem from "../Post/Commentitem";
 import { Link } from "react-router-dom";
 
@@ -19,6 +19,14 @@ export default function Postpage() {
     ownerUserName: 'Loading...'
   })
   const commentRef = useRef(document.createElement("input"));
+
+  const [likestates, setLikestates] = useState(false);
+
+  const Liked = (e) => {
+    e.preventDefault();
+    setLikestates(!likestates)
+    
+  }
 
   const _handleKeyDown = (e) => {
     if (e.key === 'Enter') {
@@ -86,31 +94,45 @@ export default function Postpage() {
     <div className="flex justify-center w-full mt-16 bg-black">
       <div className="w-full p-8 m-12 rounded-lg md:max-w-2xl shadow-fb bg-divcol">
 
-        <div className="flex items-center rounded-lg outline outline-1 outline-offset-4 outline-purple-500/50">
+        {/* reddit name and posted by and like button */}
+        <div className="flex items-center pl-1 gap-3 rounded-lg outline outline-1 outline-offset-4 outline-purple-500/50">
 
-          <img
-            src={"https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80"}
-            alt="img"
-            className="w-10 h-10 rounded-full"
-          />
+          {/* like button */}
+          <button 
+          onClick={Liked}
+          className="flex items-center justify-center focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" fill={likestates? "purple":"none"} viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z" />
+            </svg>
+          </button>
 
-          <div className="ml-4 text-white">
+          {/* rest of the stuff */}
+          <div className="flex items-center">
 
-            <Link to={"/community/" + postDetails.community}>
-              <span className="font-bold text-white cursor-pointer">r/{postDetails.community}</span>{' '}</Link>
-            Posted by {' '}
+            <img
+              src={defalt_pfp}
+              alt="img"
+              className="w-10 h-10 rounded-full"
+            />
 
-            <Link to={"/profile/" + postDetails.ownerId}>
-              <span className="text-white ">u/{postDetails.ownerUserName}</span>{' '}
-            </Link>
-            <br />
+            <div className="ml-4 text-white">
 
-            <span className="text-sm text-white text-opacity-50 text-fGrey">
-              {postDetails.postingtime}
-            </span>
+              <Link to={"/community/" + postDetails.community}>
+                <span className="font-bold text-white cursor-pointer">r/{postDetails.community}</span>{' '}</Link>
+              Posted by {' '}
+
+              <Link to={"/profile/" + postDetails.ownerId}>
+                <span className="text-white ">u/{postDetails.ownerUserName}</span>{' '}
+              </Link>
+              <br />
+
+              <span className="text-sm text-white text-opacity-50 text-fGrey">
+                {postDetails.postingtime}
+              </span>
+
+            </div>
 
           </div>
-
 
         </div>
 
@@ -126,19 +148,6 @@ export default function Postpage() {
           <div>{postDetails.likes} Likes</div>
           <div>{postDetails.comments.length} Comments</div>
         </div>
-
-        <div className="mt-4 border border-fGray border-opacity-10" />
-
-        <div className="flex items-center justify-between mt-4 colour-white">
-          <button className="flex items-center justify-center w-1/2 focus:outline-none">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z" />
-            </svg>
-            <span className="ml-1 text-white">Like</span>
-          </button>
-        </div>
-
-        <div className="mt-4 border border-fGray border-opacity-10" />
 
         <div className="relative flex mt-4">
 
@@ -173,15 +182,9 @@ export default function Postpage() {
         </div>
 
         <Commentitem />
+        <Commentitem />
+        <Commentitem />
       </div>
     </div>);
 }
 
-{/* 
-
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-  
-</svg>
-
-
-*/}

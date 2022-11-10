@@ -1,6 +1,6 @@
 export default function Commentitem(){
     return(
-        <div className="bg-divcol rounded-lg my-6 px-2 hover:outline hover:outline-purple-200">
+        <div className="bg-divcol rounded-lg my-6 px-2 outline outline-1 outline-purple-200">
 
             <div className=" flex justify-between items-center ">
                 <div className=" flex items-center">
