@@ -38,9 +38,45 @@ export const followCommunity = async (req, res) => {
     }
     let communityToChange;
     try {
-        communityToChange = await Community.updateOne({ community: community },{
+        communityToChange = await Community.updateOne({ name: community },{
             $inc:{
                 followers:1,
+            },
+        });
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).json({ error: err.message });
+        return;
+    }
+    if (!user || !communityToChange) {
+        console.log("Some error occurred while looking for user or community.")
+        res.status(404).json({ error: "No Such user or community Exists" });
+    } else {
+        console.log(user);
+        console.log(communityToChange);
+        res.status(201).json({ user, communityToChange });
+    }
+}
+
+export const unfollowCommunity = async (req, res) =>{
+    const {email, community} = req.body;
+    let user;
+    let communityToChange;
+    try {
+        communityToChange = await Community.updateOne({ name: community },{
+            $inc:{
+                followers:-1,
+            },
+        });
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).json({ error: err.message });
+        return;
+    }
+    try {
+        user = await User.updateOne({ email: email }, {
+            $pull: {
+                likedcommunities: community,
             },
         });
     } catch (err) {

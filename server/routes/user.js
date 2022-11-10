@@ -1,6 +1,6 @@
 import express from "express";
 import { getUserPosts } from "../controllers/post.js";
-import { followCommunity, getUser } from "../controllers/user.js";
+import { followCommunity, getUser, unfollowCommunity } from "../controllers/user.js";
 const router = express.Router();
 
 // GET userinfo()
@@ -12,6 +12,7 @@ router.post("/posts", getUserPosts)
 
 // PATCH likecommunity(email, communityid)
 router.post("/follow", followCommunity);
+router.post("/unfollow", unfollowCommunity);
 
 
 // PATCH makepost(email, postid)
