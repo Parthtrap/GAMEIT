@@ -1,13 +1,61 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import PostListCard from "./Components/PostListCard";
 
 function Communitypage() {
   const param = useParams();
   console.log(param.id);
-  useEffect(() => {
 
+  const [communityDetails, setCommunityDetails] = useState({
+    followers: 0,
+    imgsrc: "Loading...",
+    name: "Loading...",
+    tagline: "Loading...",
+  })
+
+  useEffect(() => {
+    const getCommunityDetails = async () => {
+      const Communityname = JSON.stringify({
+        name: param.id
+      });
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/community/get",
+          {
+            method: "POST",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: Communityname,
+          }
+        );
+
+        const responseData = await response.json();
+
+        if (response.status === 500) {
+          console.log(response);
+        }
+        else if (response.status === 404) {
+          setCommunityDetails({
+            followers: 0,
+            imgsrc: "Hllo",
+            name: "INVALID COMMUNITY",
+            tagline: "NO COMMUNITY NO TAGLINE",
+          })
+        }
+        if (response.status === 201) {
+          console.log(responseData.community);
+          setCommunityDetails(responseData.community);
+        } else {
+          console.log(responseData.error);
+        }
+      } catch (err) {
+        console.log(err.message);
+      }
+    }
+    getCommunityDetails();
   }, [])
+
   const postList = [
     {
       id: "1",
@@ -71,10 +119,10 @@ function Communitypage() {
       <div className="flex items-center justify-between pr-3 space-x-4 rounded-xl bg-divcol ">
 
         <div className="flex items-center">
-          <img className="w-20 h-20 ml-4 rounded-full" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80" />
+          <img className="w-20 h-20 ml-4 rounded-full" src={communityDetails.imgsrc} />
           <div className="ml-3">
-            <div className="text-2xl font-bold text-purple-400">Jeague of Land</div>
-            <div className="text-sm text-gray-500 dark:text-gray-400">Tag line can be placed here </div>
+            <div className="text-2xl font-bold text-purple-400">{communityDetails.name}</div>
+            <div className="text-sm text-gray-500 dark:text-gray-400">{communityDetails.tagline}</div>
           </div>
         </div>
 
