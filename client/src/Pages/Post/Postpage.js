@@ -93,7 +93,7 @@ export default function Postpage() {
 
   console.log(postID);
   return (
-    <div className="flex justify-center w-full mt-16 bg-black">
+    <div className="flex justify-center w-full min-h-[91vh] mt-16 bg-black">
       <div className="w-full p-8 m-12 rounded-lg md:max-w-2xl shadow-fb bg-divcol">
 
         {/* reddit name and posted by and like button */}
