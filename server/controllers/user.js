@@ -38,7 +38,11 @@ export const followCommunity = async (req, res) => {
     }
     let communityToChange;
     try {
-        communityToChange = await Community.findOne({ community: community });
+        communityToChange = await Community.updateOne({ community: community },{
+            $inc:{
+                followers:1,
+            },
+        });
     } catch (err) {
         console.log(err.message);
         res.status(500).json({ error: err.message });
