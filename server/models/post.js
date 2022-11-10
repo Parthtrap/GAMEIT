@@ -44,6 +44,10 @@ const postSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    ownerUserName: {
+        type: String,
+        required: true
+    }
 });
 
 //exporting Post modal

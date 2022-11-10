@@ -1,3 +1,4 @@
+import post from "./../models/post.js";
 import Post from "./../models/post.js"
 
 export const addPost = async (req, res) => {
@@ -6,6 +7,7 @@ export const addPost = async (req, res) => {
         title,
         content,
         ownerId,
+        ownerUserName,
         community
     } = req.body;
 
@@ -17,6 +19,7 @@ export const addPost = async (req, res) => {
         comments: [],
         postingtime: Date.now(),
         ownerId: ownerId,
+        ownerUserName: ownerUserName,
         community: community
     });
 
@@ -30,4 +33,24 @@ export const addPost = async (req, res) => {
         console.log(err);
         res.status(500).json({ error: err.message });
     }
+};
+
+//funstion to find all Posts of a user
+export const getUserPosts = async (req, res) => {
+    const ownerId = req.body.email;
+    console.log(req);
+
+    let userPosts;
+    try {
+        userPosts = await post.find({ ownerId: ownerId });
+        console.log(userPosts);
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).json({ error: err.message });
+        return;
+    }
+
+    console.log("All Posts of the user found");
+    console.log(userPosts);
+    res.status(201).json({ UserPosts: userPosts });
 };
