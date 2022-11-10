@@ -1,9 +1,11 @@
 import express from "express";
+import { getUserPosts } from "../controllers/post.js";
 import { getUser } from "../controllers/user.js";
 const router = express.Router();
 
 // GET userinfo()
 router.post("/get", getUser)
+router.post("/posts", getUserPosts)
 
 // PATCH edituserinfo(email, username)
 
