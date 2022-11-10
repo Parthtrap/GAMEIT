@@ -177,6 +177,9 @@ export default function Postpage() {
           </button>
         </div>
 
+        {/* brea line */}
+        <div className="w-full h-[1px] mt-4 bg-purple-500"></div>
+
         <Commentitem />
         <Commentitem />
         <Commentitem />
