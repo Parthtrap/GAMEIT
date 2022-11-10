@@ -16,6 +16,7 @@ function Communitypage() {
     name: "Loading...",
     tagline: "Loading...",
   })
+
   const [followed, setFollowed] = useState(false);
 
   async function following() {
@@ -43,7 +44,7 @@ function Communitypage() {
     }
     catch (err) {
       console.log(err.message);
-      toast.success("Now Following")
+      toast.error("Server not responding")
     }
   }
 
@@ -67,30 +68,35 @@ function Communitypage() {
       const followResponseData = await followResponse.json();
       if (followResponse.status === 201) {
         console.log("Followed");
+        toast.success("Now UNfollowed 😭")
       }
     }
     catch (err) {
       console.log(err.message);
+      toast.error("Server not responding")
     }
   }
+
   function onFollowPress() {
     if (!auth.isLoggedIn) {
       // Gaurav Add Toast
+      toast.warn("Server not responding")
     }
     else {
       console.log(auth.user.likedcommunities.find((e) => { return e === param.id }));
       if (auth.user.likedcommunities.find((e) => { return e === param.id }) === undefined) {
-        console.log("Have to Follow");
+        
         following();
         setFollowed(true)
       }
       else {
-        console.log("Have to Unfollow");
+       
         unfollowing();
         setFollowed(false)
       }
     }
   }
+
   useEffect(() => {
     const UpdateUser = async () => {
       const searchQuery = JSON.stringify({ "email": auth.user.email })
@@ -229,13 +235,14 @@ function Communitypage() {
       comments: ["commentID11"],
     },
   ];
+
   return (
     <div className="w-full p-5 mt-16 bg-black md:w-3/4">
 
       <div className="flex items-center justify-between pr-3 space-x-4 rounded-xl bg-divcol ">
 
         <div className="flex items-center">
-          <img className="w-20 h-20 ml-4 rounded-full" src={communityDetails.imgsrc} />
+          <img className="w-20 h-20 ml-4 rounded-full object-cover" src={communityDetails.imgsrc} />
           <div className="ml-3">
             <div className="text-2xl font-bold text-purple-400">{communityDetails.name}</div>
             <div className="text-sm text-gray-500 dark:text-gray-400">{communityDetails.tagline}</div>

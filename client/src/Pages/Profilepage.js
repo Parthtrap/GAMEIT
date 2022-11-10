@@ -110,6 +110,21 @@ export default function Profilepage() {
     const [editname, setEditname] = useState(false);
     const usernameRef = useRef(document.createElement("div"));
 
+    const _handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const usernamestring = usernameRef.current.value
+            console.log({ usernamestring })
+            setEditname(!editname);
+
+            if (editname) {
+                toast.success("Username changed", {
+                    theme: "dark"
+                })
+            }
+        }
+    }
+
     const edit = (e) => {
         e.preventDefault();
         const usernamestring = usernameRef.current.value
@@ -138,6 +153,7 @@ export default function Profilepage() {
                         <div className="flex text-purple-100 ">
 
                             <div
+                                onKeyDown={_handleKeyDown}
                                 ref={usernameRef}
                                 contentEditable={`${editname}`}
                                 suppressContentEditableWarning={true}
