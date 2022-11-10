@@ -16,6 +16,8 @@ export default function Profilepage() {
         likedposts: [],
         isadmin: false,
     });
+    const [UserPostList, setUserPostList] = useState([]);
+
 
     console.log(param);
     useEffect(() => {
@@ -61,67 +63,40 @@ export default function Profilepage() {
             } catch (err) {
                 console.log(err.message);
             }
+
+            try {
+                const response = await fetch(
+                    "http://localhost:5000/api/user/posts",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-type": "application/json",
+                        },
+                        body: searchQuery,
+                    }
+                );
+
+                const responseData = await response.json();
+
+                if (response.status === 500) {
+
+                }
+                else if (response.status === 404) {
+                    setUserData([])
+                }
+                if (response.status === 201) {
+                    console.log(responseData);
+                    setUserPostList(responseData.UserPosts);
+                } else {
+                    console.log(responseData.error);
+                }
+            } catch (err) {
+                console.log(err.message);
+            }
+
         };
         fetchUser();
     }, [param]);
-
-    const postList = [
-        {
-            id: "1",
-            community: "BadAssAF",
-            title: "Post 1",
-            content: "Title is this thingy.... Don't Question it",
-            date: "11-10-2011",
-            likes: "6969",
-            media: "https://i.imgur.com/fzR3S94.jpg",
-            ownerID: "parth@gmail.com",
-            comments: ["commentID1", "commentID2", "commentID3"],
-        },
-        {
-            id: "2",
-            community: "RandomAF",
-            title: "Post 2",
-            content: "Title is this thingy.... Don't Question it",
-            date: "12-10-2011",
-            likes: "15",
-            media: "",
-            ownerID: "lalwani@gmail.com",
-            comments: ["commentID4", "commentID5"],
-        },
-        {
-            id: "3",
-            title: "Post 3",
-            community: "KawaiiAF",
-            content: "Title is this thingy.... Don't Question it",
-            date: "13-10-2011",
-            likes: "325",
-            media: "https://i.imgur.com/ClH999d.mp4",
-            ownerID: "gaurav@gmail.com",
-            comments: ["commentID6", "commentID7"],
-        },
-        {
-            id: "4",
-            title: "Post 4",
-            community: "BoredAF",
-            content: "Title is this thingy.... Don't Question it",
-            date: "14-10-2011",
-            media: "",
-            likes: "32",
-            ownerID: "parth@gmail.com",
-            comments: ["commentID8", "commentID9", "commentID10"],
-        },
-        {
-            id: "5",
-            title: "Post 1",
-            community: "Can'tThinkOfNameAnymore",
-            content: "Title is this thingy.... Don't Question it",
-            date: "15-10-2011",
-            media: "",
-            likes: "326",
-            ownerID: "lalwani@gmail.com",
-            comments: ["commentID11"],
-        },
-    ];
 
     const [editname, setEditname] = useState(false);
     const usernameRef = useRef(document.createElement("div"));
@@ -187,7 +162,7 @@ export default function Profilepage() {
                     {/*posts count*/}
                     <div>
 
-                        <div className="text-2xl font-bold text-center text-purple-300">6969</div>
+                        <div className="text-2xl font-bold text-center text-purple-300">{UserPostList.length}</div>
 
                         <div className="text-center text-purple-400">Posts</div>
 

@@ -57,6 +57,7 @@ function Newpost() {
                     content: content,
                     community: selectedCommunity.name,
                     ownerId: auth.user.email,
+                    ownerUserName: auth.user.username
                 });
 
                 const response = await fetch("http://localhost:5000/api/post/new", {

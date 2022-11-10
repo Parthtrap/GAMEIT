@@ -2,8 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function PostListCard(props) {
+  // console.log(props.post);
   return (
-    <Link to={"/post/" + props.post.id}>
+    <Link to={"/post/" + props.post._id}>
       <div className="flex p-3 my-4 overflow-hidden rounded-xl bg-divcol hover:outline hover:outline-1 hover:outline-white">
         <div className="flex overflow-hidden">
           <div className="pr-5">
@@ -45,7 +46,7 @@ function PostListCard(props) {
 
           <div className="grow">
             <div className="text-sm text-gray-200">g/{props.post.community}</div>
-            <div className="text-xs text-gray-400">u/{props.post.ownerID}</div>
+            <div className="text-xs text-gray-400">u/{props.post.ownerUserName}</div>
             <div className="text-xl font-bold text-purple-50">{props.post.title}</div>
             <div className="text-gray-200 truncate">{props.post.content}</div>
           </div>
