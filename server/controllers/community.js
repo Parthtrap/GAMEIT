@@ -60,3 +60,26 @@ export const getCommunities = async (req, res) => {
     console.log(communities);
     res.status(201).json({ communities });
 };
+
+//funstion to get Community
+export const getCommunity = async (req, res) => {
+    const { name } = req.body;
+    let community;
+    try {
+        community = await Community.findOne({ name: name });
+        console.log(community);
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).json({ error: err.message });
+        return;
+    }
+
+    if (!community) {
+        res.status(404).json({ message: "No Community Found" })
+        return;
+    }
+
+    console.log("Community found");
+    console.log(community);
+    res.status(201).json({ community });
+};
