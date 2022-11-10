@@ -43,10 +43,14 @@ function LoginPage() {
         console.log({ "user": responseData.user });
       } else {
         console.log(responseData.error);
+        toast.error("Incorrect email and password", {
+          theme: "dark"
+        })
+        return;
       }
     } catch (err) {
       console.log(err);
-      toast.error("Incorrect email and password", {
+      toast.error("Connectivity issue", {
         theme: "dark"
       })
       return;
