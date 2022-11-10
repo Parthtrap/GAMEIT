@@ -3,18 +3,14 @@ import mongoose from "mongoose";
 
 //Schema for comments
 const commentSchema = new mongoose.Schema({
-    raterID: {
+    commenter: {
         type: String,
         required: true
     },
-    rating: {
+    comment: {
         type: Number,
         required: true,
-    },
-    review: {
-        type: String,
-        maxlength: 500,
-    },
+    }
 });
 
 //Schema for posts
