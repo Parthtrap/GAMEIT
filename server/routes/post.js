@@ -1,9 +1,9 @@
 import express from "express";
 const router = express.Router();
-import { addPost, getPostByID } from "./../controllers/post.js"
+import { addPost, getAllPosts, getPostByID } from "./../controllers/post.js"
 
-// POST postlist(communityid, sort)
-
+// GET postlist()
+router.get("/get", getAllPosts);
 
 // POST post(postid)
 router.post("/get", getPostByID);
