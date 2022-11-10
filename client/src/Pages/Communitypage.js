@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import AuthContext from "./Authentication/AuthContext";
 import PostListCard from "./Components/PostListCard";
 
@@ -37,10 +38,12 @@ function Communitypage() {
       const followResponseData = await followResponse.json();
       if (followResponse.status === 201) {
         console.log("Followed");
+        toast.success("Now Following")
       }
     }
     catch (err) {
       console.log(err.message);
+      toast.success("Now Following")
     }
   }
 
