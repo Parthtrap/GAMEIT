@@ -25,10 +25,51 @@ export default function Postpage() {
 
   const [likestates, setLikestates] = useState(false);
 
+  async function Liking() {
+    const query = JSON.stringify({ email: auth.user.email, postid: postID });
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/post/like",
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: query,
+        }
+      );
+      const responseData = await response.json();
+    } catch (err) {
+
+    }
+  }
+  async function UnLiking() {
+    const query = JSON.stringify({ email: auth.user.email, postid: postID });
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/post/unlike",
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: query,
+        }
+      );
+      const responseData = await response.json();
+    } catch (err) {
+
+    }
+  }
+
   const Liked = (e) => {
     e.preventDefault();
-    setLikestates(!likestates)
 
+    if (likestates)
+      UnLiking();
+    else
+      Liking();
+    setLikestates(!likestates)
   }
 
   const _handleKeyDown = (e) => {
@@ -83,6 +124,39 @@ export default function Postpage() {
   }
 
   useEffect(() => {
+    const UpdateUser = async () => {
+      const searchQuery = JSON.stringify({ "email": auth.user.email })
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/user/get",
+          {
+            method: "POST",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: searchQuery,
+          }
+        );
+
+        const responseData = await response.json();
+        if (response.status === 201) {
+          auth.login(responseData);
+          if (responseData.likedposts.find((e) => { return e === params.id }) === undefined) {
+            setLikestates(false)
+          }
+          else {
+            setLikestates(true);
+          }
+        } else {
+          console.log(responseData.error);
+        }
+      } catch (err) {
+        console.log(err.message);
+      }
+    }
+    if (auth.isLoggedIn)
+      UpdateUser();
+
     const fetchPost = async () => {
       const searchQuery = JSON.stringify({
         id: params.id
