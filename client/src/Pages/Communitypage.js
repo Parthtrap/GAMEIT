@@ -133,7 +133,7 @@ function Communitypage() {
     }
     if (auth.isLoggedIn)
       UpdateUser();
-  }, [followed])
+  }, [followed, param])
 
 
   useEffect(() => {
@@ -210,7 +210,7 @@ function Communitypage() {
       }
     }
     getCommunityDetails();
-  }, [])
+  }, [param])
 
   return (
     <div className="w-full p-5 mt-16 bg-black min-h-[91.3vh] md:w-3/4">
