@@ -4,6 +4,7 @@ import defalt_pfp from "./../../Assets/default_pfp.png"
 import Commentitem from "../Post/Commentitem";
 import { Link } from "react-router-dom";
 import AuthContext from "../Authentication/AuthContext";
+import { toast } from "react-toastify";
 
 export default function Postpage() {
 
@@ -64,6 +65,10 @@ export default function Postpage() {
 
   const Liked = (e) => {
     e.preventDefault();
+    if (!auth.isLoggedIn) {
+      toast.error("Please login first");
+      return;
+    }
 
     if (likestates)
       UnLiking();
@@ -76,7 +81,6 @@ export default function Postpage() {
     if (e.key === 'Enter') {
       e.preventDefault();
       const commentstring = commentRef.current.value
-      console.log({ commentstring })
     }
   }
 
@@ -105,10 +109,8 @@ export default function Postpage() {
 
       }
       if (response.status === 201) {
-        // Gaurav Toast
-        console.log("Success");
       } else {
-        console.log(responseData.error);
+        console.log(responseData.message);
       }
     } catch (err) {
       console.log(err.message);
@@ -119,7 +121,6 @@ export default function Postpage() {
     e.preventDefault();
     const commentstring = commentRef.current.value
     await Commenting(commentstring);
-    console.log({ commentstring })
     setA(a + 1);
   }
 
@@ -148,7 +149,7 @@ export default function Postpage() {
             setLikestates(true);
           }
         } else {
-          console.log(responseData.error);
+          console.log(responseData.message);
         }
       } catch (err) {
         console.log(err.message);
@@ -191,10 +192,9 @@ export default function Postpage() {
           })
         }
         if (response.status === 201) {
-          console.log(responseData);
           setPostDetails(responseData);
         } else {
-          console.log(responseData.error);
+          console.log(responseData.message);
         }
       } catch (err) {
         console.log(err.message);
@@ -203,7 +203,6 @@ export default function Postpage() {
     fetchPost();
   }, [params, a])
 
-  console.log(postID);
   return (
     <div className="flex justify-center w-full min-h-[91vh] mt-16 bg-black">
       <div className="w-full p-8 m-12 rounded-lg md:max-w-2xl shadow-fb bg-divcol">
@@ -291,7 +290,6 @@ export default function Postpage() {
           <div className="w-full h-[1px] mt-4 bg-purple-500"></div>
         }
         {postDetails.comments.map((c, i) => {
-          console.log(c);
           return < Commentitem key={i} commenter={c.commenter} comment={c.comment} />
         })}
       </div>

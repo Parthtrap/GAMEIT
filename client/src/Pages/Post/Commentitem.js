@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Commentitem(prop) {
     return (
@@ -6,10 +7,11 @@ export default function Commentitem(prop) {
 
             <div className="flex items-center justify-between ">
                 <div className="flex items-center ">
-
-                    <div className="text-white ">
-                        <span className="font-bold cursor-pointer ">{prop.commenter}</span>{' '}
-                    </div>
+                    <Link to={"/profile/" + prop.commenter}>
+                        <div className="text-white ">
+                            <span className="font-bold cursor-pointer ">{prop.commenter}</span>{' '}
+                        </div>
+                    </Link>
                 </div>
             </div>
 

@@ -10,7 +10,6 @@ export default function MyModal(prop) {
     function onSaveChanges() {
         const title = titleRef.current.innerHTML;
         const content = contentRef.current.innerHTML;
-        console.log({ id: prop.note.id, title, content, selectedColor });
     }
 
     return (

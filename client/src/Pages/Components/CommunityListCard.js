@@ -30,7 +30,6 @@ export default function CommunityListCard(props) {
         }
     }
 
-    console.log(communityDetails);
     useEffect(() => {
         getCommunityDetails();
     }, []);

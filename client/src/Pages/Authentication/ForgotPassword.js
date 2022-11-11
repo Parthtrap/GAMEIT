@@ -1,8 +1,11 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function ForgotPassword() {
   const emailRef = useRef(document.createElement("input"));
+
+  toast.error("How Did you Get Here?");
 
   function onForgotPassword(e) {
     e.preventDefault();
@@ -11,7 +14,7 @@ function ForgotPassword() {
       console.error("Please Fill all Fields!");
       return;
     }
-    console.log({ email });
+    // console.log({ email });
   }
 
   return (

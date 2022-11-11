@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function PostListCard(props) {
-  // console.log(props.post);
   return (
     <Link to={"/post/" + props.post._id}>
       <div className="flex p-3 my-4 overflow-hidden rounded-xl bg-divcol hover:outline hover:outline-1 hover:outline-white">

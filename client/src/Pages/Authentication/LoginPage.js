@@ -15,7 +15,6 @@ function LoginPage() {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     if (email === "" || password === "") {
-      console.error("Please Fill all fields");
       toast.error("Please Fill all fields", {
         theme: "dark"
       })
@@ -40,9 +39,8 @@ function LoginPage() {
       // Email Password Matches => Login
       if (response.status === 201) {
         auth.login(responseData.user);
-        console.log({ "user": responseData.user });
       } else {
-        console.log(responseData.error);
+        console.log(responseData.message);
         toast.error("Incorrect email and password", {
           theme: "dark"
         })

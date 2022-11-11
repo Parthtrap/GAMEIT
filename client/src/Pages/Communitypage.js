@@ -6,9 +6,7 @@ import PostListCard from "./Components/PostListCard";
 
 function Communitypage() {
   const param = useParams();
-  console.log({ id: param.id });
   const auth = useContext(AuthContext);
-  console.log(auth);
 
   const [communityDetails, setCommunityDetails] = useState({
     followers: 0,
@@ -39,7 +37,6 @@ function Communitypage() {
 
       const followResponseData = await followResponse.json();
       if (followResponse.status === 201) {
-        console.log("Followed");
         toast.success("Now Following")
       }
     }
@@ -68,7 +65,6 @@ function Communitypage() {
 
       const followResponseData = await followResponse.json();
       if (followResponse.status === 201) {
-        console.log("Followed");
         toast.success("Now UNfollowed 😭")
       }
     }
@@ -117,15 +113,13 @@ function Communitypage() {
         if (response.status === 201) {
           auth.login(responseData);
           if (responseData.likedcommunities.find((e) => { return e === param.id }) === undefined) {
-            console.log("Have to Follow");
             setFollowed(false)
           }
           else {
-            console.log("Have to Unfollow");
             setFollowed(true);
           }
         } else {
-          console.log(responseData.error);
+          console.log(responseData.message);
         }
       } catch (err) {
         console.log(err.message);
@@ -167,10 +161,9 @@ function Communitypage() {
           })
         }
         if (response.status === 201) {
-          console.log(responseData.community);
           setCommunityDetails(responseData.community);
         } else {
-          console.log(responseData.error);
+          console.log(responseData.message);
         }
       } catch (err) {
         console.log(err.message);
@@ -200,7 +193,6 @@ function Communitypage() {
           setCommunityPostList([]);
         }
         if (response.status === 201) {
-          console.log(responseData);
           setCommunityPostList(responseData);
         } else {
           console.log(responseData.error);

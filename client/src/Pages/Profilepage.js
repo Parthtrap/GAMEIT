@@ -21,8 +21,6 @@ export default function Profilepage() {
     const [UserPostList, setUserPostList] = useState([]);
     const [isEditable, setIsEditable] = useState(false);
 
-
-    console.log(param);
     useEffect(() => {
         const fetchUser = async () => {
             if (!auth.isLoggedIn)
@@ -64,10 +62,9 @@ export default function Profilepage() {
                     })
                 }
                 if (response.status === 201) {
-                    console.log(responseData);
                     setUserData(responseData);
                 } else {
-                    console.log(responseData.error);
+                    console.log(responseData.message);
                 }
             } catch (err) {
                 console.log(err.message);
@@ -94,10 +91,9 @@ export default function Profilepage() {
                     setUserData([])
                 }
                 if (response.status === 201) {
-                    console.log(responseData);
                     setUserPostList(responseData.UserPosts);
                 } else {
-                    console.log(responseData.error);
+                    console.log(responseData.message);
                 }
             } catch (err) {
                 console.log(err.message);
@@ -114,7 +110,6 @@ export default function Profilepage() {
         if (e.key === 'Enter') {
             e.preventDefault();
             const usernamestring = usernameRef.current.value
-            console.log({ usernamestring })
             setEditname(!editname);
 
             if (editname) {
@@ -128,7 +123,6 @@ export default function Profilepage() {
     const edit = (e) => {
         e.preventDefault();
         const usernamestring = usernameRef.current.value
-        console.log({ usernamestring })
         setEditname(!editname);
 
         if (editname) {

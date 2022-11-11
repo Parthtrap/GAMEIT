@@ -19,7 +19,6 @@ function Newpost() {
         e.preventDefault();
         const title = titleRef.current.value;
         const content = contentRef.current.value;
-        console.log({ selectedCommunity });
 
         if (title === "" || content === "") {
             toast.error("Please Fill all the Fields")
@@ -49,7 +48,6 @@ function Newpost() {
 
                 // Email Password Matches => Login
                 if (response.status === 201) {
-                    console.log({ "post": responseData.user });
                     toast.success("Post Made Successfully", { theme: "dark" })
                     navigate("/");
                 } else {
@@ -84,7 +82,6 @@ function Newpost() {
                     setCommunityList([])
                 }
                 if (response.status === 201) {
-                    console.log(responseData);
                     setCommunityList(responseData.communities);
                 } else {
                     console.log(responseData.error);
@@ -137,7 +134,7 @@ function Newpost() {
                                         }`}
                                 >
                                     <div className="flex items-center text-gray-400 ">
-                                        <img className="w-10 h-10 mr-2 rounded-full object-cover" src={selectedCommunity.imgsrc} />
+                                        <img className="object-cover w-10 h-10 mr-2 rounded-full" src={selectedCommunity.imgsrc} />
                                         {selectedCommunity.name
                                             ? selectedCommunity.name.length > 25
                                                 ? selectedCommunity.name.substring(0, 25) + "..."
@@ -185,7 +182,7 @@ function Newpost() {
                                             }}
                                         >
                                             <div className="flex items-center">
-                                                <img className="w-10 h-10 mr-2 rounded-full object-cover" src={country?.imgsrc} ></img>
+                                                <img className="object-cover w-10 h-10 mr-2 rounded-full" src={country?.imgsrc} ></img>
                                                 {country?.name}
                                             </div>
                                         </li>
