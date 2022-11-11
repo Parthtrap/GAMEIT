@@ -1,13 +1,17 @@
+import React from "react";
+import { Link } from "react-router-dom";
+
 export default function Commentitem(prop) {
     return (
         <div className="px-2 my-6 rounded-lg bg-divcol outline outline-1 outline-purple-200">
 
             <div className="flex items-center justify-between ">
                 <div className="flex items-center ">
-
-                    <div className="text-white ">
-                        <span className="font-bold cursor-pointer ">{prop.commenter}</span>{' '}
-                    </div>
+                    <Link to={"/profile/" + prop.commenter}>
+                        <div className="text-white ">
+                            <span className="font-bold cursor-pointer ">{prop.commenter}</span>{' '}
+                        </div>
+                    </Link>
                 </div>
             </div>
 

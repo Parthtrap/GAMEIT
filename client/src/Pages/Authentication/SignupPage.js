@@ -59,11 +59,9 @@ function Signup() {
         });
 
         const responseData = await response.json();
-        console.log(response.status);
         // Email Password Uploaded as New account => Login
         if (response.status === 201) {
           auth.login(responseData.user);
-          console.log({ responseData });
         } else {
           console.log(responseData.error);
         }
@@ -72,8 +70,6 @@ function Signup() {
         return;
       }
     }
-
-    console.log({ username, email, password, gender, dateOfBirth });
     toast.success("New User Registered", {
       theme: "dark"
     })

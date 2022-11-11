@@ -4,6 +4,7 @@ import defalt_pfp from "./../../Assets/default_pfp.png"
 import Commentitem from "../Post/Commentitem";
 import { Link } from "react-router-dom";
 import AuthContext from "../Authentication/AuthContext";
+import { toast } from "react-toastify";
 
 export default function Postpage() {
 
@@ -22,30 +23,142 @@ export default function Postpage() {
   })
   
   const commentRef = useRef(document.createElement("input"));
+  const [a, setA] = useState();
 
   const [likestates, setLikestates] = useState(false);
 
+  async function Liking() {
+    const query = JSON.stringify({ email: auth.user.email, postid: postID });
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/post/like",
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: query,
+        }
+      );
+      const responseData = await response.json();
+    } catch (err) {
+
+    }
+  }
+  async function UnLiking() {
+    const query = JSON.stringify({ email: auth.user.email, postid: postID });
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/post/unlike",
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: query,
+        }
+      );
+      const responseData = await response.json();
+    } catch (err) {
+
+    }
+  }
+
   const Liked = (e) => {
     e.preventDefault();
-    setLikestates(!likestates)
+    if (!auth.isLoggedIn) {
+      toast.error("Please login first");
+      return;
+    }
 
+    if (likestates)
+      UnLiking();
+    else
+      Liking();
+    setLikestates(!likestates)
   }
 
   const _handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
       const commentstring = commentRef.current.value
-      console.log({ commentstring })
     }
   }
 
-  const onComment = (e) => {
+  async function Commenting(commentstring) {
+    const searchQuery = JSON.stringify({
+      commenter: auth.user.email,
+      comment: commentstring,
+      postid: postDetails._id
+    });
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/post/comment",
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: searchQuery,
+        }
+      );
+      const responseData = await response.json();
+      if (response.status === 500) {
+
+      }
+      else if (response.status === 404) {
+
+      }
+      if (response.status === 201) {
+      } else {
+        console.log(responseData.message);
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
+
+  const onComment = async (e) => {
     e.preventDefault();
     const commentstring = commentRef.current.value
-    console.log({ commentstring })
+    await Commenting(commentstring);
+    setA(a + 1);
   }
 
   useEffect(() => {
+    const UpdateUser = async () => {
+      const searchQuery = JSON.stringify({ "email": auth.user.email })
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/user/get",
+          {
+            method: "POST",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: searchQuery,
+          }
+        );
+
+        const responseData = await response.json();
+        if (response.status === 201) {
+          auth.login(responseData);
+          if (responseData.likedposts.find((e) => { return e === params.id }) === undefined) {
+            setLikestates(false)
+          }
+          else {
+            setLikestates(true);
+          }
+        } else {
+          console.log(responseData.message);
+        }
+      } catch (err) {
+        console.log(err.message);
+      }
+    }
+    if (auth.isLoggedIn)
+      UpdateUser();
+
     const fetchPost = async () => {
       const searchQuery = JSON.stringify({
         id: params.id
@@ -80,19 +193,17 @@ export default function Postpage() {
           })
         }
         if (response.status === 201) {
-          console.log(responseData);
           setPostDetails(responseData);
         } else {
-          console.log(responseData.error);
+          console.log(responseData.message);
         }
       } catch (err) {
         console.log(err.message);
       }
     }
     fetchPost();
-  }, [params])
+  }, [params, a])
 
-  console.log(postID);
   return (
     <div className="flex justify-center w-full min-h-[91vh] mt-16 bg-black">
       <div className="w-full p-8 m-12 rounded-lg md:max-w-2xl shadow-fb bg-divcol">
@@ -132,11 +243,8 @@ export default function Postpage() {
               <span className="text-sm text-white text-opacity-50 text-fGrey">
                 {postDetails.postingtime}
               </span>
-
             </div>
-
           </div>
-
         </div>
 
         <div className="w-full mt-4 text-white aspect-auto">
@@ -182,8 +290,8 @@ export default function Postpage() {
           :
           <div className="w-full h-[1px] mt-4 bg-purple-500"></div>
         }
-        {postDetails.comments.map((c) => {
-          <Commentitem commenter={c.commenter} comment={c.comment} />
+        {postDetails.comments.map((c, i) => {
+          return < Commentitem key={i} commenter={c.commenter} comment={c.comment} />
         })}
       </div>
     </div>);

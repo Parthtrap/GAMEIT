@@ -1,45 +1,27 @@
 import bcrypt from "bcrypt";
 import User from "./../models/user.js"
 
-//post signin request function
-export const addUser = async (req, res, next) => {
-    //destructuring and storing requested data
+// Sign Up Function
+export const addUser = async (req, res) => {
     const { name, email, password, gender, dob } = req.body;
-    //finding existing user with same email;
+
     let existingUserEmail;
     try {
         existingUserEmail = await User.findOne({ email: email });
     } catch (err) {
-        console.log(err.message);
-        res.status(500).json({ error: err.message });
-    }
-
-
-    //checking existing userEmail
-    if (existingUserEmail) {
-        console.log("A user with this email already exists");
-        console.log(existingUserEmail);
-        res.status(422).json({ error: "A user with this email already exists" });
+        console.log("Sign Up -> Finding Existing User -> " + err.message);
+        res.status(500).json({ message: err.message });
         return;
     }
 
-    //finding existing user with same username;
-    let existingUserName;
-    try {
-        existingUserName = await User.findOne({ username: name });
-    } catch (err) {
-        console.log(err.message);
-        res.status(500).json({ error: err.message });
+    // Checking for Existing User with this email
+    if (existingUserEmail) {
+        console.log("Sign Up -> A user with this email already exists!!");
+        res.status(409).json({ message: "A user with this email already exists!!" });
+        return;
     }
 
-
-    //checking existing username
-    if (existingUserName) {
-        console.log("A user with this username already exists");
-        console.log(existingUserName);
-        res.status(422).json({ error: "A user with this username already exists" });
-    }
-
+    // Hashing the Password
     async function hashPassword() {
         const saltRounds = 10;
         const hashedPassword = await new Promise((resolve, reject) => {
@@ -48,14 +30,11 @@ export const addUser = async (req, res, next) => {
                 resolve(hash);
             });
         });
-        console.log("Hashing called");
-
         return hashedPassword;
     }
-
     const hashedPassword = await hashPassword();
 
-    //creating newUser object
+    // Making a New User to Upload
     const newUser = new User({
         username: name,
         email: email,
@@ -67,42 +46,43 @@ export const addUser = async (req, res, next) => {
         isadmin: false
     });
 
-    //add newUser to database
+    // Uploading the User
     try {
         await newUser.save();
     } catch (err) {
-        console.log(err.message);
-        res.status(500).json({ error: err.message });
-    }
-
-    console.log("User added");
-    console.log(newUser);
-    //resending data with 'OK' status code
-    res.status(201).json({ user: newUser });
-    // res.status(201).json({user : newUser.toObject({ getters: true})})     // toObject() is method in moongoose
-};
-
-//post login request function
-export const verifyUser = async (req, res, next) => {
-    const { email, password } = req.body;
-
-    let existingUser;
-
-    try {
-        existingUser = await User.findOne({ email: email });
-    } catch (err) {
-        console.log(err.message);
-        res.status(500).json({ error: "Loggin in failed, please try again later" });
-    }
-
-    if (!existingUser) {
-        console.log("No user exists with this email, please sign up");
-        res
-            .status(401)
-            .json({ error: "No user exists with this email, please sign up" });
+        console.log("Sign Up -> Uploading User -> " + err.message);
+        res.status(500).json({ message: err.message });
         return;
     }
 
+    console.log("Sign Up -> User added");
+    res.status(201).json({ message: "Sign Up Sucess!!" });
+};
+
+// Login User Function
+export const verifyUser = async (req, res, next) => {
+    const { email, password } = req.body;
+
+    // Finding User From Database
+    let existingUser;
+    try {
+        existingUser = await User.findOne({ email: email });
+    } catch (err) {
+        console.log("Log In -> " + err.message);
+        res.status(500).json({ message: err.message });
+        return;
+    }
+
+    // Check if User Actually Exists or not
+    if (!existingUser) {
+        console.log("Log in -> No user exists with this email, please sign up !!");
+        res
+            .status(404)
+            .json({ message: "No user exists with this email, please sign up !!" });
+        return;
+    }
+
+    // Hashing and Checking Password
     async function checkHashPassword() {
         const isMatching = await new Promise((resolve, reject) => {
             bcrypt.compare(
@@ -117,20 +97,17 @@ export const verifyUser = async (req, res, next) => {
 
         return isMatching;
     }
-
     const isPassMatching = await checkHashPassword();
-    console.log(isPassMatching);
 
+    // If Password Doesn't Match
     if (!isPassMatching) {
-        console.log("Invalid credentials, could not log you in.");
+        console.log("Log in -> Invalid credentials");
         res
             .status(401)
-            .json({ error: "Invalid credentials, could not log you in" });
+            .json({ message: "Invalid credentials !!" });
         return;
     }
 
-    console.log("User found");
-    console.log(existingUser);
     res.status(201).json({
         message: "Logged in!",
         user: existingUser,

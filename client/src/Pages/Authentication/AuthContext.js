@@ -80,7 +80,6 @@ export const AuthContextProvider = (props) => {
     setUser(null);
   };
 
-  console.log(userId);
   if (!isLoggedIn) {
     const user = localStorage.getItem("user");
     const userData = JSON.parse(user);

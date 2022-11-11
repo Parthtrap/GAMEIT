@@ -11,14 +11,12 @@ export default function Search(){
         if (e.key === 'Enter') {
             e.preventDefault();
             const searchedstring = searchRef.current.value
-            console.log({searchedstring, type})
         }
     }
 
     const onSearch = (e) => { 
         e.preventDefault();
         const searchedstring = searchRef.current.value
-        console.log({searchedstring, type})
     }
 
     return (
@@ -42,7 +40,7 @@ export default function Search(){
 
                     <svg
                         aria-hidden="true"
-                        className="ml-1 w-4 h-4"
+                        className="w-4 h-4 ml-1"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg"
@@ -66,7 +64,7 @@ export default function Search(){
                     <ul className="py-1 text-sm text-gray-200">
 
                         <li>
-                        <button className="inline-flex py-2 px-4 w-full hover:bg-gray-600 "
+                        <button className="inline-flex w-full px-4 py-2 hover:bg-gray-600 "
                         onClick={(e) => {
                             e.preventDefault();
                             setType("Community");
@@ -83,7 +81,7 @@ export default function Search(){
                             setType("Post");
                             setDropdown(false);
                         }}
-                        className="inline-flex rounded-b-lg py-2 px-4 w-full hover:bg-gray-600 ">
+                        className="inline-flex w-full px-4 py-2 rounded-b-lg hover:bg-gray-600 ">
                             Post
                         </button>
                         </li>
@@ -153,7 +151,7 @@ export default function Search(){
 //     <li>
 //     <button
 //         type="button"
-//         className="inline-flex py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+//         className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
 //     >
 //         Post
 //     </button>
@@ -161,7 +159,7 @@ export default function Search(){
 //     <li>
 //     <button
 //         type="button"
-//         className="inline-flex py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+//         className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
 //     >
 //         Community
 //     </button>

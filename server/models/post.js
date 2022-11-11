@@ -1,19 +1,7 @@
 //extracting mongoose module
 import mongoose from "mongoose";
 
-//Schema for comments
-const commentSchema = new mongoose.Schema({
-    commenter: {
-        type: String,
-        required: true
-    },
-    comment: {
-        type: Number,
-        required: true,
-    }
-});
-
-//Schema for posts
+//Schema for Post
 const postSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -27,7 +15,16 @@ const postSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    comments: [commentSchema],
+    comments: [{
+        commenter: {
+            type: String,
+            required: true
+        },
+        comment: {
+            type: String,
+            required: true,
+        }
+    }],
     postingtime: {
         type: Date,
         required: true,

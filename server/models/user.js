@@ -1,8 +1,6 @@
-//extracting mongoose module
-// const mongoose = require("mongoose");
 import mongoose from "mongoose";
 
-//Schema for notes
+// Schema for Notes (WIP)
 const notesSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -19,7 +17,7 @@ const notesSchema = new mongoose.Schema({
     },
 });
 
-//Schema for To-Do-Item
+// Schema for To-Do-Item (WIP)
 const toDoItemSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -31,7 +29,7 @@ const toDoItemSchema = new mongoose.Schema({
     },
 });
 
-//Schema for To-Do
+// Schema for To-Do (WIP)
 const toDoSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -40,7 +38,7 @@ const toDoSchema = new mongoose.Schema({
     items: [toDoItemSchema],
 });
 
-//Schema for users
+// Schema for User
 const userSchema = new mongoose.Schema({
     username: {
         type: String,

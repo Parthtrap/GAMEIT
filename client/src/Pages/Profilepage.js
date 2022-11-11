@@ -21,8 +21,6 @@ export default function Profilepage() {
     const [UserPostList, setUserPostList] = useState([]);
     const [isEditable, setIsEditable] = useState(false);
 
-
-    console.log(param);
     useEffect(() => {
         const fetchUser = async () => {
             if (!auth.isLoggedIn)
@@ -64,10 +62,9 @@ export default function Profilepage() {
                     })
                 }
                 if (response.status === 201) {
-                    console.log(responseData);
                     setUserData(responseData);
                 } else {
-                    console.log(responseData.error);
+                    console.log(responseData.message);
                 }
             } catch (err) {
                 console.log(err.message);
@@ -94,10 +91,9 @@ export default function Profilepage() {
                     setUserData([])
                 }
                 if (response.status === 201) {
-                    console.log(responseData);
                     setUserPostList(responseData.UserPosts);
                 } else {
-                    console.log(responseData.error);
+                    console.log(responseData.message);
                 }
             } catch (err) {
                 console.log(err.message);
@@ -112,29 +108,44 @@ export default function Profilepage() {
 
     const _handleKeyDown = (e) => {
         if (e.key === 'Enter') {
-            e.preventDefault();
-            const usernamestring = usernameRef.current.value
-            console.log({ usernamestring })
-            setEditname(!editname);
+            edit(e);
+        }
+    }
 
-            if (editname) {
+
+    async function ChangeUserName(usnm) {
+        const userFilter = JSON.stringify({ email: auth.user.email, username: usnm });
+        try {
+            const response = await fetch(
+                "http://localhost:5000/api/user/update",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-type": "application/json",
+                    },
+                    body: userFilter,
+                }
+            );
+            const responseData = await response.json();
+            if (response.status === 201) {
                 toast.success("Username changed", {
                     theme: "dark"
                 })
             }
+            else
+                toast.error(response.message);
+        } catch (err) {
+            toast.error("Server error");
         }
     }
 
     const edit = (e) => {
         e.preventDefault();
         const usernamestring = usernameRef.current.value
-        console.log({ usernamestring })
         setEditname(!editname);
 
         if (editname) {
-            toast.success("Username changed", {
-                theme: "dark"
-            })
+            ChangeUserName(usernamestring);
         }
 
     }

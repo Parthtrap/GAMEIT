@@ -26,10 +26,9 @@ function Homepage() {
           setPostList([])
         }
         if (response.status === 201) {
-          console.log(responseData);
           setPostList(responseData);
         } else {
-          console.log(responseData.error);
+          console.log(responseData.message);
         }
       } catch (err) {
         console.log(err.message);
