@@ -101,14 +101,6 @@ function Stickynotespage() {
           
         </button>
 
-        {/*
-        <span className="absolute bottom-[6rem] right-[4.2rem] md:right-[25.5%] text-white invisible 
-        peer-hover:visible
-        peer-hover:-translate-y-[2rem] transition duration-[1300ms]">
-          ADD
-        </span>
-        */}
-
       </div>
     </div>
 

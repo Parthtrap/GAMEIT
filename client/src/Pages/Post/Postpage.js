@@ -20,6 +20,7 @@ export default function Postpage() {
     ownerId: 'Loading...',
     ownerUserName: 'Loading...'
   })
+  
   const commentRef = useRef(document.createElement("input"));
 
   const [likestates, setLikestates] = useState(false);
