@@ -15,3 +15,8 @@ To deploy GAMEIT, run:
   npm i
   npm start
 ```
+## Tech Stack
+
+**Client:** React, Redux, TailwindCSS
+
+**Server:** Node, Express, MongoDB
