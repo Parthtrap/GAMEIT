@@ -1,5 +1,6 @@
 <h1 align="center">GAMEITt</h1>
-<h4 align="center">Avishkar Open Theme - Webster</h4>
+<h3 align="center">Avishkar 2022</h3>
+<h4 align="center">Webster - Open Theme<h4>
 <p align="center">
 </p>
 
