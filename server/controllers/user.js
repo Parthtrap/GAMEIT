@@ -93,3 +93,17 @@ export const unfollowCommunity = async (req, res) => {
         res.status(201).json({ user, communityToChange });
     }
 }
+
+export const updateUserName = async (req, res) => {
+    const { email, username } = req.body;
+    let user;
+    try {
+        user = await User.updateOne({ email: email }, { username: username });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ error: err.message });
+        return;
+    }
+    console.log("User Data Updated Sucessfully!!");
+    res.status(201).json({ message: "User Data Updated Sucessfully!!" })
+}
