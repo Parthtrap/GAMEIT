@@ -2,17 +2,18 @@ import express from "express";
 const router = express.Router();
 import { verifyUser, addUser } from "../controllers/authController.js"
 
-// POST login(email, password)
+// Log In
 router.post("/login", verifyUser);
+
+// Sign Up
 router.post("/signup", addUser);
 
-// POST signup(username, email, password, dob, gender)
+// Forgot Password
+// Unable to Implement Yet
 
 
-// POST forgotpassword(email)
-
-
-// PATCH resetpassword(email, password)
+// Reset Password
+// Unable to Implement Yet
 
 
 export default router

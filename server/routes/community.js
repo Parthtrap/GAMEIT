@@ -2,18 +2,13 @@ import express from "express";
 import { addCommunity, getCommunities, getCommunity } from "../controllers/community.js";
 const router = express.Router();
 
-// PATCH follow(commuinityid)
-
-// PATCH unfollow(communityid)
-
-
-// POST newcommunity(name, tagline, imgsrc)
+// Add a New Community
 router.post("/new", addCommunity);
 
-// GET communities()
+// Get All Communities
 router.get("/get", getCommunities);
 
-// POST getCommunity(name)
+// Get A Community by Name
 router.post("/get", getCommunity);
 
 export default router

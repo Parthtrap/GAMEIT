@@ -1,25 +1,22 @@
 import express from "express";
 import { getUserPosts } from "../controllers/post.js";
-import { followCommunity, getUser, unfollowCommunity } from "../controllers/user.js";
+import { followCommunity, getUser, unfollowCommunity, updateUserName } from "../controllers/user.js";
 const router = express.Router();
 
-// GET userinfo()
-router.post("/get", getUser)
-router.post("/posts", getUserPosts)
+// Get User Info
+router.post("/get", getUser);
 
-// PATCH edituserinfo(email, username)
+// Get All User Posts
+router.post("/posts", getUserPosts);
 
+// Update User Info
+router.post("/update", updateUserName);
 
-// PATCH likecommunity(email, communityid)
+// Follow Community
 router.post("/follow", followCommunity);
+
+// Unfollow Community
 router.post("/unfollow", unfollowCommunity);
-
-
-// PATCH makepost(email, postid)
-
-
-// PATCH makecomment(email, commentid)
-
 
 
 export default router
