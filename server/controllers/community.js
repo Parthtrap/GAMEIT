@@ -1,8 +1,8 @@
 
 import Community from "./../models/community.js"
 
+// Adding a New Community
 export const addCommunity = async (req, res) => {
-    //destructuring and storing requested data
     const { name, tagline, imgsrc } = req.body;
 
     let existingCommunity
@@ -22,7 +22,6 @@ export const addCommunity = async (req, res) => {
         return;
     }
 
-    //creating new community
     const newCommunity = new Community({
         name: name,
         tagline: tagline,
@@ -30,7 +29,6 @@ export const addCommunity = async (req, res) => {
         imgsrc: imgsrc,
     });
 
-    //add newCommunity to database
     try {
         await newCommunity.save();
         console.log("Community added");
@@ -43,7 +41,7 @@ export const addCommunity = async (req, res) => {
 };
 
 
-//funstion to get All Communities
+// Getting all Communities
 export const getCommunities = async (req, res) => {
 
     let communities;
@@ -61,7 +59,7 @@ export const getCommunities = async (req, res) => {
     res.status(201).json({ communities });
 };
 
-//funstion to get Community
+// Getting Community Details by it's Name
 export const getCommunity = async (req, res) => {
     const { name } = req.body;
     let community;

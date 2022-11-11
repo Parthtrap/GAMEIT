@@ -1,11 +1,10 @@
 import bcrypt from "bcrypt";
 import User from "./../models/user.js"
 
-//post signin request function
+// Sign Up Function
 export const addUser = async (req, res, next) => {
-    //destructuring and storing requested data
     const { name, email, password, gender, dob } = req.body;
-    //finding existing user with same email;
+
     let existingUserEmail;
     try {
         existingUserEmail = await User.findOne({ email: email });
@@ -14,8 +13,6 @@ export const addUser = async (req, res, next) => {
         res.status(500).json({ error: err.message });
     }
 
-
-    //checking existing userEmail
     if (existingUserEmail) {
         console.log("A user with this email already exists");
         console.log(existingUserEmail);
@@ -23,7 +20,6 @@ export const addUser = async (req, res, next) => {
         return;
     }
 
-    //finding existing user with same username;
     let existingUserName;
     try {
         existingUserName = await User.findOne({ username: name });
@@ -32,8 +28,6 @@ export const addUser = async (req, res, next) => {
         res.status(500).json({ error: err.message });
     }
 
-
-    //checking existing username
     if (existingUserName) {
         console.log("A user with this username already exists");
         console.log(existingUserName);
@@ -49,13 +43,11 @@ export const addUser = async (req, res, next) => {
             });
         });
         console.log("Hashing called");
-
         return hashedPassword;
     }
 
     const hashedPassword = await hashPassword();
 
-    //creating newUser object
     const newUser = new User({
         username: name,
         email: email,
@@ -67,7 +59,6 @@ export const addUser = async (req, res, next) => {
         isadmin: false
     });
 
-    //add newUser to database
     try {
         await newUser.save();
     } catch (err) {
@@ -77,12 +68,10 @@ export const addUser = async (req, res, next) => {
 
     console.log("User added");
     console.log(newUser);
-    //resending data with 'OK' status code
     res.status(201).json({ user: newUser });
-    // res.status(201).json({user : newUser.toObject({ getters: true})})     // toObject() is method in moongoose
 };
 
-//post login request function
+// Login User Function
 export const verifyUser = async (req, res, next) => {
     const { email, password } = req.body;
 

@@ -1,7 +1,6 @@
-//extracting mongoose module
 import mongoose from "mongoose";
 
-//Schema for communities
+//Schema for Communities
 const communitySchema = new mongoose.Schema({
     name: {
         type: String,
@@ -21,5 +20,5 @@ const communitySchema = new mongoose.Schema({
     }
 });
 
-//exporting Post modal
+//exporting Community modal
 export default mongoose.model("Community", communitySchema);

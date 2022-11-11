@@ -1,10 +1,7 @@
 //extracting mongoose module
 import mongoose from "mongoose";
 
-//Schema for comments
-const commentSchema = new mongoose.Schema();
-
-//Schema for posts
+//Schema for Post
 const postSchema = new mongoose.Schema({
     title: {
         type: String,

@@ -1,6 +1,7 @@
 import Community from "./../models/community.js"
 import User from "./../models/user.js"
 
+// Get User Details
 export const getUser = async (req, res, next) => {
     const { email } = req.body;
     let existingUser;
@@ -22,6 +23,7 @@ export const getUser = async (req, res, next) => {
 
 }
 
+// Follow a Community
 export const followCommunity = async (req, res) => {
     const { email, community } = req.body;
     let user;
@@ -58,6 +60,7 @@ export const followCommunity = async (req, res) => {
     }
 }
 
+// Unfollow a Community
 export const unfollowCommunity = async (req, res) => {
     const { email, community } = req.body;
     let user;
@@ -94,6 +97,7 @@ export const unfollowCommunity = async (req, res) => {
     }
 }
 
+// Update UserName of User
 export const updateUserName = async (req, res) => {
     const { email, username } = req.body;
     let user;
