@@ -1,5 +1,7 @@
-# GAMEIT
-Project Repository for Avishkar
+<h1 align="center">GAMEITt</h1>
+<h4 align="center">Avishkar Open Theme - Webster</h4>
+<p align="center">
+</p>
 
 ## Deployment
 
