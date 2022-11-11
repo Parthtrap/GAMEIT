@@ -3,7 +3,11 @@
 <h4 align="center">Webster - Open Theme<h4>
 <p align="center">
 </p>
-<a href="https://avishkar.mnnit.ac.in"> <img src="[https://cutt.ly/BuiltAtHack36](https://avishkar.mnnit.ac.in/static/media/logo.879add842ccca53f27e3.png)" height=24px> </a>
+<p align="center">
+  <a href="https://avishkar.mnnit.ac.in/"> <img src="https://i.imgur.com/cQxLCuu.png"> </a>
+</p>
+
+
 ## Deployment
 
 To deploy GAMEIT, run:
