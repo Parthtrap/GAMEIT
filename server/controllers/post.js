@@ -1,3 +1,4 @@
+import User from "../models/user.js";
 import post from "./../models/post.js";
 import Post from "./../models/post.js"
 export const addPost = async (req, res) => {
@@ -112,18 +113,10 @@ export const getPostByCommunity = async (req, res) => {
 // function to comment
 export const comment = async (req, res) => {
     const { commenter, comment, postid } = req.body;
-    console.log({ commenter, comment, postid });
     try {
         const temp = await post.findOne({ _id: postid })
         temp.comments.push({ "commenter": commenter, "comment": comment });
         temp.save();
-        // const temp = await post.updateOne({ _id: postid }, {
-        //     $push: {
-        //         comments: { "commenter": commenter, "comment": comment }
-        //     }
-        // })
-
-        console.log("Done : ", temp);
         res.status(201).json({ message: "done " })
     }
     catch (err) {
@@ -131,4 +124,65 @@ export const comment = async (req, res) => {
         res.status(500).json({ error: err.message });
         return;
     }
+}
+
+
+// Function to like a Post
+export const likePost = async (req, res) => {
+    const { email, postid } = req.body;
+    try {
+        const user = await User.updateOne({ email: email }, {
+            $push: {
+                likedposts: postid
+            },
+        });
+    }
+    catch (err) {
+        console.log(err.message);
+        res.status(500).json({ error: err.message });
+        return;
+    }
+    try {
+        const post = await Post.updateOne({ _id: postid }, {
+            $inc: {
+                likes: 1
+            },
+        });
+    }
+    catch (err) {
+        console.log(err.message);
+        res.status(500).json({ error: err.message });
+        return;
+    }
+    res.status(201).json({ message: "Liked Post!!" })
+}
+
+// Function to unlike a Post
+export const unlikePost = async (req, res) => {
+    const { email, postid } = req.body;
+    try {
+        const user = await User.updateOne({ email: email }, {
+            $pull: {
+                likedposts: postid
+            },
+        });
+    }
+    catch (err) {
+        console.log(err.message);
+        res.status(500).json({ error: err.message });
+        return;
+    }
+    try {
+        const post = await Post.updateOne({ _id: postid }, {
+            $inc: {
+                likes: -1
+            },
+        });
+    }
+    catch (err) {
+        console.log(err.message);
+        res.status(500).json({ error: err.message });
+        return;
+    }
+    res.status(201).json({ message: "Liked Post!!" })
 }
