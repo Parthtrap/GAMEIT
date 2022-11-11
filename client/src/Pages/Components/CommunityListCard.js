@@ -40,7 +40,7 @@ export default function CommunityListCard(props) {
 
                 {/*image*/}
                 <div>
-                    <img className="w-10 h-10 rounded-full"
+                    <img className="w-10 h-10 rounded-full object-cover"
                         src={communityDetails.imgsrc} />
                 </div>
 
