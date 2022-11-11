@@ -9,16 +9,16 @@ export const addCommunity = async (req, res) => {
     try {
         existingCommunity = await Community.findOne({ name: name });
     } catch (err) {
-        console.log(err.message);
-        res.status(500).json({ error: "Community Making Failed... Please Try Again" });
+        console.log("Add Community -> Checking Existing Community -> " + err.message);
+        res.status(500).json({ message: err.message });
         return;
     }
 
     if (existingCommunity) {
-        console.log("Community Already Exists");
+        console.log("Add Community -> Community Already Exists");
         res
             .status(409)
-            .json({ error: "Community with this name already exists" });
+            .json({ message: "Community with this name already exists !!" });
         return;
     }
 
@@ -31,12 +31,13 @@ export const addCommunity = async (req, res) => {
 
     try {
         await newCommunity.save();
-        console.log("Community added");
-        console.log(newCommunity);
-        res.status(201).json({ message: "Added Community Successfully" })
+        console.log("Add Community -> Community added Sucessfully");
+        res.status(201).json({ message: "Added Community Successfully !!" })
+        return;
     } catch (err) {
-        console.log(err);
-        res.status(500).json({ error: err.message });
+        console.log("Add Community -> Uploading the New Community -> " + err);
+        res.status(500).json({ message: err.message });
+        return;
     }
 };
 
@@ -47,15 +48,13 @@ export const getCommunities = async (req, res) => {
     let communities;
     try {
         communities = await Community.find();
-        console.log(communities);
     } catch (err) {
-        console.log(err.message);
-        res.status(500).json({ error: err.message });
+        console.log("Get Communities -> " + err.message);
+        res.status(500).json({ message: err.message });
         return;
     }
 
-    console.log("Allcommunities found");
-    console.log(communities);
+    console.log("Get Communities -> Found Communities Sucessfully !!");
     res.status(201).json({ communities });
 };
 
@@ -65,19 +64,18 @@ export const getCommunity = async (req, res) => {
     let community;
     try {
         community = await Community.findOne({ name: name });
-        console.log(community);
     } catch (err) {
-        console.log(err.message);
-        res.status(500).json({ error: err.message });
+        console.log("Get Community -> " + err.message);
+        res.status(500).json({ message: err.message });
         return;
     }
 
     if (!community) {
+        console.log("Get Community -> Community Not found");
         res.status(404).json({ message: "No Community Found" })
         return;
     }
 
-    console.log("Community found");
-    console.log(community);
+    console.log("Get Community -> Community found Successfully !!");
     res.status(201).json({ community });
 };

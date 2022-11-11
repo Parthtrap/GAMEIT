@@ -18,32 +18,28 @@ export const addPost = async (req, res) => {
 
     try {
         await newPost.save();
-        console.log("Post added");
-        console.log(newPost);
-        res.status(201).json({ message: "Post Added Successfully" })
+        console.log("Add Post -> Post added Successfully !!");
+        res.status(201).json({ message: "Post Added Successfully !!" })
     } catch (err) {
-        console.log(err);
-        res.status(500).json({ error: err.message });
+        console.log("Add Post -> " + err);
+        res.status(500).json({ message: err.message });
     }
 };
 
 // Fetching all Posts from User
 export const getUserPosts = async (req, res) => {
     const ownerId = req.body.email;
-    console.log(req);
 
     let userPosts;
     try {
         userPosts = await Post.find({ ownerId: ownerId });
-        console.log(userPosts);
     } catch (err) {
-        console.log(err.message);
-        res.status(500).json({ error: err.message });
+        console.log("Get User Post -> " + err.message);
+        res.status(500).json({ message: err.message });
         return;
     }
 
-    console.log("All Posts of the user found");
-    console.log(userPosts);
+    console.log("Get User Post -> All Posts of the user Found !!");
     res.status(201).json({ UserPosts: userPosts });
 };
 
@@ -54,15 +50,13 @@ export const getPostByID = async (req, res) => {
     let postDetails;
     try {
         postDetails = await Post.findOne({ _id: id });
-        console.log(postDetails);
     } catch (err) {
-        console.log(err.message);
-        res.status(500).json({ error: err.message });
+        console.log("Get Post By ID -> " + err.message);
+        res.status(500).json({ message: err.message });
         return;
     }
 
-    console.log("All Posts of the user found");
-    console.log(postDetails);
+    console.log("Get Post By ID -> All Posts of the user Found !!");
     res.status(201).json(postDetails);
 };
 
@@ -72,15 +66,13 @@ export const getAllPosts = async (req, res) => {
     let PostList;
     try {
         PostList = await Post.find().sort({ postingtime: -1 });
-        console.log(PostList);
     } catch (err) {
-        console.log(err.message);
-        res.status(500).json({ error: err.message });
+        console.log("Get All Posts -> " + err.message);
+        res.status(500).json({ message: err.message });
         return;
     }
 
-    console.log("All Posts found");
-    console.log(PostList);
+    console.log("Get All Posts -> All Posts found !!");
     res.status(201).json(PostList);
 };
 
@@ -92,12 +84,11 @@ export const getPostByCommunity = async (req, res) => {
     try {
         PostList = await Post.find({ community: community });
     } catch (err) {
-        console.log(err.message);
-        res.status(500).json({ error: err.message });
+        console.log("Get Community Posts -> " + err.message);
+        res.status(500).json({ message: err.message });
         return;
     }
-    console.log("Post of community " + community);
-    console.log(PostList);
+    console.log("Get Community Posts -> Community Posts Found Successfully !!");
     res.status(201).json(PostList);
 };
 
@@ -109,11 +100,11 @@ export const comment = async (req, res) => {
         const temp = await Post.findOne({ _id: postid })
         temp.comments.push({ "commenter": commenter, "comment": comment });
         temp.save();
-        res.status(201).json({ message: "done " })
+        res.status(201).json({ message: "Comment Made Successfully" })
     }
     catch (err) {
-        console.log(err.message);
-        res.status(500).json({ error: err.message });
+        console.log("Make Comment -> " + err.message);
+        res.status(500).json({ message: err.message });
         return;
     }
 }
@@ -130,8 +121,8 @@ export const likePost = async (req, res) => {
         });
     }
     catch (err) {
-        console.log(err.message);
-        res.status(500).json({ error: err.message });
+        console.log("Like Post -> Fetch User -> " + err.message);
+        res.status(500).json({ message: err.message });
         return;
     }
     try {
@@ -142,11 +133,11 @@ export const likePost = async (req, res) => {
         });
     }
     catch (err) {
-        console.log(err.message);
-        res.status(500).json({ error: err.message });
+        console.log("Like Post -> Fetch Post -> " + err.message);
+        res.status(500).json({ message: err.message });
         return;
     }
-    res.status(201).json({ message: "Liked Post!!" })
+    res.status(201).json({ message: "Liked Post !!" })
 }
 
 // Unlike a Post
@@ -160,8 +151,8 @@ export const unlikePost = async (req, res) => {
         });
     }
     catch (err) {
-        console.log(err.message);
-        res.status(500).json({ error: err.message });
+        console.log("Unlike Post -> Fetch User -> " + err.message);
+        res.status(500).json({ message: err.message });
         return;
     }
     try {
@@ -172,9 +163,9 @@ export const unlikePost = async (req, res) => {
         });
     }
     catch (err) {
-        console.log(err.message);
-        res.status(500).json({ error: err.message });
+        console.log("Unlike Post -> Fetch Post -> " + err.message);
+        res.status(500).json({ message: err.message });
         return;
     }
-    res.status(201).json({ message: "Liked Post!!" })
+    res.status(201).json({ message: "Unliked Post!!" })
 }
