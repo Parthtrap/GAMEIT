@@ -63,7 +63,7 @@ function Navbar() {
             </Link>
 
             {/* right side dropdown button*/}
-            <div className="md:hidden">
+            <div className="hidden">
               <button
                 className="p-2 text-purple-700 rounded-md outline-none focus:border-gray-400 focus:border"
                 onClick={() => {
@@ -149,7 +149,7 @@ function Navbar() {
 
 
           {/* right side wala menu */}
-          <div className={`flex-1 justify-self-center text-gray-500 pb-3 mt-1 md:hidden ${sidebar ? "block" : "hidden"}`}>
+          <div className={`flex-1 justify-self-center text-gray-500 pb-3 mt-1 md:hidden hidden`}>
             Hello
           </div>
 
