@@ -108,15 +108,34 @@ export default function Profilepage() {
 
     const _handleKeyDown = (e) => {
         if (e.key === 'Enter') {
-            e.preventDefault();
-            const usernamestring = usernameRef.current.value
-            setEditname(!editname);
+            edit(e);
+        }
+    }
 
-            if (editname) {
+
+    async function ChangeUserName(usnm) {
+        const userFilter = JSON.stringify({ email: auth.user.email, username: usnm });
+        try {
+            const response = await fetch(
+                "http://localhost:5000/api/user/update",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-type": "application/json",
+                    },
+                    body: userFilter,
+                }
+            );
+            const responseData = await response.json();
+            if (response.status === 201) {
                 toast.success("Username changed", {
                     theme: "dark"
                 })
             }
+            else
+                toast.error(response.message);
+        } catch (err) {
+            toast.error("Server error");
         }
     }
 
@@ -126,9 +145,7 @@ export default function Profilepage() {
         setEditname(!editname);
 
         if (editname) {
-            toast.success("Username changed", {
-                theme: "dark"
-            })
+            ChangeUserName(usernamestring);
         }
 
     }
