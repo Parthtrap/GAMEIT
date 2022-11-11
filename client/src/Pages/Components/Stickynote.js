@@ -20,7 +20,7 @@ function Stickynote(props) {
             active:transition-none` + " " + result + " " + props.note.color} onClick={choosing}>
                 <Link>
                     <div className="my-1 h-[2rem] text-2xl font-bold text-center">{props.note.title}</div>
-                    <p className="h-[6.5rem] block text-center text-2xl font-reenie drop-shadow-2xl truncate ">
+                    <p className="h-[6.5rem] block text-center text-2xl font-reenie drop-shadow-2xl stickeynote ">
                         {props.note.content}
                     </p>
                 </Link>

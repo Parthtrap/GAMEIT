@@ -21,3 +21,12 @@
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+.stickeynote {
+  display: box;
+  
+  line-clamp: 3;
+  box-orient: vertical;
+  overflow: hidden;
+  
+}
