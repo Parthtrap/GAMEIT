@@ -4,7 +4,7 @@
 <p align="center">
 </p>
 <p align="center">
-  <a href="https://avishkar.mnnit.ac.in/"> <img src="https://i.imgur.com/cQxLCuu.png" height=24px> </a>
+  <a href="https://avishkar.mnnit.ac.in/"> <img src="https://i.imgur.com/cQxLCuu.png" height=100px> </a>
 </p>
 
 
