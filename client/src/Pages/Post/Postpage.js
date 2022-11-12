@@ -261,18 +261,22 @@ export default function Postpage() {
         </div>
 
         {auth.isLoggedIn ?
-          <div className="relative flex mt-4">
+          <div className="relative flex my-4">
+
+            {/*commont input field*/}
             <input
               onKeyDown={_handleKeyDown}
               ref={commentRef}
               className="w-full px-4 py-3 text-white placeholder-gray-400 rounded-lg bg-gr focus:outline-none"
               placeholder="Write something to Roland…"
             />
+
+            {/*commont button*/}
             <button onClick={onComment}
               className="absolute top-0 right-0 
           p-2.5 
           text-sm font-medium text-white 
-          rounded-r-lg border border-purple-700 focus:outline-none bg-purple-600 hover:bg-purple-700 ">
+          rounded-r-lg border border-pur focus:outline-none bg-pur hover:bg-hovpur ">
               <svg
                 aria-hidden="true"
                 className="w-[1.6rem] h-[1.6rem]"
@@ -288,8 +292,10 @@ export default function Postpage() {
             </button>
           </div>
           :
-          <div className="w-full h-[1px] mt-4 bg-purple-500"></div>
+          <div className="w-full h-[1px] mt-4 bg-pur"></div>
         }
+
+        {/* commnments */}
         {postDetails.comments.map((c, i) => {
           return < Commentitem key={i} commenter={c.commenter} comment={c.comment} />
         })}

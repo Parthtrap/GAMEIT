@@ -190,21 +190,25 @@ function Newpost() {
 
                                 </ul>
                             </div>
-
+                            
+                            {/* bottom row*/}
                             <div className="flex items-center justify-between px-3 py-2 border-t border-gray-600 bg-divcol">
-
+                                
+                                {/*post comment buttton*/}
                                 <button type="submit" onClick={onPostSubmit} className="inline-flex items-center 
                                 py-2.5 px-4 
                                 text-xs font-medium text-center text-white
                                 rounded-lg 
-                                bg-purple-700
+                                bg-pur
                                 focus:ring-4 focus:ring-purple-900 
-                                hover:bg-purple-800">
+                                hover:bg-hovpur">
                                     Post comment
                                 </button>
+                                
+                                {/*add atachment button*/}
                                 <div className="flex pl-0 space-x-1 sm:pl-2">
                                     <button type="button"
-                                        className="inline-flex justify-center p-2 text-gray-400 rounded cursor-pointer hover:text-white hover:bg-purple-600">
+                                        className="inline-flex justify-center p-2 text-gray-400 rounded cursor-pointer hover:text-white hover:bg-pur">
                                         <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path fillRule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 
