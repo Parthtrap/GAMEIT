@@ -45,7 +45,7 @@ export default function Helppage() {
 
         <div className="w-full mt-16 p-16 bg-black">
 
-            <div className="bg-gr rounded-lg p-6 max-w-2xl mx-auto">
+            <div className="bg-gr tofade rounded-lg p-6 max-w-2xl mx-auto">
 
                 <div className="">
 

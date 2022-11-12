@@ -71,7 +71,7 @@ function Stickynotespage() {
 
     <div className="bg-black w-full min-h-[91vh] mt-16 place-content-center">
       
-      <div className="bg-divcol rounded-lg p-12 m-12 flex flex-wrap relative">
+      <div className="bg-divcol tofade rounded-lg p-12 m-12 flex flex-wrap relative">
         
         {noteList.map((note) => {
           return <>

@@ -152,7 +152,7 @@ export default function Profilepage() {
 
     return (
         <div className="w-full mt-16 bg-black">
-            <div className="flex flex-col gap-6 p-12 m-12 rounded-lg bg-divcol">
+            <div className=" tofade flex flex-col gap-6 p-12 m-12 rounded-lg bg-divcol">
 
 
                 {/*username and email*/}

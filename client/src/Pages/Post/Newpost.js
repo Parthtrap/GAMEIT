@@ -95,13 +95,13 @@ function Newpost() {
     }, []);
 
     return (
-        <div className="h-screen p-6 pt-16 bg-black grow ">
+        <div className=" p-6 pt-16 min-h-[91vh] bg-black grow ">
 
-            <div className="container mx-auto md:max-w-2xl">
+            <div className="tofade container  mx-auto md:max-w-2xl">
 
                 {/* Heading */}
                 <div className="">
-                    <h1 className="text-2xl font-bold text-center text-gray-300">Create a post</h1>
+                    <h1 className="text-2xl p-2 font-bold text-center text-gray-300">Create a post</h1>
                 </div>
 
                 {/* Input Form */}

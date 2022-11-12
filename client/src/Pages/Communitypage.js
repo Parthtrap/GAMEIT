@@ -207,7 +207,7 @@ function Communitypage() {
   return (
     <div className="w-full p-5 mt-16 bg-black min-h-[91.3vh] md:w-3/4">
 
-      <div className="flex items-center justify-between pr-3 space-x-4 rounded-xl bg-divcol ">
+      <div className="tofade flex items-center justify-between pr-3 space-x-4 rounded-xl bg-divcol ">
 
         <div className="flex items-center">
           <img className="object-cover w-20 h-20 ml-4 rounded-full" src={communityDetails.imgsrc} />

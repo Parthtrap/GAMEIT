@@ -39,8 +39,8 @@ function Homepage() {
 
   return (
     <div className="flex flex-col w-full h-auto min-h-[91vh] p-5 mt-16 bg-black md:w-3/4">
-      <div><Search /></div>
-      <div className="">
+      <div className="tofade "><Search /></div>
+      <div className="tofade delay-1000 ">
         {PostList.map((post) => {
           return <PostListCard key={post._id} post={post} />;
         })}
