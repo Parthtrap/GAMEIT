@@ -21,14 +21,14 @@ export default function Postpage() {
     ownerId: 'Loading...',
     ownerUserName: 'Loading...'
   })
-  
+
   const commentRef = useRef(document.createElement("input"));
   const [a, setA] = useState();
 
   const [likestates, setLikestates] = useState(false);
 
   async function Liking() {
-    const query = JSON.stringify({ email: auth.user.email, postid: postID });
+    const query = JSON.stringify({ email: auth.userEmail, postid: postID });
     try {
       const response = await fetch(
         "http://localhost:5000/api/post/like",
@@ -46,7 +46,7 @@ export default function Postpage() {
     }
   }
   async function UnLiking() {
-    const query = JSON.stringify({ email: auth.user.email, postid: postID });
+    const query = JSON.stringify({ email: auth.userEmail, postid: postID });
     try {
       const response = await fetch(
         "http://localhost:5000/api/post/unlike",
@@ -87,7 +87,7 @@ export default function Postpage() {
 
   async function Commenting(commentstring) {
     const searchQuery = JSON.stringify({
-      commenter: auth.user.email,
+      commenter: auth.userEmail,
       comment: commentstring,
       postid: postDetails._id
     });
@@ -127,7 +127,7 @@ export default function Postpage() {
 
   useEffect(() => {
     const UpdateUser = async () => {
-      const searchQuery = JSON.stringify({ "email": auth.user.email })
+      const searchQuery = JSON.stringify({ "email": auth.userEmail })
       try {
         const response = await fetch(
           "http://localhost:5000/api/user/get",
@@ -142,7 +142,6 @@ export default function Postpage() {
 
         const responseData = await response.json();
         if (response.status === 201) {
-          auth.login(responseData);
           if (responseData.likedposts.find((e) => { return e === params.id }) === undefined) {
             setLikestates(false)
           }
@@ -206,7 +205,7 @@ export default function Postpage() {
 
   return (
     <div className="flex justify-center w-full min-h-[91vh] mt-16 bg-black">
-      <div className="tofade w-full p-8 m-12 rounded-lg md:max-w-2xl shadow-fb bg-divcol">
+      <div className="w-full p-8 m-12 rounded-lg tofade md:max-w-2xl shadow-fb bg-divcol">
 
         {/* reddit name and posted by and like button */}
         <div className="flex items-center gap-3 pl-1 rounded-lg outline outline-1 outline-offset-4 outline-purple-500/50">

@@ -38,7 +38,7 @@ function LoginPage() {
 
       // Email Password Matches => Login
       if (response.status === 201) {
-        auth.login(responseData.user);
+        auth.login(responseData.user.email);
       } else {
         console.log(responseData.message);
         toast.error("Incorrect email and password", {

@@ -102,6 +102,7 @@ export const updateUserName = async (req, res) => {
     const { email, username } = req.body;
     let user;
     try {
+        console.log({ username });
         user = await User.updateOne({ email: email }, { username: username });
     } catch (err) {
         console.log("Update UserName -> " + err.message);

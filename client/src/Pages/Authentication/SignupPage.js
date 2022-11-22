@@ -61,7 +61,7 @@ function Signup() {
         const responseData = await response.json();
         // Email Password Uploaded as New account => Login
         if (response.status === 201) {
-          auth.login(responseData.user);
+          auth.login(responseData.user.email);
         } else {
           console.log(responseData.error);
         }
