@@ -25,7 +25,7 @@ export default function Profilepage() {
         const fetchUser = async () => {
             if (!auth.isLoggedIn)
                 setIsEditable(false);
-            else if (param.id === auth.user.email)
+            else if (param.id === auth.userEmail)
                 setIsEditable(true);
             else
                 setIsEditable(false);
@@ -114,7 +114,8 @@ export default function Profilepage() {
 
 
     async function ChangeUserName(usnm) {
-        const userFilter = JSON.stringify({ email: auth.user.email, username: usnm });
+        console.log({ usnm });
+        const userFilter = JSON.stringify({ email: auth.userEmail, username: usnm });
         try {
             const response = await fetch(
                 "http://localhost:5000/api/user/update",
@@ -141,7 +142,7 @@ export default function Profilepage() {
 
     const edit = (e) => {
         e.preventDefault();
-        const usernamestring = usernameRef.current.value
+        const usernamestring = usernameRef.current.innerHTML;
         setEditname(!editname);
 
         if (editname) {
@@ -152,7 +153,7 @@ export default function Profilepage() {
 
     return (
         <div className="w-full mt-16 bg-black">
-            <div className=" tofade flex flex-col gap-6 p-12 m-12 rounded-lg bg-divcol">
+            <div className="flex flex-col gap-6 p-12 m-12 rounded-lg tofade bg-divcol">
 
 
                 {/*username and email*/}
