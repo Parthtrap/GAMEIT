@@ -16,11 +16,11 @@ function LoginPage() {
     setLoginButtonIsDisabled(true);
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
-    console.log({ email, password });
     if (email === "" || password === "") {
       toast.error("Please Fill all fields", {
         theme: "dark"
       })
+      setLoginButtonIsDisabled(false);
       return;
     }
     try {
@@ -52,6 +52,7 @@ function LoginPage() {
       }
     } catch (err) {
       console.log(err);
+      setLoginButtonIsDisabled(false);
       toast.error("Connectivity issue", {
         theme: "dark"
       })
