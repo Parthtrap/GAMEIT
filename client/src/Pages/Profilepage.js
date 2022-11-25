@@ -67,7 +67,7 @@ export default function Profilepage() {
                     console.log(responseData.message);
                 }
             } catch (err) {
-                console.log(err.message);
+                toast.error("Unable to connect to the server");
             }
 
             try {
@@ -96,7 +96,7 @@ export default function Profilepage() {
                     console.log(responseData.message);
                 }
             } catch (err) {
-                console.log(err.message);
+                toast.error("Unable to connect to the server");
             }
 
         };
@@ -114,7 +114,6 @@ export default function Profilepage() {
 
 
     async function ChangeUserName(usnm) {
-        console.log({ usnm });
         const userFilter = JSON.stringify({ email: auth.userEmail, username: usnm });
         try {
             const response = await fetch(
@@ -136,7 +135,7 @@ export default function Profilepage() {
             else
                 toast.error(response.message);
         } catch (err) {
-            toast.error("Server error");
+            toast.error("Unable to connect to the server");
         }
     }
 

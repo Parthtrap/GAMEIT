@@ -55,10 +55,8 @@ function Newpost() {
                     console.log(responseData.error);
                 }
             } catch (err) {
+                toast.error("Unable to connect to the server");
                 console.log(err);
-                toast.error("Post making Failed", {
-                    theme: "dark"
-                })
                 return;
             }
         }
@@ -89,6 +87,7 @@ function Newpost() {
                 }
             } catch (err) {
                 console.log(err.message);
+                toast.error("Unable to connect to the server");
             }
         }
         const getUserInfo = async () => {
@@ -115,6 +114,7 @@ function Newpost() {
                     console.log(responseData.error);
                 }
             } catch (err) {
+                toast.error("Unable to connect to the server");
                 console.log(err.message);
             }
         }

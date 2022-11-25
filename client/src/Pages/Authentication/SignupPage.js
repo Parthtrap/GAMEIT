@@ -67,6 +67,7 @@ function Signup() {
         }
       } catch (err) {
         console.log(err);
+        toast.error("Unable to connect to the server");
         return;
       }
     }

@@ -41,8 +41,8 @@ function Communitypage() {
       }
     }
     catch (err) {
+      toast.error("Unable to connect to the server");
       console.log(err.message);
-      toast.error("Server not responding")
     }
   }
 
@@ -69,8 +69,8 @@ function Communitypage() {
       }
     }
     catch (err) {
+      toast.error("Unable to connect to the server");
       console.log(err.message);
-      toast.error("Server not responding")
     }
   }
 
@@ -120,6 +120,7 @@ function Communitypage() {
           console.log(responseData.message);
         }
       } catch (err) {
+        toast.error("Unable to connect to the server");
         console.log(err.message);
       }
     }
@@ -164,6 +165,7 @@ function Communitypage() {
           console.log(responseData.message);
         }
       } catch (err) {
+        toast.error("Unable to connect to the server");
         console.log(err.message);
       }
 
@@ -196,6 +198,7 @@ function Communitypage() {
           console.log(responseData.error);
         }
       } catch (err) {
+        toast.error("Unable to connect to the server");
         console.log(err.message);
       }
     }

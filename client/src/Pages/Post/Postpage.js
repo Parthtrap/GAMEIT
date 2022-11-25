@@ -42,7 +42,7 @@ export default function Postpage() {
       );
       const responseData = await response.json();
     } catch (err) {
-
+      toast.error("Unable to connect to the server");
     }
   }
   async function UnLiking() {
@@ -60,7 +60,7 @@ export default function Postpage() {
       );
       const responseData = await response.json();
     } catch (err) {
-
+      toast.error("Unable to connect to the server");
     }
   }
 
@@ -114,6 +114,7 @@ export default function Postpage() {
         console.log(responseData.message);
       }
     } catch (err) {
+      toast.error("Unable to connect to the server");
       console.log(err.message);
     }
   }
@@ -152,6 +153,7 @@ export default function Postpage() {
           console.log(responseData.message);
         }
       } catch (err) {
+        toast.error("Unable to connect to the server");
         console.log(err.message);
       }
     }
@@ -197,6 +199,7 @@ export default function Postpage() {
           console.log(responseData.message);
         }
       } catch (err) {
+        toast.error("Unable to connect to the server");
         console.log(err.message);
       }
     }
