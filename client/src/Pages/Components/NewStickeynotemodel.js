@@ -1,9 +1,8 @@
 import React, { useRef, useState } from 'react';
 
-export default function MyModal(prop) {
-    console.log(prop.note);
+export default function NewMyModal(prop) {
 
-    const [selectedColor, setSelectedColor] = useState(prop.note.color);
+    const [selectedColor, setSelectedColor] = useState("bg-yellow-300");
 
     const titleRef = useRef(document.createElement('div'));
     const contentRef = useRef();
@@ -46,9 +45,9 @@ export default function MyModal(prop) {
 
                 <div className={"p-2 mx-5 my-5 overflow-scroll rounded-lg shadow-lg scrollbar-hide md:mx-16 h-96 " + selectedColor}>
 
-                    <div ref={titleRef} contentEditable="true" className="my-1 text-2xl font-bold text-center" suppressContentEditableWarning={true}>{prop.note.title}</div>
+                    <div ref={titleRef} contentEditable="true" className="my-1 text-2xl font-bold text-center" suppressContentEditableWarning={true}>Enter Title</div>
                     <p ref={contentRef} contentEditable="true" className="overflow-y-auto text-left drop-shadow-2xl" suppressContentEditableWarning={true}>
-                        {prop.note.content}
+                        Enter Content Here
                     </p>
 
                 </div>
