@@ -6,6 +6,9 @@ module.exports = {
       colors: {
         'divcol': '#1A1A1B',
         'gr': '#272729',
+        'pur': '#3F0071',
+        'hovpur': '#2a024a',
+        'pinks': '#FB2576',
       },
       fontFamily: {
         reenie: ["Reenie Beanie", "sans-serif"],

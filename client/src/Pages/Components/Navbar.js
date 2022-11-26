@@ -12,7 +12,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 z-50 w-full shadow-sm bg-divcol shadow-purple-500/50">
+    <nav className="fixed top-0 z-50 w-full shadow-sm bg-divcol shadow-[#3F0071]">
       <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex ">
 
         <div className="">
@@ -114,19 +114,19 @@ function Navbar() {
               {auth.isLoggedIn ? (
                 <>
                   <li className="text-gray-500 hover:text-purple-600">
-                    <Link to={"/profile/" + auth.user.email} onClick={() => { setNavbar(false) }}>Profile</Link>
+                    <Link to={"/profile/" + auth.userEmail} onClick={() => { setNavbar(false) }}>Profile</Link>
                   </li>
                   <li className="text-gray-500 hover:text-purple-600">
                     <Link to="/post/new" onClick={() => { setNavbar(false) }}>New Post</Link>
-                  </li>
-                  <li className="text-gray-500 hover:text-purple-600">
-                    <Link to="/help" onClick={() => { setNavbar(false) }}>Help</Link>
                   </li>
                   <li className="text-gray-500 hover:text-purple-600">
                     <Link to="/notes" onClick={() => { setNavbar(false) }}>Notes</Link>
                   </li>
                   <li className="text-gray-500 hover:text-purple-600">
                     <Link to="/todo" onClick={() => { setNavbar(false) }}>To-Do List</Link>
+                  </li>
+                  <li className="text-gray-500 hover:text-purple-600">
+                    <Link to="/help" onClick={() => { setNavbar(false) }}>Help</Link>
                   </li>
                   <li className="text-gray-500 hover:text-purple-600">
                     <Link to="/" onClick={auth.logout}>

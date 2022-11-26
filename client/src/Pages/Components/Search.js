@@ -101,7 +101,7 @@ export default function Search(){
                     id="search-dropdown"
                     className="block p-2.5 w-full z-20 text-sm bg-gr
                      rounded-r-lg 
-                     border-l-2 border border-l-purple-900 border-gr placeholder-gray-400 text-white "
+                     border-l-2 border border-l-pur border-gr placeholder-gray-400 text-white "
                     placeholder="Search Mockups, Logos, Design Templates..."
                     required=""
                 />
@@ -111,7 +111,7 @@ export default function Search(){
                 className="absolute top-0 right-0 
                 p-2.5 
                 text-sm font-medium text-white 
-                rounded-r-lg border border-purple-700 focus:outline-none bg-purple-600 hover:bg-purple-700 ">
+                rounded-r-lg border border-[#2a024a] focus:outline-none bg-[#3F0071] hover:bg-[#2a024a] ">
                     
                     <svg
                     aria-hidden="true"

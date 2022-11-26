@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 export default function Commentitem(prop) {
     return (
-        <div className="px-2 my-6 rounded-lg bg-divcol outline outline-1 outline-purple-200">
+        <div className="px-4 py-2 my-1 rounded-lg border-b border-slate-500 hover:border-slate-200 hover:border hover:drop-shadow-[0_4px_3px_rgba(255,255,255,0.25)] bg-divcol">
 
-            <div className="flex items-center justify-between ">
+            <div className="flex items-center justify-between">
                 <div className="flex items-center ">
                     <Link to={"/profile/" + prop.commenter}>
                         <div className="text-white ">

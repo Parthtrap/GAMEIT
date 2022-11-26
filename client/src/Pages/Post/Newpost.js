@@ -10,6 +10,7 @@ function Newpost() {
     const [selectedCommunity, setSelectedCommunity] = useState({});
     const [inputValue, setInputValue] = useState("");
     const [open, setOpen] = useState(false);
+    const [userInfo, setUserInfo] = useState({ username: "" });
     const titleRef = useRef(document.createElement('imput'));
     const contentRef = useRef(document.createElement('imput'));
     const auth = useContext(AuthContext);
@@ -32,8 +33,8 @@ function Newpost() {
                     title: title,
                     content: content,
                     community: selectedCommunity.name,
-                    ownerId: auth.user.email,
-                    ownerUserName: auth.user.username
+                    ownerId: auth.userEmail,
+                    ownerUserName: userInfo.username
                 });
 
                 const response = await fetch("http://localhost:5000/api/post/new", {
@@ -54,10 +55,8 @@ function Newpost() {
                     console.log(responseData.error);
                 }
             } catch (err) {
+                toast.error("Unable to connect to the server");
                 console.log(err);
-                toast.error("Post making Failed", {
-                    theme: "dark"
-                })
                 return;
             }
         }
@@ -88,20 +87,51 @@ function Newpost() {
                 }
             } catch (err) {
                 console.log(err.message);
+                toast.error("Unable to connect to the server");
+            }
+        }
+        const getUserInfo = async () => {
+            try {
+                const userFilter = JSON.stringify({ email: auth.userEmail });
+                const response = await fetch(
+                    "http://localhost:5000/api/user/get",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-type": "application/json",
+                        },
+                        body: userFilter
+                    }
+                );
+                const responseData = await response.json();
+                if (response.status === 500) {
+                }
+                else if (response.status === 404) {
+                }
+                if (response.status === 201) {
+                    setUserInfo(responseData);
+                } else {
+                    console.log(responseData.error);
+                }
+            } catch (err) {
+                toast.error("Unable to connect to the server");
+                console.log(err.message);
             }
         }
         fetchCommunites();
+        getUserInfo();
+
         // setCommunityList(CommList);
     }, []);
 
     return (
-        <div className="h-screen p-6 pt-16 bg-black grow ">
+        <div className=" p-6 pt-16 min-h-[91vh] bg-black grow ">
 
-            <div className="container mx-auto md:max-w-2xl">
+            <div className="container mx-auto tofade md:max-w-2xl">
 
                 {/* Heading */}
                 <div className="">
-                    <h1 className="text-2xl font-bold text-center text-gray-300">Create a post</h1>
+                    <h1 className="p-2 text-2xl font-bold text-center text-gray-300">Create a post</h1>
                 </div>
 
                 {/* Input Form */}
@@ -191,20 +221,24 @@ function Newpost() {
                                 </ul>
                             </div>
 
+                            {/* bottom row*/}
                             <div className="flex items-center justify-between px-3 py-2 border-t border-gray-600 bg-divcol">
 
+                                {/*post comment buttton*/}
                                 <button type="submit" onClick={onPostSubmit} className="inline-flex items-center 
                                 py-2.5 px-4 
                                 text-xs font-medium text-center text-white
                                 rounded-lg 
-                                bg-purple-700
+                                bg-pur
                                 focus:ring-4 focus:ring-purple-900 
-                                hover:bg-purple-800">
+                                hover:bg-hovpur">
                                     Post comment
                                 </button>
+
+                                {/*add atachment button*/}
                                 <div className="flex pl-0 space-x-1 sm:pl-2">
                                     <button type="button"
-                                        className="inline-flex justify-center p-2 text-gray-400 rounded cursor-pointer hover:text-white hover:bg-purple-600">
+                                        className="inline-flex justify-center p-2 text-gray-400 rounded cursor-pointer hover:text-white hover:bg-pur">
                                         <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path fillRule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 

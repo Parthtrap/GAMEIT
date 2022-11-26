@@ -21,14 +21,14 @@ export default function Postpage() {
     ownerId: 'Loading...',
     ownerUserName: 'Loading...'
   })
-  
+
   const commentRef = useRef(document.createElement("input"));
   const [a, setA] = useState();
 
   const [likestates, setLikestates] = useState(false);
 
   async function Liking() {
-    const query = JSON.stringify({ email: auth.user.email, postid: postID });
+    const query = JSON.stringify({ email: auth.userEmail, postid: postID });
     try {
       const response = await fetch(
         "http://localhost:5000/api/post/like",
@@ -42,11 +42,11 @@ export default function Postpage() {
       );
       const responseData = await response.json();
     } catch (err) {
-
+      toast.error("Unable to connect to the server");
     }
   }
   async function UnLiking() {
-    const query = JSON.stringify({ email: auth.user.email, postid: postID });
+    const query = JSON.stringify({ email: auth.userEmail, postid: postID });
     try {
       const response = await fetch(
         "http://localhost:5000/api/post/unlike",
@@ -60,7 +60,7 @@ export default function Postpage() {
       );
       const responseData = await response.json();
     } catch (err) {
-
+      toast.error("Unable to connect to the server");
     }
   }
 
@@ -87,7 +87,7 @@ export default function Postpage() {
 
   async function Commenting(commentstring) {
     const searchQuery = JSON.stringify({
-      commenter: auth.user.email,
+      commenter: auth.userEmail,
       comment: commentstring,
       postid: postDetails._id
     });
@@ -114,6 +114,7 @@ export default function Postpage() {
         console.log(responseData.message);
       }
     } catch (err) {
+      toast.error("Unable to connect to the server");
       console.log(err.message);
     }
   }
@@ -127,7 +128,7 @@ export default function Postpage() {
 
   useEffect(() => {
     const UpdateUser = async () => {
-      const searchQuery = JSON.stringify({ "email": auth.user.email })
+      const searchQuery = JSON.stringify({ "email": auth.userEmail })
       try {
         const response = await fetch(
           "http://localhost:5000/api/user/get",
@@ -142,7 +143,6 @@ export default function Postpage() {
 
         const responseData = await response.json();
         if (response.status === 201) {
-          auth.login(responseData);
           if (responseData.likedposts.find((e) => { return e === params.id }) === undefined) {
             setLikestates(false)
           }
@@ -153,6 +153,7 @@ export default function Postpage() {
           console.log(responseData.message);
         }
       } catch (err) {
+        toast.error("Unable to connect to the server");
         console.log(err.message);
       }
     }
@@ -198,6 +199,7 @@ export default function Postpage() {
           console.log(responseData.message);
         }
       } catch (err) {
+        toast.error("Unable to connect to the server");
         console.log(err.message);
       }
     }
@@ -206,7 +208,7 @@ export default function Postpage() {
 
   return (
     <div className="flex justify-center w-full min-h-[91vh] mt-16 bg-black">
-      <div className="w-full p-8 m-12 rounded-lg md:max-w-2xl shadow-fb bg-divcol">
+      <div className="w-full p-8 m-12 rounded-lg tofade md:max-w-2xl shadow-fb bg-divcol">
 
         {/* reddit name and posted by and like button */}
         <div className="flex items-center gap-3 pl-1 rounded-lg outline outline-1 outline-offset-4 outline-purple-500/50">
@@ -261,18 +263,22 @@ export default function Postpage() {
         </div>
 
         {auth.isLoggedIn ?
-          <div className="relative flex mt-4">
+          <div className="relative flex my-4">
+
+            {/*commont input field*/}
             <input
               onKeyDown={_handleKeyDown}
               ref={commentRef}
               className="w-full px-4 py-3 text-white placeholder-gray-400 rounded-lg bg-gr focus:outline-none"
               placeholder="Write something to Roland…"
             />
+
+            {/*commont button*/}
             <button onClick={onComment}
               className="absolute top-0 right-0 
           p-2.5 
           text-sm font-medium text-white 
-          rounded-r-lg border border-purple-700 focus:outline-none bg-purple-600 hover:bg-purple-700 ">
+          rounded-r-lg border border-pur focus:outline-none bg-pur hover:bg-hovpur ">
               <svg
                 aria-hidden="true"
                 className="w-[1.6rem] h-[1.6rem]"
@@ -288,8 +294,10 @@ export default function Postpage() {
             </button>
           </div>
           :
-          <div className="w-full h-[1px] mt-4 bg-purple-500"></div>
+          <div className="w-full h-[1px] mt-4 bg-pur"></div>
         }
+
+        {/* commnments */}
         {postDetails.comments.map((c, i) => {
           return < Commentitem key={i} commenter={c.commenter} comment={c.comment} />
         })}

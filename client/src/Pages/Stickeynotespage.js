@@ -71,7 +71,7 @@ function Stickynotespage() {
 
     <div className="bg-black w-full min-h-[91vh] mt-16 place-content-center">
       
-      <div className="bg-divcol rounded-lg p-12 m-12 flex flex-wrap relative">
+      <div className="bg-divcol tofade rounded-lg p-12 m-12 flex flex-wrap relative justify-center">
         
         {noteList.map((note) => {
           return <>
@@ -87,10 +87,10 @@ function Stickynotespage() {
         rounded-full 
         w-20 h-20 z-10
         cursor-pointer
-        shadow-md shadow-purple-900
+        shadow-md shadow-pur
         transition-all duration-600 ease-in-out
         hover:scale-125
-        active:scale-75 active:bg-purple-700
+        active:scale-75 active:bg-hovpur
         justify-center items-center flex
         peer
         ${selectedNote != null ? "hidden" : "block"}

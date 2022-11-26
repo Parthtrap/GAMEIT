@@ -7,13 +7,14 @@ export default function Todolistitem(props){
 
     return(
         
-        <div className='flex'>
+        <div onClick={() => {
+            setItemstatus(!itemstatus);
+          }} 
+          className='flex'>
         
             {itemstatus ? 
                 (
-                    <div onClick={() => {
-                        setItemstatus(!itemstatus);
-                      }}>
+                    <div >
                     <svg
                         className='w-5 h-5 mt-[3px] mr-[4px] text-green-400 flex-shrink-0'
                         fill='currentColor'

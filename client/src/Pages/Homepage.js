@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import CommunityListCard from "./Components/CommunityListCard";
 import PostListCard from "./Components/PostListCard";
 import Search from "./Components/Search";
@@ -21,6 +22,7 @@ function Homepage() {
         );
         const responseData = await response.json();
         if (response.status === 500) {
+          toast.error("Unable to connect to the server");
         }
         else if (response.status === 404) {
           setPostList([])
@@ -32,6 +34,7 @@ function Homepage() {
         }
       } catch (err) {
         console.log(err.message);
+        toast.error("Unable to connect to the server");
       }
     }
     fetchPost();
@@ -39,8 +42,8 @@ function Homepage() {
 
   return (
     <div className="flex flex-col w-full h-auto min-h-[91vh] p-5 mt-16 bg-black md:w-3/4">
-      <div><Search /></div>
-      <div className="">
+      <div className="tofade "><Search /></div>
+      <div className="delay-1000 tofade ">
         {PostList.map((post) => {
           return <PostListCard key={post._id} post={post} />;
         })}

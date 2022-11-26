@@ -118,7 +118,7 @@ export default function(){
     return (
 
         <div className="bg-black w-full mt-16">
-            <div className="m-16 rounded-lg flex flex-wrap gap-4 place-items-start justify-evenly p-4 bg-divcol">
+            <div className="tofade m-16 rounded-lg flex flex-wrap gap-4 place-items-start justify-evenly p-4 bg-divcol">
 
                 {listlist.map((todolist) => {
                     return <>
