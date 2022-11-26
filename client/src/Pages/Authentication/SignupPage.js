@@ -52,6 +52,7 @@ function Signup() {
       toast.error("Improper password",{
         theme: "dark"
       })
+      setSignupButtonIsDisabled(false);
       return;
     }
     else {
