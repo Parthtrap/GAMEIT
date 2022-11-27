@@ -13,6 +13,7 @@ import Stickeynotespage from "./Pages/Stickeynotespage";
 import Todolistpage from "./Pages/Todolistpage";
 import Profilepage from "./Pages/Profilepage";
 import Helppage from './Pages/Helppage';
+import Test from './Pages/Test';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -93,6 +94,7 @@ function App() {
           }
         />
         <Route path="/help" element={<Helppage />} />
+        <Route path="/test" element={<Test />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

@@ -82,3 +82,36 @@ html::-webkit-scrollbar-thumb {
   box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5);
   
 }
+
+
+
+
+.dede{
+  min-height: calc(100vh - 64px);
+  background-color: aquamarine;
+}
+
+.ontop{
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+.anotherone{
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 1s ease-in-out;
+}
+
+.toclip{
+  clip-path: inset(0 100% 0 0);
+}
+
+.anothertwo{
+  clip-path: inset(0 0 0 100%);
+  transition: clip-path 1s ease-in-out;
+}
+
+.tonoclip{
+  clip-path: inset(0 0 0 0);
+}
