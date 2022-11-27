@@ -64,6 +64,7 @@ const userSchema = new mongoose.Schema({
         require: [true, "Please enter Date of Birth"],
     },
     notes: [notesSchema],
+    todo: [toDoSchema],
     likedcommunities: [
         {
             type: String,

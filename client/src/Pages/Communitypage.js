@@ -15,12 +15,12 @@ function Communitypage() {
     tagline: "Loading...",
   })
   const [CommunityPostList, setCommunityPostList] = useState([])
-
+  const [userInfo, setUserInfo] = useState({});
   const [followed, setFollowed] = useState(false);
 
   async function following() {
     const followQuery = JSON.stringify({
-      email: auth.user.email,
+      email: auth.userEmail,
       community: param.id
     })
     try {
@@ -41,14 +41,14 @@ function Communitypage() {
       }
     }
     catch (err) {
+      toast.error("Unable to connect to the server");
       console.log(err.message);
-      toast.error("Server not responding")
     }
   }
 
   async function unfollowing() {
     const followQuery = JSON.stringify({
-      email: auth.user.email,
+      email: auth.userEmail,
       community: param.id
     })
     try {
@@ -69,20 +69,18 @@ function Communitypage() {
       }
     }
     catch (err) {
+      toast.error("Unable to connect to the server");
       console.log(err.message);
-      toast.error("Server not responding")
     }
   }
 
   function onFollowPress() {
     if (!auth.isLoggedIn) {
       // Gaurav Add Toast
-      toast.warn("Server not responding")
+      toast.warn("Please Log In before continuing.")
     }
     else {
-      console.log(auth.user.likedcommunities.find((e) => { return e === param.id }));
-      if (auth.user.likedcommunities.find((e) => { return e === param.id }) === undefined) {
-
+      if (userInfo.likedcommunities.find((e) => { return e === param.id }) === undefined) {
         following();
         setFollowed(true)
       }
@@ -96,7 +94,7 @@ function Communitypage() {
 
   useEffect(() => {
     const UpdateUser = async () => {
-      const searchQuery = JSON.stringify({ "email": auth.user.email })
+      const searchQuery = JSON.stringify({ "email": auth.userEmail })
       try {
         const response = await fetch(
           "http://localhost:5000/api/user/get",
@@ -111,7 +109,7 @@ function Communitypage() {
 
         const responseData = await response.json();
         if (response.status === 201) {
-          auth.login(responseData);
+          setUserInfo(responseData);
           if (responseData.likedcommunities.find((e) => { return e === param.id }) === undefined) {
             setFollowed(false)
           }
@@ -122,6 +120,7 @@ function Communitypage() {
           console.log(responseData.message);
         }
       } catch (err) {
+        toast.error("Unable to connect to the server");
         console.log(err.message);
       }
     }
@@ -166,6 +165,7 @@ function Communitypage() {
           console.log(responseData.message);
         }
       } catch (err) {
+        toast.error("Unable to connect to the server");
         console.log(err.message);
       }
 
@@ -198,6 +198,7 @@ function Communitypage() {
           console.log(responseData.error);
         }
       } catch (err) {
+        toast.error("Unable to connect to the server");
         console.log(err.message);
       }
     }
@@ -207,7 +208,7 @@ function Communitypage() {
   return (
     <div className="w-full p-5 mt-16 bg-black min-h-[91.3vh] md:w-3/4">
 
-      <div className="tofade flex items-center justify-between pr-3 space-x-4 rounded-xl bg-divcol ">
+      <div className="flex items-center justify-between pr-3 space-x-4 tofade rounded-xl bg-divcol ">
 
         <div className="flex items-center">
           <img className="object-cover w-20 h-20 ml-4 rounded-full" src={communityDetails.imgsrc} />

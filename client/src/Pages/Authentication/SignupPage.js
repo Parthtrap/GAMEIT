@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import AuthContext from "./AuthContext";
@@ -10,22 +10,29 @@ function Signup() {
   const confirmpasswordRef = useRef(document.createElement("input"));
   const genderRef = useRef(document.createElement("input"));
   const dateOfBirthRef = useRef(document.createElement("input"));
+  const [SignupButtonIsDisabled, setSignupButtonIsDisabled] = useState(false);
   const auth = useContext(AuthContext)
   const navigate = useNavigate();
 
   async function onSignup(e) {
     e.preventDefault();
+    setSignupButtonIsDisabled(true);
     const username = usernameRef.current.value;
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     const confirmpassword = confirmpasswordRef.current.value;
     const gender = genderRef.current.value;
     const dateOfBirth = dateOfBirthRef.current.value;
-    if (confirmpassword != password) {
+    const regEx1=/[*.$#_!*.]/;
+    const regEx2=/[*.A-Z*.]/;
+    const regEx3=/[*.a-z*.]/;
+    const regEx4=/[*.0-9*.]/;
+    if (confirmpassword !== password) {
       console.error("Password != confirm Password");
       toast.error("Password & Confirm Password mismatch", {
         theme: "dark"
       })
+      setSignupButtonIsDisabled(false);
       return;
     }
     if (
@@ -38,6 +45,14 @@ function Signup() {
       toast.error("Please fill all fields", {
         theme: "dark"
       })
+      setSignupButtonIsDisabled(false);
+      return;
+    }else if (!regEx1.test(password) || !regEx2.test(password) || !regEx3.test(password) || !regEx4.test()){
+      console.error("Improper password");
+      toast.error("Improper password",{
+        theme: "dark"
+      })
+      setSignupButtonIsDisabled(false);
       return;
     }
     else {
@@ -60,13 +75,17 @@ function Signup() {
 
         const responseData = await response.json();
         // Email Password Uploaded as New account => Login
+        setSignupButtonIsDisabled(false);
+
         if (response.status === 201) {
-          auth.login(responseData.user);
+          auth.login(responseData.user.email);
         } else {
           console.log(responseData.error);
         }
       } catch (err) {
         console.log(err);
+        setSignupButtonIsDisabled(false);
+        toast.error("Unable to connect to the server");
         return;
       }
     }
@@ -159,6 +178,7 @@ function Signup() {
             <div className="mt-6">
               <button
                 onClick={onSignup}
+                disabled={SignupButtonIsDisabled}
                 className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600"
               >
                 Sign Up

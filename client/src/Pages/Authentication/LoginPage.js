@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "./AuthContext";
 import { ToastContainer, toast } from 'react-toastify';
@@ -7,17 +7,20 @@ import 'react-toastify/dist/ReactToastify.css';
 function LoginPage() {
   const emailRef = useRef(document.createElement("input"));
   const passwordRef = useRef(document.createElement("input"));
+  const [LoginButtonIsDisabled, setLoginButtonIsDisabled] = useState(false);
   const auth = useContext(AuthContext)
   const navigate = useNavigate();
 
   const onLogin = async (e) => {
     e.preventDefault();
+    setLoginButtonIsDisabled(true);
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     if (email === "" || password === "") {
       toast.error("Please Fill all fields", {
         theme: "dark"
       })
+      setLoginButtonIsDisabled(false);
       return;
     }
     try {
@@ -36,9 +39,10 @@ function LoginPage() {
 
       const responseData = await response.json();
 
+      setLoginButtonIsDisabled(false);
       // Email Password Matches => Login
       if (response.status === 201) {
-        auth.login(responseData.user);
+        auth.login(responseData.user.email);
       } else {
         console.log(responseData.message);
         toast.error("Incorrect email and password", {
@@ -48,6 +52,7 @@ function LoginPage() {
       }
     } catch (err) {
       console.log(err);
+      setLoginButtonIsDisabled(false);
       toast.error("Connectivity issue", {
         theme: "dark"
       })
@@ -97,6 +102,7 @@ function LoginPage() {
             <div className="mt-6">
               <button
                 onClick={onLogin}
+                disabled={LoginButtonIsDisabled}
                 className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600"
               >
                 Login
