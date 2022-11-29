@@ -23,13 +23,18 @@ function Signup() {
     const confirmpassword = confirmpasswordRef.current.value;
     const gender = genderRef.current.value;
     const dateOfBirth = dateOfBirthRef.current.value;
-    const regEx1=/[*.$#_!*.]/;
-    const regEx2=/[*.A-Z*.]/;
-    const regEx3=/[*.a-z*.]/;
-    const regEx4=/[*.0-9*.]/;
+    const regEx1 = /^(?!.*\s)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[~`!@#$%^&*()--+={}[\]|\\:;"'<>,.?/_₹]).{4,16}$/;
     if (confirmpassword !== password) {
       console.error("Password != confirm Password");
       toast.error("Password & Confirm Password mismatch", {
+        theme: "dark"
+      })
+      setSignupButtonIsDisabled(false);
+      return;
+    }
+    if (!regEx1.test(password)){
+      console.error("Improper password");
+      toast.error("Improper password",{
         theme: "dark"
       })
       setSignupButtonIsDisabled(false);
@@ -47,14 +52,15 @@ function Signup() {
       })
       setSignupButtonIsDisabled(false);
       return;
-    }else if (!regEx1.test(password) || !regEx2.test(password) || !regEx3.test(password) || !regEx4.test()){
-      console.error("Improper password");
-      toast.error("Improper password",{
-        theme: "dark"
-      })
-      setSignupButtonIsDisabled(false);
-      return;
     }
+    // else if (!regEx1.test(password)){
+    //   console.error("Improper password");
+    //   toast.error("Improper password",{
+    //     theme: "dark"
+    //   })
+    //   setSignupButtonIsDisabled(false);
+    //   return;
+    // }
     else {
       try {
         const userdata = JSON.stringify({
