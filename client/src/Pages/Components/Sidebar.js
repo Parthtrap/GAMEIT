@@ -21,6 +21,7 @@ function Sidebar() {
     const responseData = await response.json();
     setCommunityList(responseData.communities);
   }
+
   async function fetchLiked() {
     const userSelector = JSON.stringify({ email: auth.userEmail });
     const response = await fetch(
@@ -37,7 +38,6 @@ function Sidebar() {
     setLikedCommunityList(responseData.likedcommunities);
   }
 
-
   useEffect(() => {
     if (auth.isLoggedIn) {
       fetchLiked()
@@ -48,16 +48,16 @@ function Sidebar() {
   return (
 
     <div className="hidden p-1 mt-16 text-white bg-black md:block md:w-1/4">
-      <div className="RightIn">
+      <div className="RightIn my-2 border rounded-lg border-neutral-500 px-2">
         {auth.isLoggedIn ?
           <div className="">
-            <h1 className={`${LikedCommunityList.length ? "block" : "hidden"}`}>Liked Communities</h1>
+            <h1 className={`m-2 overflow-scroll scrollbar-hide p-1${LikedCommunityList.length ? "block" : "hidden"}`}>Liked Communities</h1>
             {LikedCommunityList.map((liked) => {
               return <CommunityListCard key={liked} communityName={liked} />
             })}
           </div> : ""}
 
-        <h1>All Communities</h1>
+        <h1 className="m-2">All Communities</h1>
 
         <div className="max-h-[90vh] overflow-scroll scrollbar-hide p-1">
           {communityList.map((liked) => {

@@ -36,7 +36,7 @@ export default function CommunityListCard(props) {
 
     return (
         <Link to={"/community/" + communityDetails.name}>
-            <div className="flex items-center p-3 my-4 rounded-xl bg-divcol hover:outline hover:outline-1 hover:outline-white">
+            <div className="flex items-center p-3 my-4 rounded-xl bg-divcol outline outline-1 outline-neutral-600 hover:outline hover:outline-1 hover:outline-white">
 
                 {/*image*/}
                 <div>

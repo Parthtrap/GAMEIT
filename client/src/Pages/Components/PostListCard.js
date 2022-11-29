@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function PostListCard(props) {
   return (
     <Link to={"/post/" + props.post._id}>
-      <div className="flex p-3 my-4 overflow-hidden rounded-xl bg-divcol hover:outline hover:outline-1 hover:outline-white">
+      <div className="flex p-3 my-4 overflow-hidden rounded-xl bg-divcol outline outline-1 outline-neutral-600 hover:outline hover:outline-1 hover:outline-white">
         <div className="flex overflow-hidden">
           <div className="pr-5">
             <span className="text-gray-200">
